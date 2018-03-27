@@ -10,4 +10,6 @@
 
 @interface TaskHeadView : UIView
 
+@property(nonatomic,weak) UIViewController *controllerID;
+
 @end

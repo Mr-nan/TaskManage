@@ -19,11 +19,14 @@
     [super viewDidLoad];
     
     self.view = self.homeView;
+    
 }
 
 -(HomeView *)homeView{
     if (_homeView==nil) {
         _homeView = [[HomeView alloc]initWithFrame:self.view.bounds];
+        _homeView.taskHeadView.controllerID = self;
+        
     }
     return _homeView;
 }

@@ -7,12 +7,10 @@
 //
 
 #import "HomeView.h"
-#import "TaskHeadView.h"
 
 @interface HomeView ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) TaskHeadView *taskHeadView;
-@property (nonatomic,strong) UITableView *taskTableView;
+
 
 
 @end

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskHeadView.h"
 
 @interface HomeView : UIView
+
+@property (nonatomic,strong) TaskHeadView *taskHeadView;
+@property (nonatomic,strong) UITableView *taskTableView;
 
 @end

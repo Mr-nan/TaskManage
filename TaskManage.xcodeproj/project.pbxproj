@@ -33,6 +33,7 @@
 		B8A331952066916D0054F72F /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A331942066916D0054F72F /* UIView+Additions.m */; };
 		B8A331982066958D0054F72F /* TaskHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A331972066958D0054F72F /* TaskHeadView.m */; };
 		B8A3319B206695F80054F72F /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A3319A206695F80054F72F /* TaskCell.m */; };
+		B8E695F6206AA53100FF2120 /* AddTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E695F5206AA53100FF2120 /* AddTaskCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,8 @@
 		B8A331972066958D0054F72F /* TaskHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskHeadView.m; sourceTree = "<group>"; };
 		B8A33199206695F80054F72F /* TaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
 		B8A3319A206695F80054F72F /* TaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
+		B8E695F4206AA53100FF2120 /* AddTaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTaskCell.h; sourceTree = "<group>"; };
+		B8E695F5206AA53100FF2120 /* AddTaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTaskCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +269,8 @@
 				B8A3318D206685D50054F72F /* HomeView.h */,
 				B8A3318E206685D50054F72F /* HomeView.m */,
 				B8A33199206695F80054F72F /* TaskCell.h */,
+				B8E695F4206AA53100FF2120 /* AddTaskCell.h */,
+				B8E695F5206AA53100FF2120 /* AddTaskCell.m */,
 				B8A3319A206695F80054F72F /* TaskCell.m */,
 				B8A331962066958D0054F72F /* TaskHeadView.h */,
 				B8A331972066958D0054F72F /* TaskHeadView.m */,
@@ -437,6 +442,7 @@
 				7DF62ACE206A425300FAF432 /* AddTaskView.m in Sources */,
 				B8A331952066916D0054F72F /* UIView+Additions.m in Sources */,
 				7DF62AC5206A2D2B00FAF432 /* MASConstraint.m in Sources */,
+				B8E695F6206AA53100FF2120 /* AddTaskCell.m in Sources */,
 				B8A3318C206683F60054F72F /* ZNNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,8 +7,8 @@
 //
 
 #import "AddTaskView.h"
-
-#define addTaskTitleArray (@[@"小目标名称",@"小目标图标",@"开始时间",@"结束时间",@"备注"])
+#import "AddTaskCell.h"
+#define addTaskTitleArray (@[@{@"title":@"名称",@"type":@"input",@"height":[NSNumber numberWithFloat:50]},@{@"title":@"图标",@"type":@"select",@"height":[NSNumber numberWithFloat:50]},@{@"title":@"开始时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50]},@{@"title":@"结束时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50]},@{@"title":@"备注",@"type":@"remark",@"height":[NSNumber numberWithFloat:100]}])
 
 @interface AddTaskView()<UITableViewDelegate,UITableViewDataSource>
 
@@ -26,6 +26,7 @@
     if(self){
         
         [self addSubview:self.addTaskTableView];
+        
     }
     return self;
 }
@@ -35,14 +36,20 @@
     return addTaskTitleArray.count;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSNumber *number = addTaskTitleArray[indexPath.row][@"height"];
+    return number.floatValue;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    AddTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if(cell==nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[AddTaskCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    cell.textLabel.text = addTaskTitleArray[indexPath.row];
+    cell.cellData = addTaskTitleArray[indexPath.row];
     
     return cell;
 }

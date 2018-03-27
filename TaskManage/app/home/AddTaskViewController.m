@@ -29,6 +29,7 @@
 {
     if(_addTaskView == nil){
         _addTaskView = [[AddTaskView alloc]initWithFrame:self.view.bounds];
+        _addTaskView.backgroundColor = [UIColor colorWithRed:0.88f green:0.95f blue:0.98f alpha:1.00f];
     }
     return _addTaskView;
 }

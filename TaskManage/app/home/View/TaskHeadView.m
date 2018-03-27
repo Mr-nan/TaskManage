@@ -66,13 +66,15 @@
 {
     if(_addTaskView == nil){
         _addTaskView = [[UIView alloc]init];
-        _addTaskView.backgroundColor = [UIColor orangeColor];
+        _addTaskView.layer.borderWidth = 1;
+        _addTaskView.layer.borderColor = [UIColor colorWithRed:0.88f green:0.95f blue:0.98f alpha:1.00f].CGColor;
+        _addTaskView.backgroundColor = [UIColor colorWithRed:1.00f green:1.00f blue:1.00f alpha:1.00f];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTaskAction)];
         [_addTaskView addGestureRecognizer:tap];
         
         UILabel *addLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 30)];
         addLabel.font = [UIFont systemFontOfSize:15];
-        addLabel.textColor = [UIColor whiteColor];
+        addLabel.textColor = [UIColor colorWithRed:0.23f green:0.69f blue:0.95f alpha:1.00f];
         addLabel.text = @"+ 添加自己的小目标";
         [_addTaskView addSubview:addLabel];
         [addLabel mas_makeConstraints:^(MASConstraintMaker *make) {

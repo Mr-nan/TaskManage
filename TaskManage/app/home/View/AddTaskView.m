@@ -53,6 +53,7 @@
         _addTaskTableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStyleGrouped];
         _addTaskTableView.delegate = self;
         _addTaskTableView.dataSource = self;
+        _addTaskTableView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.00f];
         
         UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
         [footView addSubview:self.addTaskButton];
@@ -74,7 +75,7 @@
     if(_addTaskButton == nil){
         
         _addTaskButton = [[UIButton alloc]init];
-        _addTaskButton.backgroundColor = [UIColor grayColor];
+        _addTaskButton.backgroundColor = [UIColor colorWithRed:0.29f green:0.75f blue:0.96f alpha:1.00f];
         _addTaskButton.layer.masksToBounds = YES;
         _addTaskButton.layer.cornerRadius = 10;
         _addTaskButton.titleLabel.font = [UIFont systemFontOfSize:14];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7DF62AA0206A2AFB00FAF432 /* Masonry in Resources */ = {isa = PBXBuildFile; fileRef = 7DF62A9F206A2AFB00FAF432 /* Masonry */; };
 		B8A33150206681AD0054F72F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A3314F206681AD0054F72F /* AppDelegate.m */; };
 		B8A33158206681AD0054F72F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A33157206681AD0054F72F /* Assets.xcassets */; };
 		B8A3315B206681AD0054F72F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8A33159206681AD0054F72F /* LaunchScreen.storyboard */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7DF62A9C206A271700FAF432 /* AppStyleInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStyleInfo.h; sourceTree = "<group>"; };
+		7DF62A9F206A2AFB00FAF432 /* Masonry */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Masonry; sourceTree = "<group>"; };
 		B8A3314B206681AD0054F72F /* TaskManage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A3314E206681AD0054F72F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8A3314F206681AD0054F72F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -95,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7DF62A99206A267600FAF432 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				7DF62A9F206A2AFB00FAF432 /* Masonry */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		B8A33142206681AD0054F72F = {
 			isa = PBXGroup;
 			children = (
@@ -120,12 +131,14 @@
 			children = (
 				B8A3314E206681AD0054F72F /* AppDelegate.h */,
 				B8A3314F206681AD0054F72F /* AppDelegate.m */,
+				7DF62A99206A267600FAF432 /* Library */,
 				B8A33180206682100054F72F /* app */,
 				B8A331922066910C0054F72F /* Category */,
 				B8A33157206681AD0054F72F /* Assets.xcassets */,
 				B8A33159206681AD0054F72F /* LaunchScreen.storyboard */,
 				B8A3315C206681AD0054F72F /* Info.plist */,
 				B8A3319120668ED10054F72F /* TaskHeader.pch */,
+				7DF62A9C206A271700FAF432 /* AppStyleInfo.h */,
 				B8A3315D206681AD0054F72F /* main.m */,
 			);
 			path = TaskManage;
@@ -299,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF62AA0206A2AFB00FAF432 /* Masonry in Resources */,
 				B8A3315B206681AD0054F72F /* LaunchScreen.storyboard in Resources */,
 				B8A33158206681AD0054F72F /* Assets.xcassets in Resources */,
 			);

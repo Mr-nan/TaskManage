@@ -48,7 +48,7 @@
     
     [self setHidden:YES];
     if(self.datePickerBlock){
-        self.datePickerBlock(btn.tag, _currentDate);
+        self.datePickerBlock(self.title,btn.tag, _currentDate);
     }
 }
 

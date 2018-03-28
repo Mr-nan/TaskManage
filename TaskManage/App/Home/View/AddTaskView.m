@@ -10,7 +10,6 @@
 #import "AddTaskCell.h"
 #import "ZNDatePickerView.h"
 
-#define addTaskTitleArray ()
 
 @interface AddTaskView()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -160,11 +159,23 @@
 -(ZNDatePickerView *)znDatePickerView{
     if(_znDatePickerView == nil){
         _znDatePickerView = [[ZNDatePickerView alloc]init];
-        _znDatePickerView.datePickerBlock=^(NSInteger toolButtonType,NSDate *date){
+        
+        __weak NSArray *addTaskTitleArray = _addTaskTitleArray;
+        __weak typeof(self) weakSelf = self;
+        _znDatePickerView.datePickerBlock=^(NSString *title,NSInteger toolButtonType,NSDate *date){
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
             formatter.dateFormat = @"yyyy-MM-dd";
             NSString *dateStr = [formatter stringFromDate:date];
-            ZNLog(@"===%@",dateStr);
+            
+            if([title isEqualToString:@"开始时间"]){
+                NSMutableDictionary *dict = addTaskTitleArray[2];
+                [dict setValue:dateStr forKey:@"value"];
+                [weakSelf.addTaskTableView reloadData];
+            }else{
+                NSDictionary *dict = addTaskTitleArray[3];
+                [dict setValue:dateStr forKey:@"value"];
+                [weakSelf.addTaskTableView reloadData];
+            }
         };
         [self addSubview:_znDatePickerView];
         [_znDatePickerView setHidden:YES];

@@ -12,6 +12,6 @@
 
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSDate *currentDate;
-@property (nonatomic,strong) void(^datePickerBlock)(NSInteger dateToolButtonType,NSDate *date); // dateToolButtonType:0-取消，1-确定
+@property (nonatomic,strong) void(^datePickerBlock)(NSString *title,NSInteger dateToolButtonType,NSDate *date); // dateToolButtonType:0-取消，1-确定
 
 @end

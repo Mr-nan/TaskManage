@@ -21,7 +21,7 @@
     [super viewDidLoad];
     self.title = @"添加小目标";
     self.view = self.addTaskView;
-    
+
     
 }
 
@@ -30,6 +30,7 @@
     if(_addTaskView == nil){
         _addTaskView = [[AddTaskView alloc]initWithFrame:self.view.bounds];
         _addTaskView.backgroundColor = [UIColor colorWithRed:0.88f green:0.95f blue:0.98f alpha:1.00f];
+        _addTaskView.viewControllerID = self;
     }
     return _addTaskView;
 }

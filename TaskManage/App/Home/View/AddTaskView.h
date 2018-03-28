@@ -11,6 +11,6 @@
 @interface AddTaskView : UIView
 
 @property (nonatomic,strong) UITableView *addTaskTableView;
-
+@property(nonatomic,weak) UIViewController *viewControllerID;
 
 @end

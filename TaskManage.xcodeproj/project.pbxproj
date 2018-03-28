@@ -20,6 +20,9 @@
 		7DF62AC8206A2D2B00FAF432 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DF62ABD206A2D2B00FAF432 /* Info.plist */; };
 		7DF62ACB206A406500FAF432 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62ACA206A406500FAF432 /* AddTaskViewController.m */; };
 		7DF62ACE206A425300FAF432 /* AddTaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62ACD206A425300FAF432 /* AddTaskView.m */; };
+		7DF62AD2206B3D4600FAF432 /* ZNTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62AD1206B3D4600FAF432 /* ZNTextView.m */; };
+		7DF62AD5206B7D3900FAF432 /* ZNDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62AD4206B7D3900FAF432 /* ZNDatePickerView.m */; };
+		7DF62AD8206B9A1100FAF432 /* NSString+StringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62AD7206B9A1100FAF432 /* NSString+StringTool.m */; };
 		B8A33150206681AD0054F72F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A3314F206681AD0054F72F /* AppDelegate.m */; };
 		B8A33158206681AD0054F72F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A33157206681AD0054F72F /* Assets.xcassets */; };
 		B8A3315B206681AD0054F72F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8A33159206681AD0054F72F /* LaunchScreen.storyboard */; };
@@ -85,6 +88,12 @@
 		7DF62ACA206A406500FAF432 /* AddTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewController.m; sourceTree = "<group>"; };
 		7DF62ACC206A425300FAF432 /* AddTaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTaskView.h; sourceTree = "<group>"; };
 		7DF62ACD206A425300FAF432 /* AddTaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTaskView.m; sourceTree = "<group>"; };
+		7DF62AD0206B3D4600FAF432 /* ZNTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNTextView.h; sourceTree = "<group>"; };
+		7DF62AD1206B3D4600FAF432 /* ZNTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNTextView.m; sourceTree = "<group>"; };
+		7DF62AD3206B7D3900FAF432 /* ZNDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNDatePickerView.h; sourceTree = "<group>"; };
+		7DF62AD4206B7D3900FAF432 /* ZNDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNDatePickerView.m; sourceTree = "<group>"; };
+		7DF62AD6206B9A1100FAF432 /* NSString+StringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+StringTool.h"; sourceTree = "<group>"; };
+		7DF62AD7206B9A1100FAF432 /* NSString+StringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringTool.m"; sourceTree = "<group>"; };
 		B8A3314B206681AD0054F72F /* TaskManage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A3314E206681AD0054F72F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8A3314F206681AD0054F72F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -183,6 +192,17 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		7DF62ACF206B3D0700FAF432 /* PublicView */ = {
+			isa = PBXGroup;
+			children = (
+				7DF62AD0206B3D4600FAF432 /* ZNTextView.h */,
+				7DF62AD1206B3D4600FAF432 /* ZNTextView.m */,
+				7DF62AD3206B7D3900FAF432 /* ZNDatePickerView.h */,
+				7DF62AD4206B7D3900FAF432 /* ZNDatePickerView.m */,
+			);
+			path = PublicView;
+			sourceTree = "<group>";
+		};
 		B8A33142206681AD0054F72F = {
 			isa = PBXGroup;
 			children = (
@@ -209,7 +229,7 @@
 				B8A3314E206681AD0054F72F /* AppDelegate.h */,
 				B8A3314F206681AD0054F72F /* AppDelegate.m */,
 				7DF62A99206A267600FAF432 /* Library */,
-				B8A33180206682100054F72F /* app */,
+				B8A33180206682100054F72F /* App */,
 				B8A331922066910C0054F72F /* Category */,
 				B8A33157206681AD0054F72F /* Assets.xcassets */,
 				B8A33159206681AD0054F72F /* LaunchScreen.storyboard */,
@@ -239,19 +259,20 @@
 			path = TaskManageUITests;
 			sourceTree = "<group>";
 		};
-		B8A33180206682100054F72F /* app */ = {
+		B8A33180206682100054F72F /* App */ = {
 			isa = PBXGroup;
 			children = (
-				B8A331812066825F0054F72F /* home */,
+				7DF62ACF206B3D0700FAF432 /* PublicView */,
+				B8A331812066825F0054F72F /* Home */,
 				B8A33183206682D00054F72F /* BaseViewController.h */,
 				B8A33184206682D00054F72F /* BaseViewController.m */,
 				B8A3318A206683F60054F72F /* ZNNavigationController.h */,
 				B8A3318B206683F60054F72F /* ZNNavigationController.m */,
 			);
-			path = app;
+			path = App;
 			sourceTree = "<group>";
 		};
-		B8A331812066825F0054F72F /* home */ = {
+		B8A331812066825F0054F72F /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				B8A33186206682EF0054F72F /* View */,
@@ -260,7 +281,7 @@
 				7DF62AC9206A406500FAF432 /* AddTaskViewController.h */,
 				7DF62ACA206A406500FAF432 /* AddTaskViewController.m */,
 			);
-			path = home;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		B8A33186206682EF0054F72F /* View */ = {
@@ -269,13 +290,13 @@
 				B8A3318D206685D50054F72F /* HomeView.h */,
 				B8A3318E206685D50054F72F /* HomeView.m */,
 				B8A33199206695F80054F72F /* TaskCell.h */,
-				B8E695F4206AA53100FF2120 /* AddTaskCell.h */,
-				B8E695F5206AA53100FF2120 /* AddTaskCell.m */,
 				B8A3319A206695F80054F72F /* TaskCell.m */,
 				B8A331962066958D0054F72F /* TaskHeadView.h */,
 				B8A331972066958D0054F72F /* TaskHeadView.m */,
 				7DF62ACC206A425300FAF432 /* AddTaskView.h */,
 				7DF62ACD206A425300FAF432 /* AddTaskView.m */,
+				B8E695F4206AA53100FF2120 /* AddTaskCell.h */,
+				B8E695F5206AA53100FF2120 /* AddTaskCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -285,6 +306,8 @@
 			children = (
 				B8A331932066916D0054F72F /* UIView+Additions.h */,
 				B8A331942066916D0054F72F /* UIView+Additions.m */,
+				7DF62AD6206B9A1100FAF432 /* NSString+StringTool.h */,
+				7DF62AD7206B9A1100FAF432 /* NSString+StringTool.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -422,6 +445,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF62AD8206B9A1100FAF432 /* NSString+StringTool.m in Sources */,
+				7DF62AD2206B3D4600FAF432 /* ZNTextView.m in Sources */,
 				B8A3315E206681AE0054F72F /* main.m in Sources */,
 				B8A331982066958D0054F72F /* TaskHeadView.m in Sources */,
 				7DF62AC3206A2D2B00FAF432 /* NSArray+MASAdditions.m in Sources */,
@@ -433,6 +458,7 @@
 				B8A33150206681AD0054F72F /* AppDelegate.m in Sources */,
 				7DF62ABF206A2D2B00FAF432 /* ViewController+MASAdditions.m in Sources */,
 				7DF62AC7206A2D2B00FAF432 /* MASViewAttribute.m in Sources */,
+				7DF62AD5206B7D3900FAF432 /* ZNDatePickerView.m in Sources */,
 				7DF62AC6206A2D2B00FAF432 /* MASViewConstraint.m in Sources */,
 				B8A3318F206685D50054F72F /* HomeView.m in Sources */,
 				7DF62AC1206A2D2B00FAF432 /* MASConstraintMaker.m in Sources */,

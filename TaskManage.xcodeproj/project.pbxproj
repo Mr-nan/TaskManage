@@ -40,6 +40,7 @@
 		B8A331982066958D0054F72F /* TaskHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A331972066958D0054F72F /* TaskHeadView.m */; };
 		B8A3319B206695F80054F72F /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A3319A206695F80054F72F /* TaskCell.m */; };
 		B8E695F6206AA53100FF2120 /* AddTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E695F5206AA53100FF2120 /* AddTaskCell.m */; };
+		B8E695FA206D40DC00FF2120 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E695F9206D40DC00FF2120 /* TaskModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,8 @@
 		B8A3319A206695F80054F72F /* TaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		B8E695F4206AA53100FF2120 /* AddTaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTaskCell.h; sourceTree = "<group>"; };
 		B8E695F5206AA53100FF2120 /* AddTaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTaskCell.m; sourceTree = "<group>"; };
+		B8E695F8206D40DC00FF2120 /* TaskModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
+		B8E695F9206D40DC00FF2120 /* TaskModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +291,7 @@
 		B8A331812066825F0054F72F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B8E695F7206D40AC00FF2120 /* TaskModel */,
 				B8A33186206682EF0054F72F /* View */,
 				B8A331872066830F0054F72F /* HomeViewController.h */,
 				B8A331882066830F0054F72F /* HomeViewController.m */,
@@ -325,6 +329,15 @@
 				7DF62ADA206C7D2700FAF432 /* NSDate+DateTransform.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		B8E695F7206D40AC00FF2120 /* TaskModel */ = {
+			isa = PBXGroup;
+			children = (
+				B8E695F8206D40DC00FF2120 /* TaskModel.h */,
+				B8E695F9206D40DC00FF2120 /* TaskModel.m */,
+			);
+			path = TaskModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -467,6 +480,7 @@
 				7DF62AC3206A2D2B00FAF432 /* NSArray+MASAdditions.m in Sources */,
 				B8A33185206682D00054F72F /* BaseViewController.m in Sources */,
 				7DF62AC4206A2D2B00FAF432 /* View+MASAdditions.m in Sources */,
+				B8E695FA206D40DC00FF2120 /* TaskModel.m in Sources */,
 				7DF62ACB206A406500FAF432 /* AddTaskViewController.m in Sources */,
 				7DF62ABE206A2D2B00FAF432 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				7DF62AC0206A2D2B00FAF432 /* MASCompositeConstraint.m in Sources */,

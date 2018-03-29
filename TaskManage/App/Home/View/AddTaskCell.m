@@ -64,7 +64,7 @@
     if([_cellData[@"value"] isKindOfClass: [UIImage class]]){
         
         [self.valueImage setHighlighted:NO];
-        self.valueImage.frame = CGRectMake(SCREEN_WIDTH - 68, (height.floatValue-40)/2, 40, 40);
+        self.valueImage.frame = CGRectMake(SCREEN_WIDTH - 58, (height.floatValue-30)/2, 30, 30);
         self.valueImage.image = _cellData[@"value"];
         
     }else if([_cellData[@"value"] isKindOfClass: [NSString class]]){

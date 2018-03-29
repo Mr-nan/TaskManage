@@ -60,6 +60,14 @@
     return cell;
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(self.selectIconAction){
+        self.selectIconAction([UIImage imageNamed:self.iconNameArray[indexPath.row]],self.iconNameArray[indexPath.row]);
+        [self setHidden:YES];
+    }
+}
+
 
 -(UIView *)iconToolView{
     if(_iconToolView == nil){
@@ -73,7 +81,7 @@
         [toolView addSubview:self.titleLabel];
         [_iconToolView addSubview:toolView];
         
-        UIButton *cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 90, 30)];
+        UIButton *cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 10, 90, 30)];
         cancelBtn.backgroundColor = [UIColor colorWithRed:0.23f green:0.69f blue:0.95f alpha:1.00f];
         cancelBtn.layer.cornerRadius = 10;
         cancelBtn.tag = 0;
@@ -81,15 +89,6 @@
         [cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [cancelBtn addTarget:self action:@selector(toolButtenAction:) forControlEvents:UIControlEventTouchUpInside];
         [toolView addSubview:cancelBtn];
-        
-        UIButton *confirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 10, 90, 30)];
-        confirmBtn.backgroundColor = [UIColor colorWithRed:0.23f green:0.69f blue:0.95f alpha:1.00f];
-        confirmBtn.layer.cornerRadius = 10;
-        confirmBtn.tag = 1;
-        [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
-        [confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [confirmBtn addTarget:self action:@selector(toolButtenAction:) forControlEvents:UIControlEventTouchUpInside];
-        [toolView addSubview:confirmBtn];
         
     }
     return _iconToolView;
@@ -102,7 +101,7 @@
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         // 设置itemSize
         layout.itemSize = CGSizeMake(50, 50);
-        _iconView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, 250) collectionViewLayout:layout];
+        _iconView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 60, SCREEN_WIDTH-20, 230) collectionViewLayout:layout];
         _iconView.backgroundColor = [UIColor whiteColor];
         _iconView.delegate = self;
         _iconView.dataSource = self;

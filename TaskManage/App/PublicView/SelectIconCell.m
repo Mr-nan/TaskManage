@@ -19,7 +19,6 @@
 
 -(void)setIconName:(NSString *)iconName{
     _iconName = iconName;
-    
     self.iconIamgeView.image = [UIImage imageNamed:iconName];
    
 }

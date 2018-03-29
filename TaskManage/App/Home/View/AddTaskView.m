@@ -14,9 +14,12 @@
 @interface AddTaskView()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *_addTaskTitleArray;
+    NSString *_iconName;
+    UITextField *_nameField;
+    UITextView  *_remarkField;
+    NSString *_startDate;
+    NSString *_stopDate;
 }
-@property (nonatomic,weak) UITextField *nameField;
-@property (nonatomic,weak) UITextView  *remarkField;
 @property (nonatomic,strong) ZNDatePickerView *znDatePickerView;
 @property (nonatomic,strong) ZNSelectIconView *znSelectIconView;
 @property (nonatomic,strong) UIAlertController *alertController;
@@ -33,11 +36,14 @@
     self = [super initWithFrame:frame];
     if(self){
     
+        _iconName = @"good1";
+        _startDate = [NSDate getDateString:@"yyyy-MM-dd"];
+        _stopDate = [NSDate getStringDate:[NSDate getNextDayDate] FormatterString:@"yyyy-MM-dd"];
         _addTaskTitleArray = [NSMutableArray arrayWithArray:@[
                               @{@"title":@"名称",@"type":@"input",@"height":[NSNumber numberWithFloat:50]},
-                              @{@"title":@"图标",@"type":@"imagSelect",@"height":[NSNumber numberWithFloat:50],@"value": [UIImage imageNamed:@"good1"]},
-                              @{@"title":@"开始时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":[NSDate getDateString:@"yyyy-MM-dd"]},
-                              @{@"title":@"结束时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":[NSDate getStringDate:[NSDate getNextDayDate] FormatterString:@"yyyy-MM-dd"]},
+                              @{@"title":@"图标",@"type":@"imagSelect",@"height":[NSNumber numberWithFloat:50],@"value": [UIImage imageNamed:_iconName]},
+                              @{@"title":@"开始时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":_startDate},
+                              @{@"title":@"结束时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":_stopDate},
                               @{@"title":@"备注",@"type":@"remark",@"height":[NSNumber numberWithFloat:150]}
                               ]];
         [self addSubview:self.addTaskTableView];
@@ -47,7 +53,8 @@
 }
 
 -(void)addTaskAction{
-    ZNLog(@"%@:%@",self.nameField.text,self.remarkField.text);
+    
+    
 }
 
 
@@ -71,9 +78,9 @@
     }
     
     if([_addTaskTitleArray[indexPath.row][@"title"] isEqualToString:@"名称"]){
-        self.nameField = cell.textField;
+        _nameField = cell.textField;
     }else if([_addTaskTitleArray[indexPath.row][@"title"] isEqualToString:@"备注"]){
-        self.remarkField = cell.textView;
+        _remarkField = cell.textView;
     }
    
     cell.cellData = _addTaskTitleArray[indexPath.row];
@@ -150,6 +157,11 @@
         }]];
         
         [_alertController addAction:[UIAlertAction actionWithTitle:@"无限期" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            _stopDate = @"无限期";
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:_addTaskTitleArray[3]] ;
+            [dict setValue:@"无限期" forKey:@"value"];
+            [_addTaskTitleArray replaceObjectAtIndex:3 withObject:dict];
+            [self.addTaskTableView reloadData];
             
         }]];
         
@@ -172,12 +184,14 @@
             NSString *dateStr = [formatter stringFromDate:date];
             
             if([title isEqualToString:@"开始时间"]){
+                _startDate = dateStr;
                 NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[2]] ;
                 [dict setValue:dateStr forKey:@"value"];
                 [addTaskTitleArray replaceObjectAtIndex:2 withObject:dict];
                 [weakSelf.addTaskTableView reloadData];
                 
             }else{
+                _stopDate = dateStr;
                 NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[3]] ;
                 [dict setValue:dateStr forKey:@"value"];
                 [addTaskTitleArray replaceObjectAtIndex:3 withObject:dict];
@@ -200,6 +214,15 @@
             [iconArray addObject:[NSString stringWithFormat:@"good%ld",i]];
         }
         _znSelectIconView.iconNameArray = iconArray;
+        _znSelectIconView.title = @"选择图标";
+        __weak NSMutableArray *addTaskTitleArray = _addTaskTitleArray;
+        __weak typeof(self) weakSelf = self;
+        _znSelectIconView.selectIconAction=^(UIImage *image,NSString *imageName){
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[1]] ;
+            [dict setValue:image forKey:@"value"];
+            [addTaskTitleArray replaceObjectAtIndex:1 withObject:dict];
+            [weakSelf.addTaskTableView reloadData];
+        };
         [self addSubview:_znSelectIconView];
         [_znSelectIconView setHidden:YES];
     }

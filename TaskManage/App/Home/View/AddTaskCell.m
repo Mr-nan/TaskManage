@@ -64,7 +64,7 @@
     if([_cellData[@"value"] isKindOfClass: [UIImage class]]){
         
         [self.valueImage setHighlighted:NO];
-        self.valueImage.frame = CGRectMake(SCREEN_WIDTH - 38, (height.floatValue-40)/2, 40, 40);
+        self.valueImage.frame = CGRectMake(SCREEN_WIDTH - 68, (height.floatValue-40)/2, 40, 40);
         self.valueImage.image = _cellData[@"value"];
         
     }else if([_cellData[@"value"] isKindOfClass: [NSString class]]){
@@ -112,16 +112,13 @@
     if(_valueLabel == nil){
         _valueLabel = [[UILabel alloc]init];
         _valueLabel.font = [UIFont systemFontOfSize:14];
-        _valueLabel.backgroundColor = [UIColor yellowColor];
     }
     return _valueLabel;
 }
 
 -(UIImageView *)valueImage{
     if(_valueImage == nil){
-        
         _valueImage = [[UIImageView alloc]init];
-        _valueImage.backgroundColor = [UIColor yellowColor];
     }
     return _valueImage;
 }

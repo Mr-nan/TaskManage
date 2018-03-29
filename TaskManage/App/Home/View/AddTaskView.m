@@ -9,15 +9,16 @@
 #import "AddTaskView.h"
 #import "AddTaskCell.h"
 #import "ZNDatePickerView.h"
-
+#import "ZNSelectIconView.h"
 
 @interface AddTaskView()<UITableViewDelegate,UITableViewDataSource>
 {
-    NSArray *_addTaskTitleArray;
+    NSMutableArray *_addTaskTitleArray;
 }
 @property (nonatomic,weak) UITextField *nameField;
 @property (nonatomic,weak) UITextView  *remarkField;
 @property (nonatomic,strong) ZNDatePickerView *znDatePickerView;
+@property (nonatomic,strong) ZNSelectIconView *znSelectIconView;
 @property (nonatomic,strong) UIAlertController *alertController;
 
 @property(nonatomic,strong) UIButton *addTaskButton;
@@ -32,13 +33,13 @@
     self = [super initWithFrame:frame];
     if(self){
     
-        _addTaskTitleArray =@[
+        _addTaskTitleArray = [NSMutableArray arrayWithArray:@[
                               @{@"title":@"名称",@"type":@"input",@"height":[NSNumber numberWithFloat:50]},
-                              @{@"title":@"图标",@"type":@"imagSelect",@"height":[NSNumber numberWithFloat:50],@"value":@"222"},
-                              @{@"title":@"开始时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":@"22"},
-                              @{@"title":@"结束时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":@"33"},
+                              @{@"title":@"图标",@"type":@"imagSelect",@"height":[NSNumber numberWithFloat:50],@"value": [UIImage imageNamed:@"good1"]},
+                              @{@"title":@"开始时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":[NSDate getDateString:@"yyyy-MM-dd"]},
+                              @{@"title":@"结束时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":[NSDate getStringDate:[NSDate getNextDayDate] FormatterString:@"yyyy-MM-dd"]},
                               @{@"title":@"备注",@"type":@"remark",@"height":[NSNumber numberWithFloat:150]}
-                              ];
+                              ]];
         [self addSubview:self.addTaskTableView];
         
     }
@@ -91,6 +92,9 @@
         self.znDatePickerView.title = @"开始时间";
         self.znDatePickerView.currentDate = [NSDate date];
         [self.znDatePickerView setHidden:NO];
+        
+    }else if([cellTitle isEqualToString:@"图标"]){
+        [self.znSelectIconView setHidden:NO];
     }
 }
 
@@ -160,7 +164,7 @@
     if(_znDatePickerView == nil){
         _znDatePickerView = [[ZNDatePickerView alloc]init];
         
-        __weak NSArray *addTaskTitleArray = _addTaskTitleArray;
+        __weak NSMutableArray *addTaskTitleArray = _addTaskTitleArray;
         __weak typeof(self) weakSelf = self;
         _znDatePickerView.datePickerBlock=^(NSString *title,NSInteger toolButtonType,NSDate *date){
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -168,12 +172,15 @@
             NSString *dateStr = [formatter stringFromDate:date];
             
             if([title isEqualToString:@"开始时间"]){
-                NSMutableDictionary *dict = addTaskTitleArray[2];
+                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[2]] ;
                 [dict setValue:dateStr forKey:@"value"];
+                [addTaskTitleArray replaceObjectAtIndex:2 withObject:dict];
                 [weakSelf.addTaskTableView reloadData];
+                
             }else{
-                NSDictionary *dict = addTaskTitleArray[3];
+                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[3]] ;
                 [dict setValue:dateStr forKey:@"value"];
+                [addTaskTitleArray replaceObjectAtIndex:3 withObject:dict];
                 [weakSelf.addTaskTableView reloadData];
             }
         };
@@ -184,6 +191,20 @@
     return _znDatePickerView;
 }
 
+-(ZNSelectIconView *)znSelectIconView{
+    if(_znSelectIconView == nil){
+        
+        _znSelectIconView = [[ZNSelectIconView alloc]init];
+        NSMutableArray *iconArray = [NSMutableArray array];
+        for (NSInteger i=1; i<=8; i++) {
+            [iconArray addObject:[NSString stringWithFormat:@"good%ld",i]];
+        }
+        _znSelectIconView.iconNameArray = iconArray;
+        [self addSubview:_znSelectIconView];
+        [_znSelectIconView setHidden:YES];
+    }
+    return _znSelectIconView;
+}
 
 
 @end

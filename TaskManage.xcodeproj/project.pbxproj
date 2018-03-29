@@ -23,6 +23,9 @@
 		7DF62AD2206B3D4600FAF432 /* ZNTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62AD1206B3D4600FAF432 /* ZNTextView.m */; };
 		7DF62AD5206B7D3900FAF432 /* ZNDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62AD4206B7D3900FAF432 /* ZNDatePickerView.m */; };
 		7DF62AD8206B9A1100FAF432 /* NSString+StringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62AD7206B9A1100FAF432 /* NSString+StringTool.m */; };
+		7DF62ADB206C7D2700FAF432 /* NSDate+DateTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62ADA206C7D2700FAF432 /* NSDate+DateTransform.m */; };
+		7DF62B05206CE27F00FAF432 /* ZNSelectIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B04206CE27F00FAF432 /* ZNSelectIconView.m */; };
+		7DF62B08206CE8EA00FAF432 /* SelectIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B07206CE8EA00FAF432 /* SelectIconCell.m */; };
 		B8A33150206681AD0054F72F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A3314F206681AD0054F72F /* AppDelegate.m */; };
 		B8A33158206681AD0054F72F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A33157206681AD0054F72F /* Assets.xcassets */; };
 		B8A3315B206681AD0054F72F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8A33159206681AD0054F72F /* LaunchScreen.storyboard */; };
@@ -94,6 +97,12 @@
 		7DF62AD4206B7D3900FAF432 /* ZNDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNDatePickerView.m; sourceTree = "<group>"; };
 		7DF62AD6206B9A1100FAF432 /* NSString+StringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+StringTool.h"; sourceTree = "<group>"; };
 		7DF62AD7206B9A1100FAF432 /* NSString+StringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringTool.m"; sourceTree = "<group>"; };
+		7DF62AD9206C7D2700FAF432 /* NSDate+DateTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateTransform.h"; sourceTree = "<group>"; };
+		7DF62ADA206C7D2700FAF432 /* NSDate+DateTransform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateTransform.m"; sourceTree = "<group>"; };
+		7DF62B03206CE27F00FAF432 /* ZNSelectIconView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNSelectIconView.h; sourceTree = "<group>"; };
+		7DF62B04206CE27F00FAF432 /* ZNSelectIconView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNSelectIconView.m; sourceTree = "<group>"; };
+		7DF62B06206CE8EA00FAF432 /* SelectIconCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectIconCell.h; sourceTree = "<group>"; };
+		7DF62B07206CE8EA00FAF432 /* SelectIconCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectIconCell.m; sourceTree = "<group>"; };
 		B8A3314B206681AD0054F72F /* TaskManage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A3314E206681AD0054F72F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8A3314F206681AD0054F72F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -199,6 +208,10 @@
 				7DF62AD1206B3D4600FAF432 /* ZNTextView.m */,
 				7DF62AD3206B7D3900FAF432 /* ZNDatePickerView.h */,
 				7DF62AD4206B7D3900FAF432 /* ZNDatePickerView.m */,
+				7DF62B03206CE27F00FAF432 /* ZNSelectIconView.h */,
+				7DF62B04206CE27F00FAF432 /* ZNSelectIconView.m */,
+				7DF62B06206CE8EA00FAF432 /* SelectIconCell.h */,
+				7DF62B07206CE8EA00FAF432 /* SelectIconCell.m */,
 			);
 			path = PublicView;
 			sourceTree = "<group>";
@@ -308,6 +321,8 @@
 				B8A331942066916D0054F72F /* UIView+Additions.m */,
 				7DF62AD6206B9A1100FAF432 /* NSString+StringTool.h */,
 				7DF62AD7206B9A1100FAF432 /* NSString+StringTool.m */,
+				7DF62AD9206C7D2700FAF432 /* NSDate+DateTransform.h */,
+				7DF62ADA206C7D2700FAF432 /* NSDate+DateTransform.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -458,8 +473,10 @@
 				B8A33150206681AD0054F72F /* AppDelegate.m in Sources */,
 				7DF62ABF206A2D2B00FAF432 /* ViewController+MASAdditions.m in Sources */,
 				7DF62AC7206A2D2B00FAF432 /* MASViewAttribute.m in Sources */,
+				7DF62B05206CE27F00FAF432 /* ZNSelectIconView.m in Sources */,
 				7DF62AD5206B7D3900FAF432 /* ZNDatePickerView.m in Sources */,
 				7DF62AC6206A2D2B00FAF432 /* MASViewConstraint.m in Sources */,
+				7DF62B08206CE8EA00FAF432 /* SelectIconCell.m in Sources */,
 				B8A3318F206685D50054F72F /* HomeView.m in Sources */,
 				7DF62AC1206A2D2B00FAF432 /* MASConstraintMaker.m in Sources */,
 				B8A331892066830F0054F72F /* HomeViewController.m in Sources */,
@@ -470,6 +487,7 @@
 				7DF62AC5206A2D2B00FAF432 /* MASConstraint.m in Sources */,
 				B8E695F6206AA53100FF2120 /* AddTaskCell.m in Sources */,
 				B8A3318C206683F60054F72F /* ZNNavigationController.m in Sources */,
+				7DF62ADB206C7D2700FAF432 /* NSDate+DateTransform.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

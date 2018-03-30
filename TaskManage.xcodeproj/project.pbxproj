@@ -26,6 +26,8 @@
 		7DF62ADB206C7D2700FAF432 /* NSDate+DateTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62ADA206C7D2700FAF432 /* NSDate+DateTransform.m */; };
 		7DF62B05206CE27F00FAF432 /* ZNSelectIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B04206CE27F00FAF432 /* ZNSelectIconView.m */; };
 		7DF62B08206CE8EA00FAF432 /* SelectIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B07206CE8EA00FAF432 /* SelectIconCell.m */; };
+		7DF62B0B206E0E8800FAF432 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B0A206E0E8800FAF432 /* TaskItem.m */; };
+		7DF62B0E206E1CD700FAF432 /* ZNCreactUITool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B0D206E1CD700FAF432 /* ZNCreactUITool.m */; };
 		B8A33150206681AD0054F72F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A3314F206681AD0054F72F /* AppDelegate.m */; };
 		B8A33158206681AD0054F72F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A33157206681AD0054F72F /* Assets.xcassets */; };
 		B8A3315B206681AD0054F72F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8A33159206681AD0054F72F /* LaunchScreen.storyboard */; };
@@ -104,6 +106,10 @@
 		7DF62B04206CE27F00FAF432 /* ZNSelectIconView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNSelectIconView.m; sourceTree = "<group>"; };
 		7DF62B06206CE8EA00FAF432 /* SelectIconCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectIconCell.h; sourceTree = "<group>"; };
 		7DF62B07206CE8EA00FAF432 /* SelectIconCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectIconCell.m; sourceTree = "<group>"; };
+		7DF62B09206E0E8800FAF432 /* TaskItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskItem.h; sourceTree = "<group>"; };
+		7DF62B0A206E0E8800FAF432 /* TaskItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskItem.m; sourceTree = "<group>"; };
+		7DF62B0C206E1CD700FAF432 /* ZNCreactUITool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNCreactUITool.h; sourceTree = "<group>"; };
+		7DF62B0D206E1CD700FAF432 /* ZNCreactUITool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNCreactUITool.m; sourceTree = "<group>"; };
 		B8A3314B206681AD0054F72F /* TaskManage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A3314E206681AD0054F72F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8A3314F206681AD0054F72F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -215,6 +221,8 @@
 				7DF62B04206CE27F00FAF432 /* ZNSelectIconView.m */,
 				7DF62B06206CE8EA00FAF432 /* SelectIconCell.h */,
 				7DF62B07206CE8EA00FAF432 /* SelectIconCell.m */,
+				7DF62B0C206E1CD700FAF432 /* ZNCreactUITool.h */,
+				7DF62B0D206E1CD700FAF432 /* ZNCreactUITool.m */,
 			);
 			path = PublicView;
 			sourceTree = "<group>";
@@ -336,6 +344,8 @@
 			children = (
 				B8E695F8206D40DC00FF2120 /* TaskModel.h */,
 				B8E695F9206D40DC00FF2120 /* TaskModel.m */,
+				7DF62B09206E0E8800FAF432 /* TaskItem.h */,
+				7DF62B0A206E0E8800FAF432 /* TaskItem.m */,
 			);
 			path = TaskModel;
 			sourceTree = "<group>";
@@ -480,6 +490,7 @@
 				7DF62AC3206A2D2B00FAF432 /* NSArray+MASAdditions.m in Sources */,
 				B8A33185206682D00054F72F /* BaseViewController.m in Sources */,
 				7DF62AC4206A2D2B00FAF432 /* View+MASAdditions.m in Sources */,
+				7DF62B0B206E0E8800FAF432 /* TaskItem.m in Sources */,
 				B8E695FA206D40DC00FF2120 /* TaskModel.m in Sources */,
 				7DF62ACB206A406500FAF432 /* AddTaskViewController.m in Sources */,
 				7DF62ABE206A2D2B00FAF432 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -495,6 +506,7 @@
 				7DF62AC1206A2D2B00FAF432 /* MASConstraintMaker.m in Sources */,
 				B8A331892066830F0054F72F /* HomeViewController.m in Sources */,
 				7DF62AC2206A2D2B00FAF432 /* MASLayoutConstraint.m in Sources */,
+				7DF62B0E206E1CD700FAF432 /* ZNCreactUITool.m in Sources */,
 				B8A3319B206695F80054F72F /* TaskCell.m in Sources */,
 				7DF62ACE206A425300FAF432 /* AddTaskView.m in Sources */,
 				B8A331952066916D0054F72F /* UIView+Additions.m in Sources */,

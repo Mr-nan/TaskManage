@@ -22,7 +22,6 @@
     self.title = @"添加小目标";
     self.view = self.addTaskView;
 
-    
 }
 
 -(AddTaskView *)addTaskView

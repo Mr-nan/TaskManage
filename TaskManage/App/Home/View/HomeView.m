@@ -7,6 +7,7 @@
 //
 
 #import "HomeView.h"
+#import "TaskModel.h"
 
 @interface HomeView ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -22,6 +23,7 @@
     self = [super initWithFrame:frame];
     if(self){
         
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(addTaskReloadAction) name:@"addTaskReloadAction" object:nil];
         [self addSubview:self.taskTableView];
         self.backgroundColor =[UIColor colorWithRed:0.90f green:0.96f blue:0.98f alpha:1.00f];
         
@@ -31,18 +33,30 @@
 
 #pragma mark -tableViewDelegate
 
+-(void)addTaskReloadAction{
+    
+    [self.taskTableView reloadData];
+}
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return [TaskModel getTaskModelArray].count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if(cell==nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
+    
+    TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.row];
+    cell.textLabel.text = item.taskName;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"开始时间:%@--结束时间:%@",item.taskStartDate,item.taskStopDate];
     return cell;
 }
 
@@ -64,5 +78,11 @@
     }
     return _taskHeadView;
 }
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+
 
 @end

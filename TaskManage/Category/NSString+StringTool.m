@@ -28,4 +28,10 @@
     return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesFontLeading attributes: @{NSFontAttributeName:font} context:nil];
 }
 
+-(NSString *)removWhitespace
+{
+    return [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+}
+
 @end

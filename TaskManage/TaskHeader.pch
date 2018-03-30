@@ -11,6 +11,7 @@
 #import "NSDate+DateTransform.h"
 #import "AppStyleInfo.h"
 #import "Masonry.h"
+#import "TaskModel.h"
 
 #ifdef DEBUG
 #define ZNLog(fmt,...) NSLog((@"%s [Line %d] " fmt),__PRETTY_FUNCTION__,__LINE__,##__VA_ARGS__)

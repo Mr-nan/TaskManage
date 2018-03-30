@@ -10,7 +10,8 @@
 #import "AddTaskCell.h"
 #import "ZNDatePickerView.h"
 #import "ZNSelectIconView.h"
-
+#import "TaskModel.h"
+#import "ZNCreactUITool.h"
 @interface AddTaskView()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *_addTaskTitleArray;
@@ -54,7 +55,28 @@
 
 -(void)addTaskAction{
     
+    NSString *errorMsg = nil;
+    if([_nameField.text removWhitespace].length<=0){
+        errorMsg=@"请填写名称";
+    }
     
+    if(errorMsg){
+      UIAlertController *alert = [ZNCreactUITool creactAlertControllerTitle:@"提示" Message:errorMsg AlertAction:nil];
+        [self.viewControllerID presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    
+    TaskItem *item = [[TaskItem alloc]init];
+    item.taskName = _nameField.text;
+    item.taskIconName = _iconName;
+    item.taskStartDate = _startDate;
+    item.taskStopDate = _stopDate;
+    item.taskRemark = _remarkField.text;
+    [TaskModel addTaskItem:item];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addTaskReloadAction" object:self];
+    [self.viewControllerID.navigationController popViewControllerAnimated:YES];
+
 }
 
 

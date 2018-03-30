@@ -22,6 +22,7 @@
     
 }
 
+
 -(HomeView *)homeView{
     if (_homeView==nil) {
         _homeView = [[HomeView alloc]initWithFrame:self.view.bounds];

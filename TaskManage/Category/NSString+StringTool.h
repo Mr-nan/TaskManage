@@ -14,5 +14,7 @@
 -(CGSize)getStringSizeFont:(UIFont *)font MaxWidth:(CGFloat)maxWidth;
 -(CGRect)getStringRectFont:(UIFont *)font MaxSize:(CGSize)maxSize;
 
+// 去除字符串空格
+-(NSString *)removWhitespace;
 
 @end

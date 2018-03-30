@@ -7,16 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "TaskItem.h"
 @interface TaskModel : NSObject
 
-@property(nonatomic,strong) 
++(NSMutableArray *)getTaskModelArray;
+
++(void)addTaskItem:(TaskItem *)taskItem;
+
++(void)moveTaskItemIndex:(NSInteger )index;
 
 @end
 
 
-@interface TaskItem :NSObject
 
-
-
-@end

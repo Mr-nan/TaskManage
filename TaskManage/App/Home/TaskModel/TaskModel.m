@@ -36,23 +36,36 @@
     if(_taskModelArray==nil){
         if([[NSFileManager defaultManager] fileExistsAtPath:kPath]){
             _taskModelArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:kPath]];
+            
         }else{
             _taskModelArray = [NSMutableArray array];
         }
     }
+    
+    
+    
     return _taskModelArray;
     
 }
 
 +(NSMutableArray *)getTaskModelArray{
     
-   return  [[self class] defaultTaskModel].taskModelArray;
+    
+    NSMutableArray *taskArray = [TaskModel defaultTaskModel].taskModelArray ;
+    
+    if(taskArray.count>1){
+        
+        return (NSMutableArray *) [[taskArray reverseObjectEnumerator] allObjects];
+        
+    }
+    
+   return  taskArray;
     
 }
 
 +(void)addTaskItem:(TaskItem *)taskItem{
     
-    NSMutableArray *taskModelArray = [TaskModel getTaskModelArray];
+    NSMutableArray *taskModelArray = [TaskModel defaultTaskModel].taskModelArray;
     [taskModelArray addObject:taskItem];
     ZNLog(@"%@",taskModelArray);
     ZNLog(@"=%@",kPath);
@@ -67,7 +80,7 @@
 
 +(void)moveTaskItemIndex:(NSInteger)index{
     
-    NSMutableArray *taskModelArray = [TaskModel getTaskModelArray];
+    NSMutableArray *taskModelArray = (NSMutableArray *) [[[TaskModel defaultTaskModel].taskModelArray reverseObjectEnumerator] allObjects];
     if(index>taskModelArray.count) return;
     [taskModelArray removeObjectAtIndex:index];
     
@@ -77,6 +90,8 @@
     }else{
         ZNLog(@"归档失败");
     }
+    
+    [TaskModel defaultTaskModel].taskModelArray = taskModelArray;
 }
 
 

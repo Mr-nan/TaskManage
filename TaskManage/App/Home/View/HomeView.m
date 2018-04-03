@@ -8,6 +8,7 @@
 
 #import "HomeView.h"
 #import "TaskModel.h"
+#import "TaskCell.h"
 
 @interface HomeView ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -44,21 +45,47 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    
+    return taskCellHeight;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if(cell==nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        cell = [[TaskCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
     
     TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.row];
-    cell.textLabel.text = item.taskName;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"开始时间:%@--结束时间:%@",item.taskStartDate,item.taskStopDate];
+    cell.cellItem = item;
     return cell;
 }
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        [TaskModel moveTaskItemIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    }
+
+}
+
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+-(BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NO;
+}
+
 
 -(UITableView *)taskTableView{
     if(_taskTableView == nil){

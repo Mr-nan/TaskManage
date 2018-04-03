@@ -240,6 +240,7 @@
         __weak NSMutableArray *addTaskTitleArray = _addTaskTitleArray;
         __weak typeof(self) weakSelf = self;
         _znSelectIconView.selectIconAction=^(UIImage *image,NSString *imageName){
+            _iconName = imageName;
             NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[1]] ;
             [dict setValue:image forKey:@"value"];
             [addTaskTitleArray replaceObjectAtIndex:1 withObject:dict];

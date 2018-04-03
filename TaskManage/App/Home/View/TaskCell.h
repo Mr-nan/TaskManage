@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskItem.h"
+#define  taskCellHeight 80
 
-@interface TaskCell : UIView
+@interface TaskCell : UITableViewCell
+
+@property (nonatomic,strong) TaskItem *cellItem;
 
 @end

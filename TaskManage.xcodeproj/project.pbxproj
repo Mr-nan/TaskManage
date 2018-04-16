@@ -28,6 +28,7 @@
 		7DF62B08206CE8EA00FAF432 /* SelectIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B07206CE8EA00FAF432 /* SelectIconCell.m */; };
 		7DF62B0B206E0E8800FAF432 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B0A206E0E8800FAF432 /* TaskItem.m */; };
 		7DF62B0E206E1CD700FAF432 /* ZNCreactUITool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B0D206E1CD700FAF432 /* ZNCreactUITool.m */; };
+		7DF62DB320849C4000FAF432 /* ZNTaskProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62DB220849C4000FAF432 /* ZNTaskProgressView.m */; };
 		B8A33150206681AD0054F72F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A3314F206681AD0054F72F /* AppDelegate.m */; };
 		B8A33158206681AD0054F72F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A33157206681AD0054F72F /* Assets.xcassets */; };
 		B8A3315B206681AD0054F72F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8A33159206681AD0054F72F /* LaunchScreen.storyboard */; };
@@ -110,6 +111,8 @@
 		7DF62B0A206E0E8800FAF432 /* TaskItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskItem.m; sourceTree = "<group>"; };
 		7DF62B0C206E1CD700FAF432 /* ZNCreactUITool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNCreactUITool.h; sourceTree = "<group>"; };
 		7DF62B0D206E1CD700FAF432 /* ZNCreactUITool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNCreactUITool.m; sourceTree = "<group>"; };
+		7DF62DB120849C4000FAF432 /* ZNTaskProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNTaskProgressView.h; sourceTree = "<group>"; };
+		7DF62DB220849C4000FAF432 /* ZNTaskProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNTaskProgressView.m; sourceTree = "<group>"; };
 		B8A3314B206681AD0054F72F /* TaskManage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A3314E206681AD0054F72F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8A3314F206681AD0054F72F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				7DF62B07206CE8EA00FAF432 /* SelectIconCell.m */,
 				7DF62B0C206E1CD700FAF432 /* ZNCreactUITool.h */,
 				7DF62B0D206E1CD700FAF432 /* ZNCreactUITool.m */,
+				7DF62DB120849C4000FAF432 /* ZNTaskProgressView.h */,
+				7DF62DB220849C4000FAF432 /* ZNTaskProgressView.m */,
 			);
 			path = PublicView;
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 				7DF62B0E206E1CD700FAF432 /* ZNCreactUITool.m in Sources */,
 				B8A3319B206695F80054F72F /* TaskCell.m in Sources */,
 				7DF62ACE206A425300FAF432 /* AddTaskView.m in Sources */,
+				7DF62DB320849C4000FAF432 /* ZNTaskProgressView.m in Sources */,
 				B8A331952066916D0054F72F /* UIView+Additions.m in Sources */,
 				7DF62AC5206A2D2B00FAF432 /* MASConstraint.m in Sources */,
 				B8E695F6206AA53100FF2120 /* AddTaskCell.m in Sources */,

@@ -54,10 +54,15 @@
     TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if(cell==nil){
         cell = [[TaskCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.row];
     cell.cellItem = item;
+    cell.finisTaskBlock=^(TaskItem *finisTaskItem){
+        [TaskModel setTaskItem:finisTaskItem];
+        [tableView reloadData];
+    };
     return cell;
 }
 

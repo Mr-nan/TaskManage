@@ -58,7 +58,13 @@
     NSString *errorMsg = nil;
     if([_nameField.text removWhitespace].length<=0){
         errorMsg=@"请填写名称";
+    }else if(![_stopDate isEqualToString:@"无限期"]){
+        if([NSDate compareDateStr:_startDate withNewDateStr:_stopDate]!=1){
+            errorMsg = @"结束时间必须大于开始时间";
+        }
     }
+    
+    
     
     if(errorMsg){
       UIAlertController *alert = [ZNCreactUITool creactAlertControllerTitle:@"提示" Message:errorMsg AlertAction:nil];
@@ -66,12 +72,20 @@
         return;
     }
     
+    
+    
     TaskItem *item = [[TaskItem alloc]init];
     item.taskName = _nameField.text;
     item.taskIconName = _iconName;
     item.taskStartDate = _startDate;
     item.taskStopDate = _stopDate;
     item.taskRemark = _remarkField.text;
+    if([_stopDate isEqualToString:@"无限期"]){
+        item.taskSumDayNumber = @"无限期";
+    }else{
+        item.taskSumDayNumber = [NSString stringWithFormat:@"%ld",[NSDate getNumberOfDaysWithDate:_startDate toDate:_stopDate]];
+    }
+    item.taskDateArray = [NSMutableArray array];
     [TaskModel addTaskItem:item];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"addTaskReloadAction" object:self];

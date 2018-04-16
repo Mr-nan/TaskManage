@@ -19,6 +19,8 @@
         self.taskStartDate = [aDecoder decodeObjectForKey:@"taskStartDate"];
         self.taskStopDate = [aDecoder decodeObjectForKey:@"taskStopDate"];
         self.taskRemark = [aDecoder decodeObjectForKey:@"taskRemark"];
+        self.taskSumDayNumber = [aDecoder decodeObjectForKey:@"taskSumDayNumber"];
+        self.taskDateArray = [aDecoder decodeObjectForKey:@"taskDateArray"];
     }
     return self;
 }
@@ -29,6 +31,9 @@
     [aCoder encodeObject:self.taskStartDate forKey:@"taskStartDate"];
     [aCoder encodeObject:self.taskStopDate forKey:@"taskStopDate"];
     [aCoder encodeObject:self.taskRemark forKey:@"taskRemark"];
+    [aCoder encodeObject:self.taskSumDayNumber forKey:@"taskSumDayNumber"];
+    [aCoder encodeObject:self.taskDateArray forKey:@"taskDateArray"];
+
 }
 
 

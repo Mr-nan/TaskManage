@@ -22,4 +22,10 @@
 // 获取后一天时间
 +(NSDate *)getNextDayDate;
 
+// 日期字符串比较: （0-相等    1-小于  -1-大于）
++(NSInteger)compareDateStr:(NSString *)dateStr withNewDateStr:(NSString *)newDateSt;
+
+// 获取两个日期之间的天数
++(NSInteger)getNumberOfDaysWithDate:(NSString *)dateStr toDate:(NSString *)toDateStr;
+
 @end

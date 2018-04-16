@@ -15,5 +15,7 @@
 @property(nonatomic,strong) NSString *taskStartDate;
 @property(nonatomic,strong) NSString *taskStopDate;
 @property(nonatomic,strong) NSString *taskRemark;
+@property(nonatomic,strong) NSString *taskSumDayNumber;
+@property(nonatomic,strong) NSMutableArray *taskDateArray;
 
 @end

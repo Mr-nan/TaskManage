@@ -34,4 +34,38 @@
     return date = [NSDate dateWithTimeInterval:24 * 60 *60 sinceDate:date];
 }
 
+// 日期字符串比较: （0-相等    1-小于  -1-大于）
++(NSInteger)compareDateStr:(NSString *)dateStr withNewDateStr:(NSString *)newDateStr{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [[NSDate alloc]init];
+    NSDate *newDate = [[NSDate alloc]init];
+ 
+    date = [formatter dateFromString:dateStr];
+    newDate = [formatter dateFromString:newDateStr];
+    
+    NSComparisonResult result = [date compare:newDate];
+    if(result==NSOrderedSame){
+        return 0;
+    }else if(result == NSOrderedAscending){
+        return 1;
+    }else{
+        return -1;
+    }
+}
+
+// 获取两个日期之间的天数
++(NSInteger)getNumberOfDaysWithDate:(NSString *)dateStr toDate:(NSString *)toDateStr{
+    NSCalendar *calender = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [[NSDate alloc]init];
+    NSDate *toDate = [[NSDate alloc]init];
+    date = [formatter dateFromString:dateStr];
+    toDate = [formatter dateFromString:toDateStr];
+    NSDateComponents *comp = [calender components:NSCalendarUnitDay fromDate:date toDate:toDate options:NSCalendarWrapComponents];
+    return comp.day;
+}
+
 @end

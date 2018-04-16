@@ -67,9 +67,27 @@
     
     NSMutableArray *taskModelArray = [TaskModel defaultTaskModel].taskModelArray;
     [taskModelArray addObject:taskItem];
-    ZNLog(@"%@",taskModelArray);
-    ZNLog(@"=%@",kPath);
+    BOOL sucess = [NSKeyedArchiver archiveRootObject:taskModelArray toFile:kPath];
+    if(sucess){
+        ZNLog(@"归档成功");
+    }else{
+        ZNLog(@"归档失败");
+    }
+}
+
++(void)setTaskItem:(TaskItem *)taskItem{
     
+    NSMutableArray *taskModelArray = [TaskModel defaultTaskModel].taskModelArray;
+    
+    for (NSInteger i=0; i<taskModelArray.count; i++) {
+        
+        TaskItem *item = [taskModelArray objectAtIndex:i];
+        if(item == taskItem){
+            item = taskItem;
+            break;
+        }
+        
+    }
     BOOL sucess = [NSKeyedArchiver archiveRootObject:taskModelArray toFile:kPath];
     if(sucess){
         ZNLog(@"归档成功");
@@ -80,9 +98,9 @@
 
 +(void)moveTaskItemIndex:(NSInteger)index{
     
-    NSMutableArray *taskModelArray = (NSMutableArray *) [[[TaskModel defaultTaskModel].taskModelArray reverseObjectEnumerator] allObjects];
+    NSMutableArray *taskModelArray = [TaskModel defaultTaskModel].taskModelArray;
     if(index>taskModelArray.count) return;
-    [taskModelArray removeObjectAtIndex:index];
+    [taskModelArray removeObjectAtIndex:taskModelArray.count - (index+1)];
     
     BOOL sucess = [NSKeyedArchiver archiveRootObject:taskModelArray toFile:kPath];
     if(sucess){
@@ -91,7 +109,6 @@
         ZNLog(@"归档失败");
     }
     
-    [TaskModel defaultTaskModel].taskModelArray = taskModelArray;
 }
 
 

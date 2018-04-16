@@ -13,5 +13,7 @@
 @interface TaskCell : UITableViewCell
 
 @property (nonatomic,strong) TaskItem *cellItem;
+@property (nonatomic,strong) void(^finisTaskBlock)(TaskItem *finisTaskItem);
+
 
 @end

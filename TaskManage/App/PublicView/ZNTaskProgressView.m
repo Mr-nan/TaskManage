@@ -33,6 +33,7 @@
 
 -(void)setProgress:(CGFloat)progress{
     _progress = progress;
+    ZNLog(@"%lf",progress);
     if(progress){
         self.subProgressView.frame = CGRectMake(2, 2, self.width * progress-4, self.height-4);
 

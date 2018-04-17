@@ -42,7 +42,7 @@
         [self.taskProgressView setHidden:YES];
         [self.taskInfiniteLabel setHidden:NO];
         self.taskInfiniteLabel.text = [NSString stringWithFormat:@"坚持%ld天 / 无限期",cellItem.taskDateArray.count];
-    }else{
+    }else if(cellItem.taskSumDayNumber){
         [self.taskProgressView setHidden:NO];
         [self.taskInfiniteLabel setHidden:YES];
         self.taskProgressView.progress = cellItem.taskDateArray.count / [cellItem.taskSumDayNumber floatValue];

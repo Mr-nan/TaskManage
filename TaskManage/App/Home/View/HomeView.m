@@ -106,7 +106,7 @@
 -(UIView *)taskHeadView{
     if(_taskHeadView == nil){
         _taskHeadView = [[TaskHeadView alloc]initWithFrame:CGRectMake(0, 0,self.width,self.height * 0.5)];
-        _taskHeadView.backgroundColor =[UIColor colorWithRed:0.29f green:0.75f blue:0.96f alpha:1.00f];
+        _taskHeadView.backgroundColor =[UIColor colorWithRed:0.90f green:0.96f blue:0.98f alpha:1.00f];
     }
     return _taskHeadView;
 }

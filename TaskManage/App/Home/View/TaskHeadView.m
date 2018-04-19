@@ -46,7 +46,6 @@
         make.width.with.offset(self.width);
     }];
     
-    self.waveView.progress = 0.5;
 }
 
 -(void)addTaskAction{
@@ -64,7 +63,7 @@
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.backgroundColor = [UIColor colorWithRed:0.29f green:0.75f blue:0.96f alpha:1.00f];
-//        _titleLabel.text = @"不积跬步，无以至千里；不积小流，无以成江海";
+        _titleLabel.text = @"不积跬步，无以至千里；不积小流，无以成江海";
         _titleLabel.layer.cornerRadius = 5;
         _titleLabel.layer.masksToBounds = YES;
         
@@ -88,7 +87,7 @@
         addLabel.text = @"+ 添加自己的小目标";
         [_addTaskView addSubview:addLabel];
         [addLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(_addTaskView);
+            make.center.equalTo(self->_addTaskView);
         }];
     }
     return _addTaskView;

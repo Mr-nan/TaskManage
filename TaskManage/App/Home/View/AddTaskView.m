@@ -125,6 +125,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self endEditing:YES];
+    
     NSString *cellTitle = _addTaskTitleArray[indexPath.row][@"title"];
     if([cellTitle isEqualToString:@"结束时间"]){
         
@@ -141,6 +144,9 @@
     }
 }
 
+-(void)scrollViewDidChangeAdjustedContentInset:(UIScrollView *)scrollView{
+    [self endEditing:YES];
+}
 
 -(UITableView *)addTaskTableView{
     if(_addTaskTableView == nil){
@@ -193,16 +199,16 @@
         }]];
         
         [_alertController addAction:[UIAlertAction actionWithTitle:@"无限期" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            _stopDate = @"无限期";
-            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:_addTaskTitleArray[3]] ;
+            self->_stopDate = @"无限期";
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:self->_addTaskTitleArray[3]] ;
             [dict setValue:@"无限期" forKey:@"value"];
-            [_addTaskTitleArray replaceObjectAtIndex:3 withObject:dict];
+            [self->_addTaskTitleArray replaceObjectAtIndex:3 withObject:dict];
             [self.addTaskTableView reloadData];
             
         }]];
         
         [_alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            [_alertController dismissViewControllerAnimated:YES completion:nil];
+            [self->_alertController dismissViewControllerAnimated:YES completion:nil];
         }]];
     }
     return _alertController;
@@ -220,14 +226,14 @@
             NSString *dateStr = [formatter stringFromDate:date];
             
             if([title isEqualToString:@"开始时间"]){
-                _startDate = dateStr;
+                self->_startDate = dateStr;
                 NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[2]] ;
                 [dict setValue:dateStr forKey:@"value"];
                 [addTaskTitleArray replaceObjectAtIndex:2 withObject:dict];
                 [weakSelf.addTaskTableView reloadData];
                 
             }else{
-                _stopDate = dateStr;
+                self->_stopDate = dateStr;
                 NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[3]] ;
                 [dict setValue:dateStr forKey:@"value"];
                 [addTaskTitleArray replaceObjectAtIndex:3 withObject:dict];
@@ -254,7 +260,7 @@
         __weak NSMutableArray *addTaskTitleArray = _addTaskTitleArray;
         __weak typeof(self) weakSelf = self;
         _znSelectIconView.selectIconAction=^(UIImage *image,NSString *imageName){
-            _iconName = imageName;
+            self->_iconName = imageName;
             NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[1]] ;
             [dict setValue:image forKey:@"value"];
             [addTaskTitleArray replaceObjectAtIndex:1 withObject:dict];

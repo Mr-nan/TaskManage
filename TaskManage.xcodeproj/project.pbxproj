@@ -29,6 +29,7 @@
 		7DF62B0B206E0E8800FAF432 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B0A206E0E8800FAF432 /* TaskItem.m */; };
 		7DF62B0E206E1CD700FAF432 /* ZNCreactUITool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62B0D206E1CD700FAF432 /* ZNCreactUITool.m */; };
 		7DF62DB320849C4000FAF432 /* ZNTaskProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62DB220849C4000FAF432 /* ZNTaskProgressView.m */; };
+		B82974B62086318600B2EB50 /* ZNWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B82974B22086318500B2EB50 /* ZNWaveView.m */; };
 		B8A33150206681AD0054F72F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A3314F206681AD0054F72F /* AppDelegate.m */; };
 		B8A33158206681AD0054F72F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A33157206681AD0054F72F /* Assets.xcassets */; };
 		B8A3315B206681AD0054F72F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8A33159206681AD0054F72F /* LaunchScreen.storyboard */; };
@@ -113,6 +114,8 @@
 		7DF62B0D206E1CD700FAF432 /* ZNCreactUITool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNCreactUITool.m; sourceTree = "<group>"; };
 		7DF62DB120849C4000FAF432 /* ZNTaskProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNTaskProgressView.h; sourceTree = "<group>"; };
 		7DF62DB220849C4000FAF432 /* ZNTaskProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNTaskProgressView.m; sourceTree = "<group>"; };
+		B82974B22086318500B2EB50 /* ZNWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZNWaveView.m; path = TaskManage/app/PublicView/ZNWaveView.m; sourceTree = SOURCE_ROOT; };
+		B82974B32086318600B2EB50 /* ZNWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZNWaveView.h; path = TaskManage/app/PublicView/ZNWaveView.h; sourceTree = SOURCE_ROOT; };
 		B8A3314B206681AD0054F72F /* TaskManage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A3314E206681AD0054F72F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8A3314F206681AD0054F72F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 				7DF62B0D206E1CD700FAF432 /* ZNCreactUITool.m */,
 				7DF62DB120849C4000FAF432 /* ZNTaskProgressView.h */,
 				7DF62DB220849C4000FAF432 /* ZNTaskProgressView.m */,
+				B82974B32086318600B2EB50 /* ZNWaveView.h */,
+				B82974B22086318500B2EB50 /* ZNWaveView.m */,
 			);
 			path = PublicView;
 			sourceTree = "<group>";
@@ -417,7 +422,7 @@
 		B8A33143206681AD0054F72F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = zn;
 				TargetAttributes = {
 					B8A3314A206681AD0054F72F = {
@@ -496,6 +501,7 @@
 				B8A33185206682D00054F72F /* BaseViewController.m in Sources */,
 				7DF62AC4206A2D2B00FAF432 /* View+MASAdditions.m in Sources */,
 				7DF62B0B206E0E8800FAF432 /* TaskItem.m in Sources */,
+				B82974B62086318600B2EB50 /* ZNWaveView.m in Sources */,
 				B8E695FA206D40DC00FF2120 /* TaskModel.m in Sources */,
 				7DF62ACB206A406500FAF432 /* AddTaskViewController.m in Sources */,
 				7DF62ABE206A2D2B00FAF432 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -580,6 +586,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -587,6 +594,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -635,6 +643,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -642,6 +651,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

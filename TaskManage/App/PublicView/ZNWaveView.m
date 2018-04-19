@@ -25,6 +25,10 @@
 @property (nonatomic, assign) CGFloat wave_offsetx;//偏移
 @property (nonatomic, assign) CGFloat offsety_scale;//上升的速度
 
+@property (nonatomic,strong) UILabel *timerTitle;
+@property (nonatomic,strong) NSTimer *timer;
+
+
 @end
 
 @implementation ZNWaveView
@@ -39,6 +43,7 @@
         self.clipsToBounds = YES;
         self.layer.borderWidth = 2;
         self.layer.borderColor = KHWWaveBottomColor.CGColor;
+        [self addSubview:self.timerTitle];
         [self initInfo];
     }
     return self;
@@ -53,14 +58,14 @@
 
 -(void)initInfo{
     _progress = 0 ;
-    _wave_amplitude = self.frame.size.height / 25;
+    _wave_amplitude = self.frame.size.height/60;
     _wave_cycle = 2 * M_PI / (self.frame.size.width * 0.9);
     _wave_h_distance = 2 * M_PI / _wave_cycle * 0.6;
     _wave_v_distance = _wave_amplitude * 0.4;
     _wave_move_width = 0.5;
     _wave_scale = 0.4;
-    _offsety_scale = 0.1;
-    _wave_offsety = (1-_progress) * (self.frame.size.height + 2 * _wave_amplitude);
+    _offsety_scale = 0.3;
+    _wave_offsety = 0.5 * (self.frame.size.height + 2 * _wave_amplitude);
     [self addDisplayLinkAction] ;
 }
 
@@ -69,9 +74,17 @@
     [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 }
 
+-(void)startTimer{
+    
+    NSString *currentTitem = [self getCurrentTitem];
+    if(![self.timerTitle.text isEqualToString:currentTitem]){
+        self.timerTitle.text = currentTitem;
+    }
+}
+
+
 -(void)displayLinkAction{
     _wave_offsetx+=_wave_move_width * _wave_scale;
-    
     //完成
     if(_wave_offsetx<=0.01){
         [self removeDisplayLinkAction];
@@ -112,6 +125,44 @@
     [color set];
     [path fill];
 }
+
+-(NSString *)getCurrentTitem{
+    
+    NSDate *date = [NSDate date];
+
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    unsigned int unitFlags = NSCalendarUnitHour |NSCalendarUnitMinute|kCFCalendarUnitSecond;
+    NSDateComponents *components = [cal components:unitFlags fromDate:date];
+    
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    NSInteger second = [components second];
+
+    self.progress = hour / 24.0f;
+
+    return [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld",hour,minute,second];
+    
+   
+    
+
+}
+
+-(UILabel *)timerTitle{
+    if(!_timerTitle){
+        _timerTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+        _timerTitle.center = self.center;
+        _timerTitle.font = [UIFont systemFontOfSize:30];
+        _timerTitle.textColor = [UIColor whiteColor];
+        _timerTitle.text = [self getCurrentTitem];
+        _timerTitle.textAlignment = NSTextAlignmentCenter;
+        _timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(startTimer) userInfo:nil repeats:YES];
+        
+        [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
+        
+    }
+    return _timerTitle;
+}
+
 
 
 @end

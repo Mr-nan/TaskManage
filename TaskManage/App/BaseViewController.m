@@ -20,6 +20,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
 }
 
 -(void)setTitle:(NSString *)title{
@@ -42,5 +43,6 @@
     }
     return _navigationTitleLabel;
 }
+
 
 @end

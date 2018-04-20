@@ -11,7 +11,7 @@
 
 @interface HomeView : UIView
 
-@property (nonatomic,strong) TaskHeadView *taskHeadView;
-@property (nonatomic,strong) UITableView *taskTableView;
+
+@property(nonatomic,weak) UIViewController *controllerID;
 
 @end

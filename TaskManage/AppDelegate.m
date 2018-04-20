@@ -18,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    application.statusBarStyle = UIStatusBarStyleLightContent;
+
     self.window = [[UIWindow alloc]init];
     self.window.frame = [UIScreen mainScreen].bounds;
     self.window.backgroundColor = [UIColor whiteColor];
@@ -27,6 +29,7 @@
     ZNNavigationController *znNavigationVC = [[ZNNavigationController alloc]initWithRootViewController:homeVC];
     self.window.rootViewController = znNavigationVC;
     [self.window makeKeyAndVisible];
+    
     
     return YES;
 }

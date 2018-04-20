@@ -9,10 +9,12 @@
 #import "HomeView.h"
 #import "TaskModel.h"
 #import "TaskCell.h"
+#import "TaskCalendarViewController.h"
 
 @interface HomeView ()<UITableViewDelegate,UITableViewDataSource>
 
-
+@property (nonatomic,strong) TaskHeadView *taskHeadView;
+@property (nonatomic,strong) UITableView *taskTableView;
 
 
 @end
@@ -66,6 +68,12 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    TaskCalendarViewController *taskCalendarVC = [[TaskCalendarViewController alloc]init];
+    [self.controllerID.navigationController pushViewController:taskCalendarVC animated:YES];
+}
+
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCellEditingStyleDelete;
 }
@@ -107,6 +115,7 @@
     if(_taskHeadView == nil){
         _taskHeadView = [[TaskHeadView alloc]initWithFrame:CGRectMake(0, 0,self.width,self.height * 0.5)];
         _taskHeadView.backgroundColor =[UIColor colorWithRed:0.90f green:0.96f blue:0.98f alpha:1.00f];
+        _taskHeadView.controllerID = _controllerID;
     }
     return _taskHeadView;
 }

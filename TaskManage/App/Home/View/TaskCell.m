@@ -57,12 +57,31 @@
     
     [self.finishButton setBackgroundImage:[UIImage imageNamed:cellItem.taskIconName] forState:UIControlStateNormal];
     if(cellItem.taskDateArray.count>0){
-        if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:cellItem.taskStartDate]==-1){
-            [self.finishButton setHidden:NO];
-
+        if([cellItem.taskStopDate isEqualToString:@"无限期"]){
+            
+            if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:[cellItem.taskDateArray lastObject]]==-1){
+                [self.finishButton setHidden:NO];
+                
+            }else{
+                [self.finishButton setHidden:YES];
+            }
+            
         }else{
-            [self.finishButton setHidden:YES];
+            
+            if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:cellItem.taskStartDate]==-1){
+                [self.finishButton setHidden:YES];
+
+            }else{
+                if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:[cellItem.taskDateArray lastObject]]==-1){
+                    [self.finishButton setHidden:NO];
+                    
+                }else{
+                    [self.finishButton setHidden:YES];
+                }
+            }
+            
         }
+        
     }else{
         [self.finishButton setHidden:NO];
     }
@@ -88,7 +107,7 @@
     if(_title == nil){
         _title = [[UILabel alloc]init];
         _title.font = [UIFont systemFontOfSize:18];
-        _title.backgroundColor = [UIColor yellowColor];
+//        _title.backgroundColor = [UIColor yellowColor];
         _title.numberOfLines = 1;
         [self.contentView addSubview:_title];
     }
@@ -99,7 +118,7 @@
     if(_infoText == nil){
         _infoText = [[UILabel alloc]init];
         _infoText.font = [UIFont systemFontOfSize:13];
-        _infoText.backgroundColor = [UIColor orangeColor];
+//        _infoText.backgroundColor = [UIColor orangeColor];
         _infoText.numberOfLines = 1;
         [self.contentView addSubview:_infoText];
     }

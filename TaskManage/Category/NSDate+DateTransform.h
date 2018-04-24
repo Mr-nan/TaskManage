@@ -28,4 +28,7 @@
 // 获取两个日期之间的天数
 +(NSInteger)getNumberOfDaysWithDate:(NSString *)dateStr toDate:(NSString *)toDateStr;
 
+// 获取两个日期隔的月数
++(NSInteger)getNumberOfMonthWithDate:(NSString *)dateStr toDate:(NSString *)toDateStr;
+
 @end

@@ -68,4 +68,16 @@
     return comp.day;
 }
 
++(NSInteger)getNumberOfMonthWithDate:(NSString *)dateStr toDate:(NSString *)toDateStr{
+    NSCalendar *calender = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [[NSDate alloc]init];
+    NSDate *toDate = [[NSDate alloc]init];
+    date = [formatter dateFromString:dateStr];
+    toDate = [formatter dateFromString:toDateStr];
+    NSDateComponents *comp = [calender components:NSCalendarUnitMonth fromDate:date toDate:toDate options:NSCalendarWrapComponents];
+    return comp.month;
+}
+
 @end

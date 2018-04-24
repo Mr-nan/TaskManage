@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TaskCalendarViewController : UIViewController
+#import "BaseViewController.h"
+@interface TaskCalendarViewController : BaseViewController
 
 @end

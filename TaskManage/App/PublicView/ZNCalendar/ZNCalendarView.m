@@ -8,8 +8,9 @@
 
 #import "ZNCalendarView.h"
 #import "ZNCalendarItemView.h"
+#import "ZNCalenderHeadView.h"
 
-@interface ZNCalendarView() <UICollectionViewDelegate,UICollectionViewDataSource>
+@interface ZNCalendarView() <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic,strong) UICollectionView *calendarCollectionView;
 @property (nonatomic,strong) ZNCalendarItemView *calendarItemCell;
@@ -28,7 +29,7 @@
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
+    return 3;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -43,6 +44,19 @@
     return cell;
 }
 
+-(UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    
+    UICollectionReusableView *reusableView = nil;
+    
+    if(kind == UICollectionElementKindSectionHeader){
+        reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headView" forIndexPath:indexPath];
+        reusableView.backgroundColor = [UIColor orangeColor];
+    }
+   
+    return reusableView;
+    
+}
+
 -(UICollectionView *)calendarCollectionView{
     
     if(!_calendarCollectionView){
@@ -51,7 +65,13 @@
         // 设置layout滚动方向
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         // 设置cell的size
-        layout.itemSize = CGSizeMake(self.width/7.0f, self.width/7.0f);
+        layout.itemSize = CGSizeMake((SCREEN_WIDTH-6)/ 7.0f, (SCREEN_WIDTH - 6) / 7.0f);
+        // 设置cell行间距
+        layout.minimumLineSpacing = 1;
+        // 设置cell列间距
+        layout.minimumInteritemSpacing = 1;
+        // 设置headViewSize
+        layout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 40);
         
         // 创建collectionView
         _calendarCollectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:layout];
@@ -61,6 +81,10 @@
         
         //注册collectionView-cell
         [_calendarCollectionView registerClass:[ZNCalendarItemView class] forCellWithReuseIdentifier:@"cellID"];
+        
+        //注册collection-headView
+        [_calendarCollectionView registerClass:[ZNCalenderHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headView"];
+        
     
     }
     return _calendarCollectionView;

@@ -34,6 +34,13 @@
     return self;
 }
 
+-(void)setControllerID:(UIViewController *)controllerID{
+    
+    _controllerID = controllerID;
+    self.taskHeadView.controllerID = controllerID;
+    
+}
+
 #pragma mark -tableViewDelegate
 
 -(void)addTaskReloadAction{
@@ -71,6 +78,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TaskCalendarViewController *taskCalendarVC = [[TaskCalendarViewController alloc]init];
+    TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.row];
+    taskCalendarVC.title = item.taskName;
     [self.controllerID.navigationController pushViewController:taskCalendarVC animated:YES];
 }
 
@@ -115,7 +124,6 @@
     if(_taskHeadView == nil){
         _taskHeadView = [[TaskHeadView alloc]initWithFrame:CGRectMake(0, 0,self.width,self.height * 0.5)];
         _taskHeadView.backgroundColor =[UIColor colorWithRed:0.90f green:0.96f blue:0.98f alpha:1.00f];
-        _taskHeadView.controllerID = _controllerID;
     }
     return _taskHeadView;
 }

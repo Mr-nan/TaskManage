@@ -14,33 +14,86 @@
 
 @property (nonatomic,strong) UICollectionView *calendarCollectionView;
 @property (nonatomic,strong) ZNCalendarItemView *calendarItemCell;
+@property (nonatomic,strong) NSMutableArray *calendarModeArray;
 @end
 
 @implementation ZNCalendarView
 
 
 
--(instancetype)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
-    if(self){
-        [self addSubview:self.calendarCollectionView];
+-(void)setTaskItem:(TaskItem *)taskItem{
+    _taskItem = taskItem;
+    
+    self.calendarModeArray = [NSMutableArray array];
+    if([taskItem.taskStopDate isEqualToString:@"无限期"]){
+        [self setCalendarModelStartDate:taskItem.taskStartDate stopDate:[NSDate getDateString:@"yyyy-MM-dd"]];
+        
+    }else{
+        [self setCalendarModelStartDate:taskItem.taskStartDate stopDate:taskItem.taskStopDate];
     }
-    return self;
+    
+    [self addSubview:self.calendarCollectionView];
+
+}
+
+-(void)setCalendarModelStartDate:(NSString *)startDate stopDate:(NSString *)stopDate{
+    
+    NSInteger sumMonthNumber = [NSDate getNumberOfMonthWithDate:startDate toDate:stopDate];
+    
+    ZNLog(@"start:%@--stop:%@---------%ld",startDate,stopDate,sumMonthNumber);
+    
+    for (NSInteger i=0; i<sumMonthNumber; i++) {
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        
+        NSDate *currentMonthDate = [NSDate getNextMonthDate:[dateFormatter dateFromString:startDate] toNumber:i];
+        NSString *currentMonthDateStr = [dateFormatter stringFromDate:currentMonthDate];
+        NSInteger firstWeekday = [NSDate firstWeekdayInThisMonth:currentMonthDateStr];
+        NSInteger sumDayNumber = [NSDate totaldaysMonth:currentMonthDateStr] + firstWeekday;
+        NSMutableArray *dayArray = [NSMutableArray array];
+        
+        ZNLog(@"currentMonthDateStr:%@,firstWeekday:%ld,sumDayNumber:%ld",currentMonthDateStr,firstWeekday,sumDayNumber);
+        
+        for (NSInteger day =0;day<sumDayNumber; day++) {
+            
+            NSString *dayStr = [NSString string];
+            if(day>=firstWeekday){
+                dayStr = [NSString stringWithFormat:@"%ld",day+1-firstWeekday];
+            }
+            [dayArray addObject:dayStr];
+        }
+        
+        NSDateFormatter *monthFormatter = [[NSDateFormatter alloc]init];
+        [monthFormatter setDateFormat:@"yyyy-MM"];
+        NSString *monthStr = [monthFormatter stringFromDate:currentMonthDate];
+        
+        [self.calendarModeArray addObject:@{
+                                            @"currentMonth":monthStr,
+                                            @"dayArray":dayArray
+                                            }];
+    }
+    
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 3;
+    return self.calendarModeArray.count;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 31;
+    
+    NSArray *dayArray = [[self.calendarModeArray objectAtIndex:section] objectForKey:@"dayArray"];
+    return dayArray.count;
 }
 
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     ZNCalendarItemView *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
-    cell.calendarText = [NSString stringWithFormat:@"%ld",indexPath.row +1];
+    
+    NSDictionary *calendarDict = [self.calendarModeArray objectAtIndex:indexPath.section];
+    NSArray *dayArray = [calendarDict objectForKey:@"dayArray"];
+    cell.calendarText = [dayArray objectAtIndex:indexPath.row];
     return cell;
 }
 

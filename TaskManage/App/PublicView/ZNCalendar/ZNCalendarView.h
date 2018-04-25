@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TaskItem.h"
 @interface ZNCalendarView : UIView
 
-
+@property(nonatomic,strong) TaskItem *taskItem;
 
 @end

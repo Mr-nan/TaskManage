@@ -22,13 +22,30 @@
 // 获取后一天时间
 +(NSDate *)getNextDayDate;
 
+// 获取上一个月
++(NSDate *)getLastMonthDate:(NSDate *)date;
+
+// 获取下一个月
++(NSDate *)getNextMonthDate:(NSDate *)date;
+
+// 获取下N个月
++(NSDate *)getNextMonthDate:(NSDate *)date toNumber:(NSInteger)number;
+
 // 日期字符串比较: （0-相等    1-小于  -1-大于）
 +(NSInteger)compareDateStr:(NSString *)dateStr withNewDateStr:(NSString *)newDateSt;
+
+
 
 // 获取两个日期之间的天数
 +(NSInteger)getNumberOfDaysWithDate:(NSString *)dateStr toDate:(NSString *)toDateStr;
 
 // 获取两个日期隔的月数
 +(NSInteger)getNumberOfMonthWithDate:(NSString *)dateStr toDate:(NSString *)toDateStr;
+
+//获取当月有多少天
++(NSInteger)totaldaysMonth:(NSString *)dateStr;
+
+//获取当月第一天是周几
++(NSInteger)firstWeekdayInThisMonth:(NSString *)dateStr;
 
 @end

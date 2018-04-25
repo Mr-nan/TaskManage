@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#define calenderHeadHeight 60
+
 @interface ZNCalenderHeadView : UICollectionReusableView
+
+@property(nonatomic,strong) NSString *title;
 
 @end

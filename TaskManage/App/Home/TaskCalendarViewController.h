@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "TaskItem.h"
 @interface TaskCalendarViewController : BaseViewController
+
+@property (nonatomic,strong) TaskItem *taskItem;
 
 @end

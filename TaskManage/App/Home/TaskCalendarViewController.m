@@ -29,6 +29,7 @@
 -(ZNCalendarView *)calendarView{
     if(!_calendarView){
         _calendarView = [[ZNCalendarView alloc]initWithFrame:self.view.bounds];
+        _calendarView.taskItem = self.taskItem;
     }
     return _calendarView;
 }

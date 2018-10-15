@@ -33,11 +33,19 @@
     [self addSubview:self.addView];
 }
 
+-(void)addBtnClick{
+    
+    AddTaskViewController *addTaskVC = [[AddTaskViewController alloc]init];
+    addTaskVC.title = @"add Task";
+    [self.controllerID.navigationController pushViewController:addTaskVC animated:YES];
+}
+
 -(UIButton *)addView
 {
     if(!_addView){
-        _addView = [[UIButton alloc]initWithFrame:CGRectMake(20, self.waveView.height +40, SCREEN_WIDTH-40, (SCREEN_WIDTH-40)*0.128)];
+        _addView = [[UIButton alloc]initWithFrame:CGRectMake(25, self.waveView.height +40, SCREEN_WIDTH-50, (SCREEN_WIDTH-50)*0.128)];
         [_addView setBackgroundImage:[UIImage imageNamed:@"添加按钮"] forState:0];
+        [_addView addTarget:self action:@selector(addBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
     }
     return _addView;

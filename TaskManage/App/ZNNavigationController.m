@@ -18,9 +18,21 @@
     [super viewDidLoad];
     self.navigationBar.barTintColor = view_backgroundColor;
     self.navigationBar.tintColor = [UIColor whiteColor];
-    [self.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarMetricsDefault]; // 取消导航自带的透明度
     [self.navigationBar setShadowImage:[[UIImage alloc]init]];//清楚导航下面的分割线
-    
+    self.navigationBar.translucent = NO;
+}
+
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    [super pushViewController:viewController animated:animated];
+    if(self.viewControllers.count>1){
+        viewController.navigationItem.hidesBackButton = YES;
+        UIBarButtonItem *btnItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStyleDone target:self action:@selector(navigationItemClick)];
+        viewController.navigationItem.leftBarButtonItem = btnItem;
+    }
+}
+
+-(void)navigationItemClick{
+    [self popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -17,8 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Task";
     self.view = self.homeView;
-    
 }
 
 

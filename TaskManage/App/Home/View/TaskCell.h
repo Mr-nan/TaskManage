@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskItem.h"
-#define  taskCellHeight 80
+#define  taskCellHeight ((SCREEN_WIDTH-50) * 0.47)
 
 @interface TaskCell : UITableViewCell
 

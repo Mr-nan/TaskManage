@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"添加小目标";
+    self.title = @"add Task";
     self.view = self.addTaskView;
 
 }

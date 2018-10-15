@@ -46,13 +46,18 @@
     [self.taskTableView reloadData];
 }
 
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [TaskModel getTaskModelArray].count;
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return [TaskModel getTaskModelArray].count;
+    return 1;
+
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 20;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -64,10 +69,11 @@
 {
     TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if(cell==nil){
-        cell = [[TaskCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        cell = [[TaskCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
+    return cell;
     TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.row];
     cell.cellItem = item;
     cell.finisTaskBlock=^(TaskItem *finisTaskItem){
@@ -79,6 +85,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    return;
     TaskCalendarViewController *taskCalendarVC = [[TaskCalendarViewController alloc]init];
     TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.row];
     taskCalendarVC.title = item.taskName;
@@ -86,39 +93,15 @@
     [self.controllerID.navigationController pushViewController:taskCalendarVC animated:YES];
 }
 
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete;
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"删除";
-}
-
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(editingStyle == UITableViewCellEditingStyleDelete){
-        [TaskModel moveTaskItemIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-    }
-
-}
-
-
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
-}
-
--(BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
-    return NO;
-}
-
 
 -(UITableView *)taskTableView{
     if(_taskTableView == nil){
-        _taskTableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStyleGrouped];
+        _taskTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_HEIGHT) style:UITableViewStyleGrouped];
         _taskTableView.backgroundColor = view_backgroundColor;
         _taskTableView.dataSource = self;
         _taskTableView.delegate = self;
         _taskTableView.tableHeaderView = self.taskHeadView;
+        _taskTableView.separatorColor = view_backgroundColor;
     }
     return _taskTableView;
 }

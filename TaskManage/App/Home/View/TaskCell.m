@@ -8,17 +8,20 @@
 
 #import "TaskCell.h"
 #import "ZNTaskProgressView.h"
-#define left_right_Gap 15
+
+#define left_right_Gap 40
 #define to_bottom_gap 10
+#define content_width (SCREEN_WIDTH - 80)
 
 @interface TaskCell()
 
-@property (nonatomic,strong) UILabel *title;
-@property (nonatomic,strong) UILabel *infoText;
-
-@property (nonatomic,strong) ZNTaskProgressView     *taskProgressView;
-@property (nonatomic,strong) UILabel    *taskInfiniteLabel;
-@property (nonatomic,strong) UIButton   *finishButton;
+@property (nonatomic,strong) UIImageView    *backImage;
+@property (nonatomic,strong) UILabel        *title;
+@property (nonatomic,strong) UILabel        *infoText;
+@property (nonatomic,strong) UILabel        *taskProgressLable;
+@property (nonatomic,strong) UILabel        *taskTimeLabel;
+@property (nonatomic,strong) UIButton       *finishButton;
+@property (nonatomic,strong) UIButton       *taskCloseButton;
 
 
 @end
@@ -26,69 +29,27 @@
 @implementation TaskCell
 
 
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if(self){
+        self.backgroundColor = view_backgroundColor;
+        [self addSubview:self.backImage];
+        [self addSubview:self.taskCloseButton];
+        self.title.text = @"任务1";
+        self.infoText.text = @"每天坚持一点点";
+        self.taskProgressLable.text = @"1天/10天";
+        self.taskTimeLabel.text = @"2018-09-01---2018-10-30";
+        [self.finishButton setTitle:@"今日完成" forState: UIControlStateNormal];
+
+    }
+    return self;
+}
+
 -(void)setCellItem:(TaskItem *)cellItem{
     _cellItem = cellItem;
     
-    ZNLog(@"%@: %@---%ld",cellItem.taskName,cellItem.taskSumDayNumber,cellItem.taskDateArray.count);
+//    ZNLog(@"%@: %@---%ld",cellItem.taskName,cellItem.taskSumDayNumber,cellItem.taskDateArray.count);
     
-    CGFloat titleMaxWidth = SCREEN_WIDTH - left_right_Gap * 2 - self.finishButton.width - 10;
-    if(cellItem.taskRemark.length>0){
-        titleMaxWidth = 100;
-    }
-    
-    CGSize titleSize = [cellItem.taskName getStringSizeFont:self.title.font MaxWidth:titleMaxWidth];
-    self.title.frame = CGRectMake(left_right_Gap, to_bottom_gap, titleSize.width, 30);
-    self.title.text  = cellItem.taskName;
-    
-    CGFloat remarkMaxWidth = SCREEN_WIDTH - self.title.width - self.finishButton.width - left_right_Gap * 2-5;
-    CGSize infonSize = [cellItem.taskRemark getStringSizeFont:self.infoText.font MaxWidth:remarkMaxWidth];
-    self.infoText.frame = CGRectMake(self.title.right+3, to_bottom_gap, infonSize.width, 30);
-    self.infoText.text = cellItem.taskRemark;
-    
-    if([cellItem.taskStopDate isEqualToString:@"无限期"]){
-        [self.taskProgressView setHidden:YES];
-        [self.taskInfiniteLabel setHidden:NO];
-        self.taskInfiniteLabel.text = [NSString stringWithFormat:@"坚持%ld天 / 无限期",cellItem.taskDateArray.count];
-    }else if(cellItem.taskSumDayNumber){
-        [self.taskProgressView setHidden:NO];
-        [self.taskInfiniteLabel setHidden:YES];
-        self.taskProgressView.progress = cellItem.taskDateArray.count / [cellItem.taskSumDayNumber floatValue];
-    }
-    
-    [self.finishButton setBackgroundImage:[UIImage imageNamed:cellItem.taskIconName] forState:UIControlStateNormal];
-    if(cellItem.taskDateArray.count>0){
-        if([cellItem.taskStopDate isEqualToString:@"无限期"]){
-            
-            if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:[cellItem.taskDateArray lastObject]]==-1){
-                [self.finishButton setHidden:NO];
-                
-            }else{
-                [self.finishButton setHidden:YES];
-            }
-            
-        }else{
-            
-            if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:cellItem.taskStartDate]==-1){
-                [self.finishButton setHidden:YES];
-
-            }else{
-                if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:[cellItem.taskDateArray lastObject]]==-1){
-                    [self.finishButton setHidden:NO];
-                    
-                }else{
-                    [self.finishButton setHidden:YES];
-                }
-            }
-            
-        }
-        
-    }else{
-        [self.finishButton setHidden:NO];
-    }
-    
-    
-    
-  
 }
 
 -(void)finisTaskBtnClick:(UIButton *)btn{
@@ -105,53 +66,79 @@
 
 -(UILabel *)title{
     if(_title == nil){
-        _title = [[UILabel alloc]init];
+        _title = [[UILabel alloc]initWithFrame:CGRectMake(left_right_Gap, to_bottom_gap, content_width-25, 30)];
         _title.font = [UIFont systemFontOfSize:18];
+        _title.textColor = [UIColor whiteColor];
 //        _title.backgroundColor = [UIColor yellowColor];
         _title.numberOfLines = 1;
-        [self.contentView addSubview:_title];
+        [self addSubview:_title];
     }
     return _title;
 }
 
 -(UILabel *)infoText{
     if(_infoText == nil){
-        _infoText = [[UILabel alloc]init];
+        _infoText = [[UILabel alloc]initWithFrame:CGRectMake(left_right_Gap, self.title.bottom+5, content_width, 20)];
         _infoText.font = [UIFont systemFontOfSize:13];
+        _infoText.textColor = [UIColor whiteColor];
 //        _infoText.backgroundColor = [UIColor orangeColor];
         _infoText.numberOfLines = 1;
-        [self.contentView addSubview:_infoText];
+        [self addSubview:_infoText];
     }
     return _infoText;
 }
 
--(UIView *)taskProgressView{
-    if(_taskProgressView == nil){
-        _taskProgressView = [[ZNTaskProgressView alloc]initWithFrame:CGRectMake(left_right_Gap, 50,self.finishButton.left-left_right_Gap-50, 20)];
-        _taskProgressView.layer.cornerRadius = 10;
-        [self.contentView addSubview:_taskProgressView];
+-(UILabel *)taskProgressLable{
+    
+    if(!_taskProgressLable){
+        _taskProgressLable = [[UILabel alloc]initWithFrame:CGRectMake(left_right_Gap, self.infoText.bottom+10, content_width, 20)];
+        _taskProgressLable.font = [UIFont systemFontOfSize:13];
+        _taskProgressLable.numberOfLines=1;
+        _taskProgressLable.textColor = [UIColor whiteColor];
+        [self addSubview:_taskProgressLable];
     }
-    return _taskProgressView;
+    return _taskProgressLable;
+    
 }
-
 -(UIButton *)finishButton{
     if(_finishButton == nil){
         _finishButton = [[UIButton alloc]init];
-        _finishButton.frame = CGRectMake(SCREEN_WIDTH-left_right_Gap-35, (taskCellHeight-35)/2, 35, 35);
+        _finishButton.frame = CGRectMake(SCREEN_WIDTH - 120, (taskCellHeight- 30)/2, 80, 30);
+        _finishButton.backgroundColor = [UIColor whiteColor];
+        _finishButton.layer.cornerRadius = 5;
+        _finishButton.layer.masksToBounds = YES;
+        _finishButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_finishButton setTitleColor:[UIColor colorWithRed:98/255.0f green:98/255.0f blue:98/255.0f alpha:1] forState:UIControlStateNormal];
         [_finishButton addTarget:self action:@selector(finisTaskBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:_finishButton];
+        [self addSubview:_finishButton];
     }
     return _finishButton;
 }
 
--(UILabel *)taskInfiniteLabel{
-    if(_taskInfiniteLabel == nil){
-        _taskInfiniteLabel = [[UILabel alloc]initWithFrame:CGRectMake(left_right_Gap,50,self.finishButton.left-left_right_Gap-50, 20)];
-        _taskInfiniteLabel.font = [UIFont systemFontOfSize:14];
-        _taskInfiniteLabel.textColor = [UIColor colorWithRed:0.29f green:0.75f blue:0.96f alpha:1.00f];
-        [self.contentView addSubview:_taskInfiniteLabel];
+-(UILabel *)taskTimeLabel{
+    if(_taskTimeLabel == nil){
+        _taskTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(left_right_Gap,taskCellHeight - to_bottom_gap - 20 ,content_width, 20)];
+        _taskTimeLabel.font = [UIFont systemFontOfSize:13];
+        _taskTimeLabel.textColor = [UIColor whiteColor];
+        [self addSubview:_taskTimeLabel];
     }
-    return _taskInfiniteLabel;
+    return _taskTimeLabel;
+}
+
+-(UIButton *)taskCloseButton{
+    if(!_taskCloseButton){
+        _taskCloseButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-55, to_bottom_gap, 15, 15)];
+        [_taskCloseButton setBackgroundImage:[UIImage imageNamed:@"关闭按钮"] forState:UIControlStateNormal];
+    }
+    return _taskCloseButton;
+}
+
+-(UIImageView *)backImage{
+    if(!_backImage){
+        _backImage = [[UIImageView alloc]initWithFrame:CGRectMake(25, 0, SCREEN_WIDTH - 50, taskCellHeight)];
+        _backImage.image = [UIImage imageNamed:@"任务背景1"];
+    }
+    return _backImage;
 }
 
 @end

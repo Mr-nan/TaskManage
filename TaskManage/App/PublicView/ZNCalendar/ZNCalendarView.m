@@ -99,10 +99,12 @@
 
 -(UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     
-    UICollectionReusableView *reusableView = nil;
+    ZNCalenderHeadView *reusableView = nil;
     
     if(kind == UICollectionElementKindSectionHeader){
         reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headView" forIndexPath:indexPath];
+        NSDictionary *calendarDict = [self.calendarModeArray objectAtIndex:indexPath.section];
+        reusableView.title = calendarDict[@"currentMonth"];
         reusableView.backgroundColor = [UIColor orangeColor];
     }
    
@@ -124,11 +126,11 @@
         // 设置cell列间距
         layout.minimumInteritemSpacing = 1;
         // 设置headViewSize
-        layout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 40);
+        layout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 60);
         
         // 创建collectionView
         _calendarCollectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:layout];
-        _calendarCollectionView.backgroundColor = [UIColor whiteColor];
+        _calendarCollectionView.backgroundColor = view_backgroundColor;
         _calendarCollectionView.dataSource = self;
         _calendarCollectionView.delegate = self;
         

@@ -175,7 +175,7 @@
     if(_addTaskButton == nil){
         
         _addTaskButton = [[UIButton alloc]init];
-        _addTaskButton.backgroundColor = [UIColor colorWithRed:0.29f green:0.75f blue:0.96f alpha:1.00f];
+        _addTaskButton.backgroundColor = main_color;
         _addTaskButton.layer.masksToBounds = YES;
         _addTaskButton.layer.cornerRadius = 10;
         _addTaskButton.titleLabel.font = [UIFont systemFontOfSize:14];

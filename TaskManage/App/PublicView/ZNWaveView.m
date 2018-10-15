@@ -8,9 +8,9 @@
 
 #import "ZNWaveView.h"
 
-#define KHWWaveFillColor [UIColor groupTableViewBackgroundColor] //填充颜色
-#define KHWWaveTopColor [UIColor colorWithRed:0/255.0 green:191/255.0 blue:255/255.0 alpha:1.0f] //前面波浪颜色
-#define KHWWaveBottomColor [UIColor colorWithRed:0/255.0 green:191/255.0 blue:255/255.0 alpha:0.4f] //后面波浪颜色
+#define KHWWaveFillColor [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1.0f] //填充颜色
+#define KHWWaveTopColor [UIColor colorWithRed:252/255.0 green:180/255.0 blue:81/255.0 alpha:0.4f]  //前面波浪颜色
+#define KHWWaveBottomColor  [UIColor colorWithRed:252/255.0 green:137/255.0 blue:23/255.0 alpha:1.0f]//后面波浪颜色
 
 @interface ZNWaveView()
 
@@ -37,12 +37,10 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = KHWWaveFillColor;
         self.layer.cornerRadius = frame.size.height *0.5;
         self.layer.masksToBounds = YES;
         self.clipsToBounds = YES;
-        self.layer.borderWidth = 2;
-        self.layer.borderColor = KHWWaveBottomColor.CGColor;
         [self addSubview:self.timerTitle];
         [self initInfo];
     }
@@ -140,23 +138,19 @@
 
     self.progress = hour / 24.0f;
 
-    return [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld",hour,minute,second];
-    
-   
+    return [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld",(long)hour,(long)minute,(long)second];
     
 
 }
 
 -(UILabel *)timerTitle{
     if(!_timerTitle){
-        _timerTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
-        _timerTitle.center = self.center;
+        _timerTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, (self.height-30)/2, self.frame.size.width, 30)];
         _timerTitle.font = [UIFont systemFontOfSize:30];
-        _timerTitle.textColor = [UIColor whiteColor];
+        _timerTitle.textColor = [UIColor colorWithRed:98/255.0f green:98/255.0f blue:98/255.0f alpha:1];
         _timerTitle.text = [self getCurrentTitem];
         _timerTitle.textAlignment = NSTextAlignmentCenter;
         _timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(startTimer) userInfo:nil repeats:YES];
-        
         [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
         
     }

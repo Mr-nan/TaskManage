@@ -22,7 +22,7 @@
     if(self){
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = frame.size.height / 2;
-        self.layer.borderColor = [UIColor colorWithRed:0.29f green:0.75f blue:0.96f alpha:1.00f].CGColor;
+        self.layer.borderColor = main_color.CGColor;
         self.layer.borderWidth = 1;
         self.clipsToBounds = YES;
     }
@@ -33,7 +33,6 @@
 
 -(void)setProgress:(CGFloat)progress{
     _progress = progress;
-    ZNLog(@"%lf",progress);
     if(progress){
         self.subProgressView.frame = CGRectMake(2, 2, self.width * progress-4, self.height-4);
 
@@ -47,7 +46,7 @@
 -(UIView *)subProgressView{
     if(!_subProgressView){
         _subProgressView = [[UIView alloc]init];
-        _subProgressView.backgroundColor = [UIColor colorWithRed:0.29f green:0.75f blue:0.96f alpha:1.00f];
+        _subProgressView.backgroundColor = main_color;
         [self addSubview:_subProgressView];
 
     }

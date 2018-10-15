@@ -18,25 +18,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = view_backgroundColor;
     
 }
 
 -(void)setTitle:(NSString *)title{
     
-    CGSize size = [title boundingRectWithSize:CGSizeMake(SCREEN_WIDTH, 0) options:NSStringDrawingUsesLineFragmentOrigin |
-                    NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:self.navigationTitleLabel.font} context:nil].size;
-    self.navigationTitleLabel.frame = CGRectMake(0, 0, size.width, size.height);
     self.navigationTitleLabel.text = title;
+    [self.navigationTitleLabel sizeToFit];
     self.navigationItem.titleView = self.navigationTitleLabel;
     
 }
 
 -(UILabel *)navigationTitleLabel{
     if(_navigationTitleLabel == nil){
-        
-        _navigationTitleLabel = [[UILabel alloc]init];
+        _navigationTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
         _navigationTitleLabel.textColor = [UIColor whiteColor];
         _navigationTitleLabel.textAlignment = NSTextAlignmentCenter;
         _navigationTitleLabel.font = [UIFont fontWithName:@"Courier" size:18];

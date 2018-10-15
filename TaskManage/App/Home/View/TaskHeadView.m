@@ -11,16 +11,15 @@
 #import "ZNWaveView.h"
 @interface TaskHeadView()
 
-@property (nonatomic,strong) UILabel *titleLabel;
-@property (nonatomic,strong) UIView *addTaskView;
 @property (nonatomic,strong) ZNWaveView *waveView;
+@property (nonatomic,strong) UIButton     *addView;
 
 @end
 
 @implementation TaskHeadView
 
--(instancetype)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
+-(instancetype)init{
+    self = [super init];
     if(self){
         
         [self createUI];
@@ -29,74 +28,24 @@
 }
 
 -(void)createUI{
-    [self addSubview:self.titleLabel];
-    [self addSubview:self.addTaskView];
+    self.frame = CGRectMake(0, 30,SCREEN_WIDTH, self.addView.bottom+30);
     [self addSubview:self.waveView];
-    
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).with.offset(10);
-        make.right.equalTo(self).with.offset(-10);
-        make.top.equalTo(self).with.offset(10);
-        make.height.with.offset(44);
-    }];
-    
-    [self.addTaskView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self).with.offset(0);
-        make.height.with.offset(49);
-        make.width.with.offset(self.width);
-    }];
-    
+    [self addSubview:self.addView];
 }
 
--(void)addTaskAction{
-    
-    AddTaskViewController *addTaskVC = [[AddTaskViewController alloc]init];
-    [self.controllerID.navigationController pushViewController:addTaskVC animated:YES];
-}
-
--(UILabel *)titleLabel
+-(UIButton *)addView
 {
-    if(_titleLabel == nil){
-        
-        _titleLabel = [[UILabel alloc]init];
-        _titleLabel.font = [UIFont systemFontOfSize:15];
-        _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.backgroundColor = [UIColor colorWithRed:0.29f green:0.75f blue:0.96f alpha:1.00f];
-        _titleLabel.text = @"不积跬步，无以至千里；不积小流，无以成江海";
-        _titleLabel.layer.cornerRadius = 5;
-        _titleLabel.layer.masksToBounds = YES;
+    if(!_addView){
+        _addView = [[UIButton alloc]initWithFrame:CGRectMake(20, self.waveView.height +40, SCREEN_WIDTH-40, (SCREEN_WIDTH-40)*0.128)];
+        [_addView setBackgroundImage:[UIImage imageNamed:@"添加按钮"] forState:0];
         
     }
-    return _titleLabel;
-}
-
--(UIView *)addTaskView
-{
-    if(_addTaskView == nil){
-        _addTaskView = [[UIView alloc]init];
-        _addTaskView.layer.borderWidth = 1;
-        _addTaskView.layer.borderColor = [UIColor colorWithRed:0.88f green:0.95f blue:0.98f alpha:1.00f].CGColor;
-        _addTaskView.backgroundColor = [UIColor colorWithRed:1.00f green:1.00f blue:1.00f alpha:1.00f];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTaskAction)];
-        [_addTaskView addGestureRecognizer:tap];
-        
-        UILabel *addLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 30)];
-        addLabel.font = [UIFont systemFontOfSize:15];
-        addLabel.textColor = [UIColor colorWithRed:0.23f green:0.69f blue:0.95f alpha:1.00f];
-        addLabel.text = @"+ 添加自己的小目标";
-        [_addTaskView addSubview:addLabel];
-        [addLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self->_addTaskView);
-        }];
-    }
-    return _addTaskView;
+    return _addView;
 }
 
 -(ZNWaveView *)waveView{
     if(!_waveView){
-        _waveView = [[ZNWaveView alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
-        _waveView.center = self.center;
+        _waveView = [[ZNWaveView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-150)/2, 0, 150, 150)];
     }
     return _waveView;
 }

@@ -16,8 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationBar.barTintColor = [UIColor colorWithRed:0.29f green:0.75f blue:0.96f alpha:1.00f];
+    self.navigationBar.barTintColor = view_backgroundColor;
     self.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarMetricsDefault]; // 取消导航自带的透明度
+    [self.navigationBar setShadowImage:[[UIImage alloc]init]];//清楚导航下面的分割线
+    
 }
 
 - (void)didReceiveMemoryWarning {

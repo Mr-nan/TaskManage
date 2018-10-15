@@ -25,7 +25,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
    
     HomeViewController *homeVC = [[HomeViewController alloc]init];
-    homeVC.title = @"小目标";
+    homeVC.title = @"Task";
     ZNNavigationController *znNavigationVC = [[ZNNavigationController alloc]initWithRootViewController:homeVC];
     self.window.rootViewController = znNavigationVC;
     [self.window makeKeyAndVisible];

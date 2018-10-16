@@ -9,6 +9,8 @@
 #import "TaskModel.h"
 
 #define kPath ([[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"taskModel.plist"])
+#define klose_Path ([[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"taskLoseModel.plist"])
+
 
 
 @interface TaskModel()
@@ -41,8 +43,6 @@
             _taskModelArray = [NSMutableArray array];
         }
     }
-    
-    
     
     return _taskModelArray;
     

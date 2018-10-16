@@ -47,11 +47,10 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return [TaskModel getTaskModelArray].count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return [TaskModel getTaskModelArray].count;
     return 1;
 
 }
@@ -73,19 +72,20 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    return cell;
-    TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.row];
+    TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.section];
     cell.cellItem = item;
     cell.finisTaskBlock=^(TaskItem *finisTaskItem){
         [TaskModel setTaskItem:finisTaskItem];
         [tableView reloadData];
+    };
+    cell.closeTaskBlocl = ^() {
+        [TaskModel moveTaskItemIndex:indexPath.section];
     };
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return;
     TaskCalendarViewController *taskCalendarVC = [[TaskCalendarViewController alloc]init];
     TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.row];
     taskCalendarVC.title = item.taskName;

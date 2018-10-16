@@ -90,6 +90,7 @@
 
 }
 
+
 -(UIView *)backView{
     if(!_backView){
         _backView = [[UIView alloc]init];
@@ -116,7 +117,7 @@
     return _title;
 }
 
--(UITextView *)textView{
+-(ZNTextView *)textView{
     if(_textView == nil){
         _textView = [[ZNTextView alloc]init];
     }
@@ -138,6 +139,8 @@
     }
     return _valueImage;
 }
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];

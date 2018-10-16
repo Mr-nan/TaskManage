@@ -35,20 +35,41 @@
         self.backgroundColor = view_backgroundColor;
         [self addSubview:self.backImage];
         [self addSubview:self.taskCloseButton];
-        self.title.text = @"任务1";
-        self.infoText.text = @"每天坚持一点点";
-        self.taskProgressLable.text = @"1天/10天";
-        self.taskTimeLabel.text = @"2018-09-01---2018-10-30";
-        [self.finishButton setTitle:@"今日完成" forState: UIControlStateNormal];
+       
 
     }
     return self;
 }
 
 -(void)setCellItem:(TaskItem *)cellItem{
-    _cellItem = cellItem;
     
-//    ZNLog(@"%@: %@---%ld",cellItem.taskName,cellItem.taskSumDayNumber,cellItem.taskDateArray.count);
+    [self.finishButton setHidden:YES];
+
+    _cellItem = cellItem;
+    ZNLog(@"%@: %@---%ld",cellItem.taskName,cellItem.taskSumDayNumber,cellItem.taskDateArray.count);
+    self.title.text = cellItem.taskName;
+    self.infoText.text = cellItem.taskRemark;
+    if([cellItem.taskSumDayNumber isEqualToString:@"无限期"]){
+        self.taskProgressLable.text = [NSString stringWithFormat:@"%lu天 / %@",(unsigned long)cellItem.taskDateArray.count,cellItem.taskSumDayNumber];
+
+    }else{
+        self.taskProgressLable.text = [NSString stringWithFormat:@"%lu天 / %@天",(unsigned long)cellItem.taskDateArray.count,cellItem.taskSumDayNumber];
+
+    }
+    self.taskTimeLabel.text = [NSString stringWithFormat:@"%@--%@",cellItem.taskStartDate,cellItem.taskStopDate];
+    
+    if(cellItem.taskDateArray.count>0){
+        
+        NSString *taskFinallyDate = [cellItem.taskDateArray firstObject];
+        if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:taskFinallyDate]==-1){
+            
+            [self.finishButton setHidden:NO];
+        }
+        
+    }else{
+        [self.finishButton setHidden:NO];
+    }
+    
     
 }
 
@@ -56,11 +77,22 @@
     
     [btn setHidden:YES];
     if(self.finisTaskBlock){
-        
         [_cellItem.taskDateArray addObject:[NSDate getDateString:@"yyyy-MM-dd"]];
         self.finisTaskBlock(_cellItem);
     }
     
+}
+
+-(void)closeTaskBtnClick{
+    
+    if(self.finishButton){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"是否删除" message:_cellItem.taskName preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.closeTaskBlocl();
+        }]];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 
@@ -110,6 +142,7 @@
         _finishButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [_finishButton setTitleColor:[UIColor colorWithRed:98/255.0f green:98/255.0f blue:98/255.0f alpha:1] forState:UIControlStateNormal];
         [_finishButton addTarget:self action:@selector(finisTaskBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_finishButton setTitle:@"今日完成" forState: UIControlStateNormal];
         [self addSubview:_finishButton];
     }
     return _finishButton;
@@ -129,6 +162,7 @@
     if(!_taskCloseButton){
         _taskCloseButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-55, to_bottom_gap, 15, 15)];
         [_taskCloseButton setBackgroundImage:[UIImage imageNamed:@"关闭按钮"] forState:UIControlStateNormal];
+        [_taskCloseButton addTarget:self action:@selector(closeTaskBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _taskCloseButton;
 }

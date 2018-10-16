@@ -12,21 +12,18 @@
 #import "ZNSelectIconView.h"
 #import "TaskModel.h"
 #import "ZNCreactUITool.h"
-@interface AddTaskView()<UITableViewDelegate,UITableViewDataSource>
+@interface AddTaskView()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate>
 {
     NSMutableArray *_addTaskTitleArray;
-    NSString *_iconName;
     UITextField *_nameField;
-    UITextView  *_remarkField;
+    ZNTextView  *_remarkField;
     NSString *_startDate;
     NSString *_stopDate;
 }
 @property (nonatomic,strong) ZNDatePickerView *znDatePickerView;
-@property (nonatomic,strong) ZNSelectIconView *znSelectIconView;
 @property (nonatomic,strong) UIAlertController *alertController;
 
 @property(nonatomic,strong) UIButton *addTaskButton;
-
 
 @end
 
@@ -37,11 +34,10 @@
     self = [super initWithFrame:frame];
     if(self){
     
-        _iconName = @"good1";
         _startDate = [NSDate getDateString:@"yyyy-MM-dd"];
         _stopDate = [NSDate getStringDate:[NSDate getNextDayDate] FormatterString:@"yyyy-MM-dd"];
         _addTaskTitleArray = [NSMutableArray arrayWithArray:@[
-                              @{@"title":@"名称",@"type":@"input",@"height":[NSNumber numberWithFloat:50]},
+                              @{@"title":@"任务",@"type":@"input",@"height":[NSNumber numberWithFloat:50]},
                               @{@"title":@"开始时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":_startDate},
                               @{@"title":@"结束时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":_stopDate},
                               @{@"title":@"说明",@"type":@"remark",@"height":[NSNumber numberWithFloat:155]}
@@ -56,13 +52,12 @@
     
     NSString *errorMsg = nil;
     if([_nameField.text removWhitespace].length<=0){
-        errorMsg=@"请填写名称";
+        errorMsg=@"请填写任务";
     }else if(![_stopDate isEqualToString:@"无限期"]){
         if([NSDate compareDateStr:_startDate withNewDateStr:_stopDate]!=1){
             errorMsg = @"结束时间必须大于开始时间";
         }
     }
-    
     
     
     if(errorMsg){
@@ -72,10 +67,8 @@
     }
     
     
-    
     TaskItem *item = [[TaskItem alloc]init];
     item.taskName = _nameField.text;
-    item.taskIconName = _iconName;
     item.taskStartDate = _startDate;
     item.taskStopDate = _stopDate;
     item.taskRemark = _remarkField.text;
@@ -103,15 +96,17 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return 100;
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+    return headerView;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return 50;
+    return [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
 }
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -126,10 +121,14 @@
         cell = [[AddTaskCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     
-    if([_addTaskTitleArray[indexPath.row][@"title"] isEqualToString:@"名称"]){
+    if([_addTaskTitleArray[indexPath.section][@"title"] isEqualToString:@"任务"]){
         _nameField = cell.textField;
-    }else if([_addTaskTitleArray[indexPath.row][@"title"] isEqualToString:@"备注"]){
+        _nameField.delegate = self;
+        _nameField.returnKeyType = UIReturnKeyDone;
+    }else if([_addTaskTitleArray[indexPath.section][@"title"] isEqualToString:@"说明"]){
         _remarkField = cell.textView;
+        _remarkField.delegate = self;
+        _remarkField.returnKeyType = UIReturnKeyDone;
     }
    
     cell.cellData = _addTaskTitleArray[indexPath.section];
@@ -146,36 +145,56 @@
         [self.viewControllerID presentViewController:self.alertController animated:YES completion:nil];
         
     }else if([cellTitle isEqualToString:@"开始时间"]){
-    
         self.znDatePickerView.title = @"开始时间";
         self.znDatePickerView.currentDate = [NSDate date];
         [self.znDatePickerView setHidden:NO];
-        
     }
 }
 
--(void)scrollViewDidChangeAdjustedContentInset:(UIScrollView *)scrollView{
-    ZNLog(@"======");
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
     [self endEditing:YES];
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self.addTaskTableView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    [self.addTaskTableView setContentOffset:CGPointMake(0, 230) animated:YES];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        [textView resignFirstResponder];
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    
+    return YES;
 }
 
 -(UITableView *)addTaskTableView{
     if(_addTaskTableView == nil){
-        _addTaskTableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStyleGrouped];
+        _addTaskTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
         _addTaskTableView.delegate = self;
         _addTaskTableView.dataSource = self;
         _addTaskTableView.backgroundColor = view_backgroundColor;
         _addTaskTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH-50)*0.128)];
         [footView addSubview:self.addTaskButton];
-        
         [self.addTaskButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(footView).with.offset(25);
             make.right.equalTo(footView).with.offset(-25);
             make.height.with.offset((SCREEN_WIDTH-50)*0.128);
-            make.top.width.offset(0);
         }];
-        
         _addTaskTableView.tableFooterView = footView;
         
     }
@@ -204,9 +223,9 @@
         
         [_alertController addAction:[UIAlertAction actionWithTitle:@"无限期" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             self->_stopDate = @"无限期";
-            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:self->_addTaskTitleArray[3]] ;
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:self->_addTaskTitleArray[2]] ;
             [dict setValue:@"无限期" forKey:@"value"];
-            [self->_addTaskTitleArray replaceObjectAtIndex:3 withObject:dict];
+            [self->_addTaskTitleArray replaceObjectAtIndex:2 withObject:dict];
             [self.addTaskTableView reloadData];
             
         }]];
@@ -231,16 +250,16 @@
             
             if([title isEqualToString:@"开始时间"]){
                 self->_startDate = dateStr;
-                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[2]] ;
+                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[1]] ;
                 [dict setValue:dateStr forKey:@"value"];
-                [addTaskTitleArray replaceObjectAtIndex:2 withObject:dict];
+                [addTaskTitleArray replaceObjectAtIndex:1 withObject:dict];
                 [weakSelf.addTaskTableView reloadData];
                 
             }else{
                 self->_stopDate = dateStr;
-                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[3]] ;
+                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[2]] ;
                 [dict setValue:dateStr forKey:@"value"];
-                [addTaskTitleArray replaceObjectAtIndex:3 withObject:dict];
+                [addTaskTitleArray replaceObjectAtIndex:2 withObject:dict];
                 [weakSelf.addTaskTableView reloadData];
             }
         };
@@ -251,30 +270,9 @@
     return _znDatePickerView;
 }
 
--(ZNSelectIconView *)znSelectIconView{
-    if(_znSelectIconView == nil){
-        
-        _znSelectIconView = [[ZNSelectIconView alloc]init];
-        NSMutableArray *iconArray = [NSMutableArray array];
-        for (NSInteger i=1; i<=8; i++) {
-            [iconArray addObject:[NSString stringWithFormat:@"good%ld",(long)i]];
-        }
-        _znSelectIconView.iconNameArray = iconArray;
-        _znSelectIconView.title = @"选择图标";
-        __weak NSMutableArray *addTaskTitleArray = _addTaskTitleArray;
-        __weak typeof(self) weakSelf = self;
-        _znSelectIconView.selectIconAction=^(UIImage *image,NSString *imageName){
-            self->_iconName = imageName;
-            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:addTaskTitleArray[1]] ;
-            [dict setValue:image forKey:@"value"];
-            [addTaskTitleArray replaceObjectAtIndex:1 withObject:dict];
-            [weakSelf.addTaskTableView reloadData];
-        };
-        [self addSubview:_znSelectIconView];
-        [_znSelectIconView setHidden:YES];
-    }
-    return _znSelectIconView;
-}
+
+
+
 
 
 @end

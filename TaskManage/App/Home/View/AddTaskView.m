@@ -42,10 +42,9 @@
         _stopDate = [NSDate getStringDate:[NSDate getNextDayDate] FormatterString:@"yyyy-MM-dd"];
         _addTaskTitleArray = [NSMutableArray arrayWithArray:@[
                               @{@"title":@"名称",@"type":@"input",@"height":[NSNumber numberWithFloat:50]},
-                              @{@"title":@"图标",@"type":@"imagSelect",@"height":[NSNumber numberWithFloat:50],@"value": [UIImage imageNamed:_iconName]},
                               @{@"title":@"开始时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":_startDate},
                               @{@"title":@"结束时间",@"type":@"select",@"height":[NSNumber numberWithFloat:50],@"value":_stopDate},
-                              @{@"title":@"备注",@"type":@"remark",@"height":[NSNumber numberWithFloat:150]}
+                              @{@"title":@"说明",@"type":@"remark",@"height":[NSNumber numberWithFloat:155]}
                               ]];
         [self addSubview:self.addTaskTableView];
         
@@ -83,7 +82,7 @@
     if([_stopDate isEqualToString:@"无限期"]){
         item.taskSumDayNumber = @"无限期";
     }else{
-        item.taskSumDayNumber = [NSString stringWithFormat:@"%ld",[NSDate getNumberOfDaysWithDate:_startDate toDate:_stopDate]];
+        item.taskSumDayNumber = [NSString stringWithFormat:@"%ld",(long)[NSDate getNumberOfDaysWithDate:_startDate toDate:_stopDate]];
     }
     item.taskDateArray = [NSMutableArray array];
     [TaskModel addTaskItem:item];
@@ -94,15 +93,29 @@
 }
 
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return _addTaskTitleArray.count;
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _addTaskTitleArray.count;
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 100;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 50;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSNumber *number = _addTaskTitleArray[indexPath.row][@"height"];
+    NSNumber *number = _addTaskTitleArray[indexPath.section][@"height"];
     return number.floatValue;
 }
 
@@ -110,7 +123,7 @@
 {
     AddTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if(cell==nil){
-        cell = [[AddTaskCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[AddTaskCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     
     if([_addTaskTitleArray[indexPath.row][@"title"] isEqualToString:@"名称"]){
@@ -119,8 +132,7 @@
         _remarkField = cell.textView;
     }
    
-    cell.cellData = _addTaskTitleArray[indexPath.row];
-    
+    cell.cellData = _addTaskTitleArray[indexPath.section];
     return cell;
 }
 
@@ -128,7 +140,7 @@
     
     [self endEditing:YES];
     
-    NSString *cellTitle = _addTaskTitleArray[indexPath.row][@"title"];
+    NSString *cellTitle = _addTaskTitleArray[indexPath.section][@"title"];
     if([cellTitle isEqualToString:@"结束时间"]){
         
         [self.viewControllerID presentViewController:self.alertController animated:YES completion:nil];
@@ -139,29 +151,29 @@
         self.znDatePickerView.currentDate = [NSDate date];
         [self.znDatePickerView setHidden:NO];
         
-    }else if([cellTitle isEqualToString:@"图标"]){
-        [self.znSelectIconView setHidden:NO];
     }
 }
 
 -(void)scrollViewDidChangeAdjustedContentInset:(UIScrollView *)scrollView{
+    ZNLog(@"======");
     [self endEditing:YES];
 }
 
 -(UITableView *)addTaskTableView{
     if(_addTaskTableView == nil){
-        _addTaskTableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStylePlain];
+        _addTaskTableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStyleGrouped];
         _addTaskTableView.delegate = self;
         _addTaskTableView.dataSource = self;
-        _addTaskTableView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.00f];
-        _addTaskTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
+        _addTaskTableView.backgroundColor = view_backgroundColor;
+        _addTaskTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH-50)*0.128)];
         [footView addSubview:self.addTaskButton];
+        
         [self.addTaskButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(footView);
             make.left.equalTo(footView).with.offset(25);
             make.right.equalTo(footView).with.offset(-25);
-            make.height.with.offset(50);
+            make.height.with.offset((SCREEN_WIDTH-50)*0.128);
+            make.top.width.offset(0);
         }];
         
         _addTaskTableView.tableFooterView = footView;
@@ -173,17 +185,9 @@
 -(UIButton *)addTaskButton
 {
     if(_addTaskButton == nil){
-        
         _addTaskButton = [[UIButton alloc]init];
-        _addTaskButton.backgroundColor = main_color;
-        _addTaskButton.layer.masksToBounds = YES;
-        _addTaskButton.layer.cornerRadius = 10;
-        _addTaskButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_addTaskButton setTitle:@"+添加到小目标栏" forState:UIControlStateNormal];
-        [_addTaskButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_addTaskButton setBackgroundImage:[UIImage imageNamed:@"添加按钮"] forState:UIControlStateNormal];
         [_addTaskButton addTarget:self action:@selector(addTaskAction) forControlEvents:UIControlEventTouchUpInside];
-        
-        
     }
     return _addTaskButton;
 }
@@ -253,7 +257,7 @@
         _znSelectIconView = [[ZNSelectIconView alloc]init];
         NSMutableArray *iconArray = [NSMutableArray array];
         for (NSInteger i=1; i<=8; i++) {
-            [iconArray addObject:[NSString stringWithFormat:@"good%ld",i]];
+            [iconArray addObject:[NSString stringWithFormat:@"good%ld",(long)i]];
         }
         _znSelectIconView.iconNameArray = iconArray;
         _znSelectIconView.title = @"选择图标";

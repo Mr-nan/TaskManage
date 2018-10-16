@@ -8,8 +8,14 @@
 
 #import "AddTaskCell.h"
 
+
+#define left_right_gap (15)
+#define inside_gap (10)
+#define content_width (SCREEN_WIDTH-left_right_gap*2-inside_gap*2)
+
 @interface AddTaskCell()
 
+@property (nonatomic,strong) UIView *backView;
 
 @end
 
@@ -19,12 +25,16 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
-        [self.contentView addSubview:self.title];
-        [self.contentView addSubview:self.textField];
-        [self.contentView addSubview:self.textView];
-        [self.contentView addSubview:self.valueLabel];
-        [self.contentView addSubview:self.valueImage];
+    
+        [self addSubview:self.backView];
+        [self.backView addSubview:self.title];
+        [self.backView addSubview:self.textField];
+        [self.backView addSubview:self.textView];
+        [self.backView addSubview:self.valueLabel];
+        [self.backView addSubview:self.valueImage];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.backgroundColor = view_backgroundColor;
+        
     }
     return self;
 }
@@ -32,60 +42,67 @@
 -(void)setCellData:(NSDictionary *)cellData{
     
     _cellData = cellData;
-    self.title.text= cellData[@"title"];
+    
     NSNumber *height = cellData[@"height"];
-    self.title.frame =CGRectMake(15, (height.floatValue-30)/2, 200, 30);
+    NSString *titleStr = cellData[@"title"];
+    self.backView.frame = CGRectMake(left_right_gap,0, SCREEN_WIDTH-left_right_gap*2, height.floatValue);
+    self.valueImage.frame = CGRectMake(content_width+inside_gap-10, (height.floatValue-20)/2, 10, 20);
+
+    self.title.text= cellData[@"title"];
+    CGSize titleSize = [titleStr getStringSizeFont:self.title.font];
+    
+    self.title.frame =CGRectMake(left_right_gap, (height.floatValue-titleSize.height)/2, titleSize.width, titleSize.height);
+    
     [self.textField setHidden:YES];
     [self.textView setHidden:YES];
-    [self.valueLabel setHighlighted:YES];
-    [self.valueImage setHighlighted:YES];
+    [self.valueLabel setHidden:YES];
+    [self.valueImage setHidden:YES];
     
     if([_cellData[@"type"] isEqualToString:@"input"]){
      
-        self.textField.frame = CGRectMake(0, 0, 250, 35);
-        self.accessoryView = self.textField;
+        CGFloat textFielWidth = content_width -self.valueImage.width-self.title.width-10;
+        self.textField.frame = CGRectMake(content_width- textFielWidth, (height.floatValue-35)/2,textFielWidth , 35);
         self.textField.placeholder = [NSString stringWithFormat:@"请输入%@（建议10个字内）",self.title.text];
         self.textField.textAlignment = NSTextAlignmentRight;
         [self.textField setHidden:NO];
         
     }else if([_cellData[@"type"] isEqualToString:@"select"]){
         
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [self.valueImage setHidden:NO];
         
     }else if([_cellData[@"type"] isEqualToString:@"remark"]){
         
-        self.title.frame =CGRectMake(15, 10, 200, 30);
-        self.textView.frame = CGRectMake(15, self.title.bottom+5, SCREEN_WIDTH - 30, 90);
-        self.textView.placeholder =@" 写点激励自己的话吧";
+        self.title.frame =CGRectMake(inside_gap, 10, 200, 30);
+        self.textView.frame = CGRectMake(inside_gap, self.title.bottom+10, content_width, 90);
+        self.textView.placeholder =@"每天坚持一点点";
         self.textView.textAlignment = NSTextAlignmentLeft;
         [self.textView setHidden:NO];
     }
     
-    if([_cellData[@"value"] isKindOfClass: [UIImage class]]){
-        
-        [self.valueImage setHighlighted:NO];
-        self.valueImage.frame = CGRectMake(SCREEN_WIDTH - 58, (height.floatValue-30)/2, 30, 30);
-        self.valueImage.image = _cellData[@"value"];
-        
-    }else if([_cellData[@"value"] isKindOfClass: [NSString class]]){
-        [self.valueLabel setHighlighted:NO];
+    if([_cellData[@"value"] isKindOfClass: [NSString class]]){
+        [self.valueLabel setHidden:NO];
         NSString *value = _cellData[@"value"];
         self.valueLabel.text = value;
         CGSize size = [value getStringSizeFont:self.valueLabel.font];
-        self.valueLabel.frame = CGRectMake(SCREEN_WIDTH - 38-size.width, (height.floatValue-size.height)/2, size.width, size.height);
+        self.valueLabel.frame = CGRectMake( self.valueImage.left-size.width-5, (height.floatValue-size.height)/2, size.width, size.height);
     }
     
 
 }
 
+-(UIView *)backView{
+    if(!_backView){
+        _backView = [[UIView alloc]init];
+        _backView.layer.cornerRadius = 5;
+        _backView.backgroundColor = [UIColor whiteColor];
+    }
+    return _backView;
+}
 
 
 -(UITextField *)textField{
     if(_textField == nil){
         _textField = [[UITextField alloc]init];
-        _textField.rightViewMode = UITextBorderStyleRoundedRect;
-        _textField.backgroundColor = [UIColor colorWithRed:0.90f green:0.96f blue:0.98f alpha:1.00f];
-        
     }
     return _textField;
 }
@@ -102,8 +119,6 @@
 -(UITextView *)textView{
     if(_textView == nil){
         _textView = [[ZNTextView alloc]init];
-        _textView.backgroundColor = [UIColor colorWithRed:0.90f green:0.96f blue:0.98f alpha:1.00f];
-        
     }
     return _textView;
 }
@@ -119,6 +134,7 @@
 -(UIImageView *)valueImage{
     if(_valueImage == nil){
         _valueImage = [[UIImageView alloc]init];
+        _valueImage.image = [UIImage imageNamed:@"选择箭头"];
     }
     return _valueImage;
 }

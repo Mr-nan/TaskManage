@@ -93,7 +93,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TaskCalendarViewController *taskCalendarVC = [[TaskCalendarViewController alloc]init];
-    TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.row];
+    TaskItem *item = [[TaskModel getTaskModelArray]objectAtIndex:indexPath.section];
     taskCalendarVC.title = item.taskName;
     taskCalendarVC.taskItem = item;
     [self.controllerID.navigationController pushViewController:taskCalendarVC animated:YES];

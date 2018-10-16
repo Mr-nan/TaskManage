@@ -58,8 +58,7 @@
         
         ZNLog(@"currentMonthDateStr:%@,firstWeekday:%ld,sumDayNumber:%ld",currentMonthDateStr,(long)firstWeekday,(long)sumDayNumber);
         
-        for (NSInteger day =0;day<sumDayNumber; day++) {
-            
+        for (NSInteger day=0;day<sumDayNumber; day++) {
             NSString *dayStr = [NSString string];
             if(day>=firstWeekday){
                 dayStr = [NSString stringWithFormat:@"%d",day+1-firstWeekday];
@@ -95,7 +94,8 @@
     ZNCalendarItemView *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
     NSDictionary *calendarDict = [self.calendarModeArray objectAtIndex:indexPath.section];
     NSArray *dayArray = [calendarDict objectForKey:@"dayArray"];
-    cell.calendarText = [dayArray objectAtIndex:indexPath.row];
+    cell.taskItem = self.taskItem;
+    [cell setTitle:[dayArray objectAtIndex:indexPath.row] andMonth:calendarDict[@"currentMonth"]] ;
     return cell;
 }
 
@@ -130,8 +130,20 @@
         // 设置headViewSize
         layout.headerReferenceSize = CGSizeMake(content_width, 60);
         
+        CGFloat calenderHeight = self.calendarModeArray.count * 60;
+        
+        for (NSDictionary *dict in self.calendarModeArray) {
+            
+            NSArray *dayData = dict[@"dayArray"];
+            calenderHeight+=dayData.count/6 *(content_width)/ 7.0f;
+        }
+        
+        if(calenderHeight>=SCREEN_HEIGHT - 64){
+            calenderHeight = SCREEN_HEIGHT - 64;
+        }
+        
         // 创建collectionView
-        _calendarCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(25, 0, content_width, SCREEN_HEIGHT-64) collectionViewLayout:layout];
+        _calendarCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(25, 0, content_width, calenderHeight) collectionViewLayout:layout];
         _calendarCollectionView.backgroundColor = [UIColor whiteColor];
         _calendarCollectionView.dataSource = self;
         _calendarCollectionView.delegate = self;
@@ -141,6 +153,10 @@
         
         //注册collection-headView
         [_calendarCollectionView registerClass:[ZNCalenderHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headView"];
+        
+        _calendarCollectionView.layer.cornerRadius = 5;
+        _calendarCollectionView.layer.masksToBounds = YES;
+        
                 
     
     }

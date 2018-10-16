@@ -16,6 +16,7 @@
 @interface TaskModel()
 
 @property(nonatomic,strong) NSMutableArray *taskModelArray;
+@property(nonatomic,strong) NSMutableArray *taskLoseModelArray;
 
 @end
 
@@ -45,21 +46,57 @@
     }
     
     return _taskModelArray;
-    
+}
+
+-(NSMutableArray *)taskLoseModelArray{
+    if(_taskLoseModelArray == nil){
+        if([[NSFileManager defaultManager] fileExistsAtPath:klose_Path])
+        {
+            _taskLoseModelArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:klose_Path]];
+        }else{
+            _taskLoseModelArray = [NSMutableArray array];
+        }
+    }
+    return _taskLoseModelArray;
 }
 
 +(NSMutableArray *)getTaskModelArray{
     
+    NSMutableArray *taskArray = [TaskModel defaultTaskModel].taskModelArray;
+    NSMutableArray *taskLoseArray = [TaskModel defaultTaskModel].taskLoseModelArray;
     
-    NSMutableArray *taskArray = [TaskModel defaultTaskModel].taskModelArray ;
-    
-    if(taskArray.count>1){
-        
-        return (NSMutableArray *) [[taskArray reverseObjectEnumerator] allObjects];
+    for (NSInteger i=0; i<taskArray.count; i++) {
+        TaskItem *item = [taskArray objectAtIndex:i];
+        if(![item.taskStopDate isEqualToString:@"无限期"]){
+            if([NSDate compareDateStr:item.taskStopDate withNewDateStr:[NSDate getDateString:@"yyyy-MM-dd"]]==1){
+                item.taskIsLose = @"1";
+                [TaskModel addTaskLoseItem:item];
+                [taskArray removeObject:item];
+                BOOL sucess = [NSKeyedArchiver archiveRootObject:taskArray toFile:kPath];
+                if(sucess){
+                    ZNLog(@"归档task成功");
+                }else{
+                    ZNLog(@"归档task失败");
+                }
+            }
+        }
         
     }
     
-   return  taskArray;
+    if(taskArray.count>1){
+        
+        taskArray =  (NSMutableArray *) [[taskArray reverseObjectEnumerator] allObjects];
+    }
+    
+    if(taskLoseArray.count>1){
+        
+        taskLoseArray = (NSMutableArray *) [[taskLoseArray reverseObjectEnumerator] allObjects];
+    }
+    
+    NSMutableArray *sumArray = [[NSMutableArray alloc]initWithArray:taskArray];
+    [sumArray addObjectsFromArray:taskLoseArray];
+
+   return  sumArray;
     
 }
 
@@ -69,47 +106,70 @@
     [taskModelArray addObject:taskItem];
     BOOL sucess = [NSKeyedArchiver archiveRootObject:taskModelArray toFile:kPath];
     if(sucess){
-        ZNLog(@"归档成功");
+        ZNLog(@"归档task成功");
     }else{
-        ZNLog(@"归档失败");
+        ZNLog(@"归档task失败");
+    }
+}
+
++(void)addTaskLoseItem:(TaskItem *)taskItem{
+    
+    NSMutableArray *taskLoseModelArray = [TaskModel defaultTaskModel].taskLoseModelArray;
+    [taskLoseModelArray addObject:taskItem];
+    BOOL sucess = [NSKeyedArchiver archiveRootObject:taskLoseModelArray toFile:klose_Path];
+    if(sucess){
+        ZNLog(@"归档taskLose成功");
+    }else{
+        ZNLog(@"归档taskLose失败");
     }
 }
 
 +(void)setTaskItem:(TaskItem *)taskItem{
     
     NSMutableArray *taskModelArray = [TaskModel defaultTaskModel].taskModelArray;
-    
     for (NSInteger i=0; i<taskModelArray.count; i++) {
-        
         TaskItem *item = [taskModelArray objectAtIndex:i];
         if(item == taskItem){
             item = taskItem;
             break;
         }
-        
     }
     BOOL sucess = [NSKeyedArchiver archiveRootObject:taskModelArray toFile:kPath];
     if(sucess){
-        ZNLog(@"归档成功");
+        ZNLog(@"归档task成功");
     }else{
-        ZNLog(@"归档失败");
+        ZNLog(@"归档task失败");
     }
 }
 
-+(void)moveTaskItemIndex:(NSInteger)index{
++(void)moveTaskItem:(TaskItem *)taskItem{
     
     NSMutableArray *taskModelArray = [TaskModel defaultTaskModel].taskModelArray;
-    if(index>taskModelArray.count) return;
-    [taskModelArray removeObjectAtIndex:taskModelArray.count - (index+1)];
+    [taskModelArray removeObject:taskItem];
     
     BOOL sucess = [NSKeyedArchiver archiveRootObject:taskModelArray toFile:kPath];
     if(sucess){
-        ZNLog(@"归档成功");
+        ZNLog(@"归档task成功");
     }else{
-        ZNLog(@"归档失败");
+        ZNLog(@"归档task失败");
     }
     
 }
+
++(void)moveTaskLoseItem:(TaskItem *)taskItem{
+    
+    NSMutableArray *taskLoseModelArray = [TaskModel defaultTaskModel].taskLoseModelArray;
+    [taskLoseModelArray removeObject:taskItem];
+    
+    BOOL sucess = [NSKeyedArchiver archiveRootObject:taskLoseModelArray toFile:klose_Path];
+    if(sucess){
+        ZNLog(@"归档taskLose成功");
+    }else{
+        ZNLog(@"归档taskLose失败");
+    }
+    
+}
+
 
 
 

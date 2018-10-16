@@ -10,6 +10,9 @@
 #import "ZNCalendarItemView.h"
 #import "ZNCalenderHeadView.h"
 
+#define left_gap 25
+#define content_width (SCREEN_WIDTH-left_gap *2)
+
 @interface ZNCalendarView() <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic,strong) UICollectionView *calendarCollectionView;
@@ -40,7 +43,7 @@
     
     NSInteger sumMonthNumber = [NSDate getNumberOfMonthWithDate:startDate toDate:stopDate];
     
-    ZNLog(@"start:%@--stop:%@---------%ld",startDate,stopDate,sumMonthNumber);
+    ZNLog(@"start:%@--stop:%@---------%ld",startDate,stopDate,(long)sumMonthNumber);
     
     for (NSInteger i=0; i<sumMonthNumber; i++) {
         
@@ -53,13 +56,13 @@
         NSInteger sumDayNumber = [NSDate totaldaysMonth:currentMonthDateStr] + firstWeekday;
         NSMutableArray *dayArray = [NSMutableArray array];
         
-        ZNLog(@"currentMonthDateStr:%@,firstWeekday:%ld,sumDayNumber:%ld",currentMonthDateStr,firstWeekday,sumDayNumber);
+        ZNLog(@"currentMonthDateStr:%@,firstWeekday:%ld,sumDayNumber:%ld",currentMonthDateStr,(long)firstWeekday,(long)sumDayNumber);
         
         for (NSInteger day =0;day<sumDayNumber; day++) {
             
             NSString *dayStr = [NSString string];
             if(day>=firstWeekday){
-                dayStr = [NSString stringWithFormat:@"%ld",day+1-firstWeekday];
+                dayStr = [NSString stringWithFormat:@"%d",day+1-firstWeekday];
             }
             [dayArray addObject:dayStr];
         }
@@ -90,7 +93,6 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     ZNCalendarItemView *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
-    
     NSDictionary *calendarDict = [self.calendarModeArray objectAtIndex:indexPath.section];
     NSArray *dayArray = [calendarDict objectForKey:@"dayArray"];
     cell.calendarText = [dayArray objectAtIndex:indexPath.row];
@@ -120,17 +122,17 @@
         // 设置layout滚动方向
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         // 设置cell的size
-        layout.itemSize = CGSizeMake((SCREEN_WIDTH-6)/ 7.0f, (SCREEN_WIDTH - 6) / 7.0f);
+        layout.itemSize = CGSizeMake((content_width)/ 7.0f, (content_width) / 7.0f);
         // 设置cell行间距
-        layout.minimumLineSpacing = 1;
+        layout.minimumLineSpacing = 0;
         // 设置cell列间距
-        layout.minimumInteritemSpacing = 1;
+        layout.minimumInteritemSpacing = 0;
         // 设置headViewSize
-        layout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 60);
+        layout.headerReferenceSize = CGSizeMake(content_width, 60);
         
         // 创建collectionView
-        _calendarCollectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:layout];
-        _calendarCollectionView.backgroundColor = view_backgroundColor;
+        _calendarCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(25, 0, content_width, SCREEN_HEIGHT-64) collectionViewLayout:layout];
+        _calendarCollectionView.backgroundColor = [UIColor whiteColor];
         _calendarCollectionView.dataSource = self;
         _calendarCollectionView.delegate = self;
         
@@ -139,7 +141,7 @@
         
         //注册collection-headView
         [_calendarCollectionView registerClass:[ZNCalenderHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headView"];
-        
+                
     
     }
     return _calendarCollectionView;

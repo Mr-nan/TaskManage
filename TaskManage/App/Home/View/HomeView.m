@@ -78,8 +78,14 @@
         [TaskModel setTaskItem:finisTaskItem];
         [tableView reloadData];
     };
-    cell.closeTaskBlocl = ^() {
-        [TaskModel moveTaskItemIndex:indexPath.section];
+    cell.closeTaskBlocl = ^(TaskItem *taskItem) {
+        if([taskItem.taskIsLose isEqualToString:@"1"]){
+            [TaskModel moveTaskLoseItem:taskItem];
+        }else{
+            [TaskModel moveTaskItem:taskItem];
+
+        }
+        [tableView reloadData];
     };
     return cell;
 }

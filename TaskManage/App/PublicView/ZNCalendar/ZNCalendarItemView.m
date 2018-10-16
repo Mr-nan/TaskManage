@@ -19,7 +19,7 @@
 -(void)setCalendarText:(NSString *)calendarText{
     _calendarText = calendarText;
     self.calendarLabel.text = calendarText;
-    self.backgroundColor = [UIColor yellowColor];
+    self.backgroundColor = [UIColor whiteColor];
 }
 
 -(UILabel *)calendarLabel{

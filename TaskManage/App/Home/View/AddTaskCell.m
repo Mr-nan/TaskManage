@@ -74,7 +74,7 @@
         
         self.title.frame =CGRectMake(inside_gap, 10, 200, 30);
         self.textView.frame = CGRectMake(inside_gap, self.title.bottom+10, content_width, 90);
-        self.textView.placeholder =@"每天坚持一点点";
+        self.textView.placeholder =@"每天坚持一点点！！！";
         self.textView.textAlignment = NSTextAlignmentLeft;
         [self.textView setHidden:NO];
     }

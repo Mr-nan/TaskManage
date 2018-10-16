@@ -44,9 +44,11 @@
 -(void)setCellItem:(TaskItem *)cellItem{
     
     [self.finishButton setHidden:YES];
+    [self setTitleColor:[UIColor whiteColor]];
+    self.backImage.image = [UIImage imageNamed:@"任务背景1"];
 
     _cellItem = cellItem;
-    ZNLog(@"%@: %@---%ld",cellItem.taskName,cellItem.taskSumDayNumber,cellItem.taskDateArray.count);
+    ZNLog(@"%@: %@---%lu",cellItem.taskName,cellItem.taskSumDayNumber,(unsigned long)cellItem.taskDateArray.count);
     self.title.text = cellItem.taskName;
     self.infoText.text = cellItem.taskRemark;
     if([cellItem.taskSumDayNumber isEqualToString:@"无限期"]){
@@ -58,11 +60,18 @@
     }
     self.taskTimeLabel.text = [NSString stringWithFormat:@"%@--%@",cellItem.taskStartDate,cellItem.taskStopDate];
     
+    if([cellItem.taskIsLose isEqualToString:@"1"]){
+        
+        self.backImage.image = [UIImage imageNamed:@"任务背景2"];
+        [self setTitleColor:[UIColor colorWithRed:98/255.0 green:98/255.0 blue:98/255.0 alpha:1.00f]];
+        return;
+    }
+    
     if(cellItem.taskDateArray.count>0){
         
-        NSString *taskFinallyDate = [cellItem.taskDateArray firstObject];
+        NSString *taskFinallyDate = [cellItem.taskDateArray lastObject];
+        ZNLog(@"%@",taskFinallyDate);
         if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:taskFinallyDate]==-1){
-            
             [self.finishButton setHidden:NO];
         }
         
@@ -70,7 +79,13 @@
         [self.finishButton setHidden:NO];
     }
     
-    
+}
+
+-(void)setTitleColor:(UIColor *)titleColor{
+    self.title.textColor = titleColor;
+    self.infoText.textColor = titleColor;
+    self.taskProgressLable.textColor = titleColor;
+    self.taskTimeLabel.textColor = titleColor;
 }
 
 -(void)finisTaskBtnClick:(UIButton *)btn{
@@ -89,7 +104,7 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"是否删除" message:_cellItem.taskName preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
         [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            self.closeTaskBlocl();
+            self.closeTaskBlocl(self->_cellItem);
         }]];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
     }

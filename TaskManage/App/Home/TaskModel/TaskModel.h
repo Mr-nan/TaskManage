@@ -13,7 +13,8 @@
 +(NSMutableArray *)getTaskModelArray;
 +(void)addTaskItem:(TaskItem *)taskItem;
 +(void)setTaskItem:(TaskItem *)taskItem;
-+(void)moveTaskItemIndex:(NSInteger )index;
++(void)moveTaskItem:(TaskItem *)taskItem;
++(void)moveTaskLoseItem:(TaskItem *)taskItem;
 
 @end
 

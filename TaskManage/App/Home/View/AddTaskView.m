@@ -59,7 +59,6 @@
         }
     }
     
-    
     if(errorMsg){
       UIAlertController *alert = [ZNCreactUITool creactAlertControllerTitle:@"提示" Message:errorMsg AlertAction:nil];
         [self.viewControllerID presentViewController:alert animated:YES completion:nil];
@@ -68,15 +67,24 @@
     
     
     TaskItem *item = [[TaskItem alloc]init];
+    item.taskIsLose = @"0";
     item.taskName = _nameField.text;
     item.taskStartDate = _startDate;
     item.taskStopDate = _stopDate;
-    item.taskRemark = _remarkField.text;
+    
+    if(_remarkField.text.length<=0){
+         item.taskRemark =@"每天坚持一点点！！！";
+    }else{
+         item.taskRemark = _remarkField.text;
+    }
+    
+   
     if([_stopDate isEqualToString:@"无限期"]){
         item.taskSumDayNumber = @"无限期";
     }else{
         item.taskSumDayNumber = [NSString stringWithFormat:@"%ld",(long)[NSDate getNumberOfDaysWithDate:_startDate toDate:_stopDate]];
     }
+   
     item.taskDateArray = [NSMutableArray array];
     [TaskModel addTaskItem:item];
     

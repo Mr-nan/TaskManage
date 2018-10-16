@@ -10,6 +10,7 @@
 
 @interface TaskItem : NSObject<NSCoding>
 
+@property(nonatomic,strong) NSString *taskIsLose;
 @property(nonatomic,strong) NSString *taskName;
 @property(nonatomic,strong) NSString *taskIconName;
 @property(nonatomic,strong) NSString *taskStartDate;

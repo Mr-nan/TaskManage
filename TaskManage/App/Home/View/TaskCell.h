@@ -14,7 +14,7 @@
 
 @property (nonatomic,strong) TaskItem *cellItem;
 @property (nonatomic,strong) void(^finisTaskBlock)(TaskItem *finisTaskItem);
-@property (nonatomic,strong) void(^closeTaskBlocl)();
+@property (nonatomic,strong) void(^closeTaskBlocl)(TaskItem *taskItem);
 
 
 @end

@@ -92,7 +92,14 @@
     
     [btn setHidden:YES];
     if(self.finisTaskBlock){
-        [_cellItem.taskDateArray addObject:[NSDate getDateString:@"yyyy-MM-dd"]];
+        
+        NSString *currentDate = [NSDate getDateString:@"yyyy-MM-dd"];
+        if([currentDate isEqualToString:[_cellItem.taskDateArray lastObject]])
+        {
+            return;
+        }
+        
+        [_cellItem.taskDateArray addObject:currentDate];
         self.finisTaskBlock(_cellItem);
     }
     

@@ -16,10 +16,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationBar.barTintColor = view_backgroundColor;
     self.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationBar setShadowImage:[[UIImage alloc]init]];//清楚导航下面的分割线
-    self.navigationBar.translucent = NO;
+    [self setNavigationBackColor:navigation_color];
+//    self.navigationBar.barTintColor = view_backgroundColor;
+//    self.navigationBar.translucent = NO;
+}
+
+-(void)setNavigationBackColor:(UIColor *)color{
+    [self.navigationBar setBackgroundImage:[self imageWithColor:color] forBarMetrics:UIBarMetricsDefault];
+
 }
 
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
@@ -39,6 +45,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(UIImage *)imageWithColor:(UIColor *)color{
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [color setFill];
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 
 /*
 #pragma mark - Navigation

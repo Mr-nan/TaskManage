@@ -32,10 +32,11 @@
 
 -(UILabel *)navigationTitleLabel{
     if(_navigationTitleLabel == nil){
-        _navigationTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+        _navigationTitleLabel = [[UILabel alloc]init];
         _navigationTitleLabel.textColor = [UIColor whiteColor];
         _navigationTitleLabel.textAlignment = NSTextAlignmentCenter;
         _navigationTitleLabel.font = [UIFont fontWithName:@"Courier" size:18];
+        [_navigationTitleLabel sizeToFit];
     }
     return _navigationTitleLabel;
 }

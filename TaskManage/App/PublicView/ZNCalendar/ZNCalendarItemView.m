@@ -23,17 +23,21 @@
 {
     
     NSString *dateSte = [NSString stringWithFormat:@"%@-%@",month,title];
-    
+    self.calendarLabel.text = title;
+
     for (NSString *taskDate in self.taskItem.taskDateArray) {
         if([taskDate isEqualToString:dateSte]){
+            [self.calendarLabel setHidden:YES];
             [self.signView setHidden:NO];
             self.signView.text = title;
+            break;
+            
         }else{
-            self.calendarLabel.text = title;
+            [self.calendarLabel setHidden:NO];
             [self.signView setHidden:YES];
-
         }
     }
+
     
     self.backgroundColor = [UIColor whiteColor];
 
@@ -53,7 +57,7 @@
     if(!_signView){
         CGFloat size = self.width * 0.6;
         _signView = [[UILabel alloc]initWithFrame:CGRectMake((self.width - size)/2, (self.height-size)/2, size, size)];
-        _signView.backgroundColor = [UIColor orangeColor];
+        _signView.backgroundColor = content_color_1;
         _signView.layer.cornerRadius = _signView.height*0.5;
         _signView.layer.masksToBounds = YES;
         _signView.textColor = [UIColor whiteColor];

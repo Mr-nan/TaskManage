@@ -27,9 +27,9 @@
 -(UILabel *)titleLbael{
     if(!_titleLbael){
         _titleLbael = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-50, 20)];
-        _titleLbael.textColor = [UIColor whiteColor];
+        _titleLbael.textColor = title_color_4;
         _titleLbael.textAlignment = NSTextAlignmentCenter;
-        _titleLbael.font = [UIFont systemFontOfSize:15];
+        _titleLbael.font = [UIFont systemFontOfSize:14];
     }
     return _titleLbael;
 }
@@ -43,7 +43,7 @@
             UILabel *weekItem = [[UILabel alloc]initWithFrame:CGRectMake(i*weekItemWidth,0, weekItemWidth, 40)];
             weekItem.textAlignment = NSTextAlignmentCenter;
             weekItem.font = [UIFont systemFontOfSize:13];
-            weekItem.textColor = [UIColor whiteColor];
+            weekItem.textColor = title_color_4;
             weekItem.text = titleArray[i];
             [_weekView addSubview:weekItem];
         }

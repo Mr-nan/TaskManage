@@ -7,11 +7,12 @@
 //
 
 #import "TaskCalendarViewController.h"
-#import "ZNCalendarView.h"
-
+#import "TaskCalendarView.h"
+#import "ZNNavigationController.h"
 @interface TaskCalendarViewController ()
 
-@property (nonatomic,strong) ZNCalendarView *calendarView;
+@property (nonatomic,strong) TaskCalendarView *taskCalendarView;
+
 
 @end
 
@@ -19,20 +20,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.calendarView];
+    self.view.backgroundColor = view_sub_backgroundColor;
+    [self.view addSubview:self.taskCalendarView];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    ZNNavigationController *nc = (ZNNavigationController *)self.navigationController;
+    [nc setNavigationBackColor:[view_backgroundColor colorWithAlphaComponent:0]];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    ZNNavigationController *nc = (ZNNavigationController *) self.navigationController;
+    [nc setNavigationBackColor:view_backgroundColor ];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
--(ZNCalendarView *)calendarView{
-    if(!_calendarView){
-        _calendarView = [[ZNCalendarView alloc]initWithFrame:self.view.bounds];
-        _calendarView.taskItem = self.taskItem;
+-(TaskCalendarView *)taskCalendarView{
+    if(!_taskCalendarView){
+        _taskCalendarView = [[TaskCalendarView alloc]initWithTaskItem:self.taskItem];
     }
-    return _calendarView;
+    return _taskCalendarView;
 }
+
+
 
 
 @end

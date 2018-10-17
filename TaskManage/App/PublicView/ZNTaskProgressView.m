@@ -22,7 +22,7 @@
     if(self){
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = frame.size.height / 2;
-        self.layer.borderColor = main_color.CGColor;
+        self.layer.borderColor = [UIColor redColor].CGColor;
         self.layer.borderWidth = 1;
         self.clipsToBounds = YES;
     }
@@ -46,7 +46,7 @@
 -(UIView *)subProgressView{
     if(!_subProgressView){
         _subProgressView = [[UIView alloc]init];
-        _subProgressView.backgroundColor = main_color;
+        _subProgressView.backgroundColor = [UIColor whiteColor];
         [self addSubview:_subProgressView];
 
     }

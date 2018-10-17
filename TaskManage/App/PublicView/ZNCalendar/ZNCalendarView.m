@@ -26,7 +26,6 @@
 
 -(void)setTaskItem:(TaskItem *)taskItem{
     _taskItem = taskItem;
-    
     self.calendarModeArray = [NSMutableArray array];
     if([taskItem.taskStopDate isEqualToString:@"无限期"]){
         [self setCalendarModelStartDate:taskItem.taskStartDate stopDate:[NSDate getDateString:@"yyyy-MM-dd"]];
@@ -35,15 +34,13 @@
         [self setCalendarModelStartDate:taskItem.taskStartDate stopDate:taskItem.taskStopDate];
     }
     
-    [self addSubview:self.calendarCollectionView];
-
 }
 
 -(void)setCalendarModelStartDate:(NSString *)startDate stopDate:(NSString *)stopDate{
     
     NSInteger sumMonthNumber = [NSDate getNumberOfMonthWithDate:startDate toDate:stopDate];
     
-    ZNLog(@"start:%@--stop:%@---------%ld",startDate,stopDate,(long)sumMonthNumber);
+//    ZNLog(@"start:%@--stop:%@---------%ld",startDate,stopDate,(long)sumMonthNumber);
     
     for (NSInteger i=0; i<sumMonthNumber; i++) {
         
@@ -56,7 +53,7 @@
         NSInteger sumDayNumber = [NSDate totaldaysMonth:currentMonthDateStr] + firstWeekday;
         NSMutableArray *dayArray = [NSMutableArray array];
         
-        ZNLog(@"currentMonthDateStr:%@,firstWeekday:%ld,sumDayNumber:%ld",currentMonthDateStr,(long)firstWeekday,(long)sumDayNumber);
+//        ZNLog(@"currentMonthDateStr:%@,firstWeekday:%ld,sumDayNumber:%ld",currentMonthDateStr,(long)firstWeekday,(long)sumDayNumber);
         
         for (NSInteger day=0;day<sumDayNumber; day++) {
             NSString *dayStr = [NSString string];
@@ -75,6 +72,8 @@
                                             @"dayArray":dayArray
                                             }];
     }
+    
+    [self.calendarCollectionView reloadData];
     
 }
 
@@ -107,11 +106,16 @@
         reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headView" forIndexPath:indexPath];
         NSDictionary *calendarDict = [self.calendarModeArray objectAtIndex:indexPath.section];
         reusableView.title = calendarDict[@"currentMonth"];
-        reusableView.backgroundColor = [UIColor orangeColor];
+        reusableView.backgroundColor = [UIColor whiteColor];
     }
    
     return reusableView;
     
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZNLog(@"%ld",indexPath.row);
 }
 
 -(UICollectionView *)calendarCollectionView{
@@ -133,14 +137,15 @@
         CGFloat calenderHeight = self.calendarModeArray.count * 60;
         
         for (NSDictionary *dict in self.calendarModeArray) {
-            
+
             NSArray *dayData = dict[@"dayArray"];
             calenderHeight+=dayData.count/6 *(content_width)/ 7.0f;
+            if(calenderHeight>SCREEN_HEIGHT - SCREEN_WIDTH * 0.47+20){
+                calenderHeight = SCREEN_HEIGHT - SCREEN_WIDTH * 0.47+20;
+                break;
+            }
         }
         
-        if(calenderHeight>=SCREEN_HEIGHT - 64){
-            calenderHeight = SCREEN_HEIGHT - 64;
-        }
         
         // 创建collectionView
         _calendarCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(25, 0, content_width, calenderHeight) collectionViewLayout:layout];
@@ -156,7 +161,7 @@
         
         _calendarCollectionView.layer.cornerRadius = 5;
         _calendarCollectionView.layer.masksToBounds = YES;
-        
+        [self addSubview:_calendarCollectionView];
                 
     
     }

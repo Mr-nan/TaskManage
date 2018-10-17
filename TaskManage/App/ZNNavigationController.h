@@ -10,4 +10,6 @@
 
 @interface ZNNavigationController : UINavigationController
 
+-(void)setNavigationBackColor:(UIColor *)color;
+
 @end

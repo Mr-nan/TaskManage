@@ -132,16 +132,16 @@
         // 设置cell列间距
         layout.minimumInteritemSpacing = 0;
         // 设置headViewSize
-        layout.headerReferenceSize = CGSizeMake(content_width, 60);
+        layout.headerReferenceSize = CGSizeMake(content_width, 65);
         
-        CGFloat calenderHeight = self.calendarModeArray.count * 60;
+        CGFloat calenderHeight = self.calendarModeArray.count * 65;
         
         for (NSDictionary *dict in self.calendarModeArray) {
 
             NSArray *dayData = dict[@"dayArray"];
             calenderHeight+=dayData.count/6 *(content_width)/ 7.0f;
-            if(calenderHeight>SCREEN_HEIGHT - SCREEN_WIDTH * 0.47+20){
-                calenderHeight = SCREEN_HEIGHT - SCREEN_WIDTH * 0.47+20;
+            if(calenderHeight>self.height){
+                calenderHeight =self.height;
                 break;
             }
         }
@@ -161,6 +161,10 @@
         
         _calendarCollectionView.layer.cornerRadius = 5;
         _calendarCollectionView.layer.masksToBounds = YES;
+        _calendarCollectionView.layer.shadowColor = [UIColor blackColor].CGColor;
+        _calendarCollectionView.layer.shadowOffset = CGSizeMake(1, 1);
+        _calendarCollectionView.layer.shadowOpacity = 0.3;
+        _calendarCollectionView.showsVerticalScrollIndicator = NO;
         [self addSubview:_calendarCollectionView];
                 
     

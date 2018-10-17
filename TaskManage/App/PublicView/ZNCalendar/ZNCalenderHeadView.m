@@ -26,7 +26,7 @@
 
 -(UILabel *)titleLbael{
     if(!_titleLbael){
-        _titleLbael = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-50, 20)];
+        _titleLbael = [[UILabel alloc]initWithFrame:CGRectMake(0, 5, SCREEN_WIDTH-50, 20)];
         _titleLbael.textColor = title_color_4;
         _titleLbael.textAlignment = NSTextAlignmentCenter;
         _titleLbael.font = [UIFont systemFontOfSize:14];
@@ -36,7 +36,7 @@
 
 -(UIView *)weekView{
     if(!_weekView){
-        _weekView = [[UIView alloc]initWithFrame:CGRectMake(0, 20,SCREEN_WIDTH,40)];
+        _weekView = [[UIView alloc]initWithFrame:CGRectMake(0, 25,SCREEN_WIDTH,40)];
         NSArray *titleArray = @[@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六"];
         CGFloat weekItemWidth = (SCREEN_WIDTH-50)/ 7.0f;
         for (int i=0; i<7; i++) {

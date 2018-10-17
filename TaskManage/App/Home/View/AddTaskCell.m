@@ -104,6 +104,9 @@
 -(UITextField *)textField{
     if(_textField == nil){
         _textField = [[UITextField alloc]init];
+        _textField.font = [UIFont systemFontOfSize:16];
+        _textField.textColor = title_color_1;
+
     }
     return _textField;
 }
@@ -112,7 +115,8 @@
     
     if(_title == nil){
         _title = [[UILabel alloc]init];
-        _title.font = [UIFont systemFontOfSize:14];
+        _title.font = [UIFont systemFontOfSize:16];
+        _title.textColor = title_color_1;
     }
     return _title;
 }
@@ -120,6 +124,8 @@
 -(ZNTextView *)textView{
     if(_textView == nil){
         _textView = [[ZNTextView alloc]init];
+        _textView.font = [UIFont systemFontOfSize:16];
+        _textView.textColor = title_color_1;
     }
     return _textView;
 }
@@ -127,7 +133,8 @@
 -(UILabel *)valueLabel{
     if(_valueLabel == nil){
         _valueLabel = [[UILabel alloc]init];
-        _valueLabel.font = [UIFont systemFontOfSize:14];
+        _valueLabel.font = [UIFont systemFontOfSize:16];
+        _valueLabel.textColor = title_color_1;
     }
     return _valueLabel;
 }

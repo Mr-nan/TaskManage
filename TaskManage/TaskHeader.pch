@@ -19,7 +19,7 @@
 #define ZNLog(fmt,...);
 #endif
 
-#define NAVIGATION_HEIGHT 64
+#define NAVIGATION_HEIGHT ([UIScreen mainScreen].bounds.size.height>=812?88:64)
 
 #define SCREEN_BOUNDS ([UIScreen mainScreen].bounds)
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)

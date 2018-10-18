@@ -9,6 +9,10 @@
 #import "TaskCalendarViewController.h"
 #import "TaskCalendarView.h"
 #import "ZNNavigationController.h"
+#import "AppDelegate.h"
+#import <Photos/PHPhotoLibrary.h>
+#import <Photos/PHAssetChangeRequest.h>
+
 @interface TaskCalendarViewController ()
 
 @property (nonatomic,strong) TaskCalendarView *taskCalendarView;
@@ -22,18 +26,33 @@
     [super viewDidLoad];
     self.view.backgroundColor = view_sub_backgroundColor;
     [self.view addSubview:self.taskCalendarView];
+    [self addSharedButton];
 }
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
     ZNNavigationController *nc = (ZNNavigationController *)self.navigationController;
     [nc setNavigationBackColor:[view_backgroundColor colorWithAlphaComponent:0]];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     ZNNavigationController *nc = (ZNNavigationController *) self.navigationController;
     [nc setNavigationBackColor:view_backgroundColor ];
+}
+
+-(void)addSharedButton{
+    
+    UIBarButtonItem *barBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"分享"] style:UIBarButtonItemStyleDone target:self action:@selector(sharedBtnClick)];
+    self.navigationItem.rightBarButtonItem = barBtn;
+    
+}
+
+-(void)sharedBtnClick{
+   [self saveImage:[self screenImageWithSize:self.view.bounds.size]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +66,21 @@
     return _taskCalendarView;
 }
 
+-(UIImage *)screenImageWithSize:(CGSize)imageSize{
+    UIGraphicsBeginImageContext(imageSize);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+-(void)saveImage:(UIImage *)image{
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+         [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        NSLog(@"success = %d, error = %@", success, error);
+    }];
+}
 
 
 

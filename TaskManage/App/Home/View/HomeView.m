@@ -39,6 +39,10 @@
     
 }
 
+-(void)loadTaskListData{
+    [self.taskTableView reloadData];
+}
+
 #pragma mark -tableViewDelegate
 
 -(void)addTaskReloadAction{

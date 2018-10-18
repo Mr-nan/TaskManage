@@ -11,7 +11,7 @@
 
 @interface HomeView : UIView
 
-
 @property(nonatomic,weak) UIViewController *controllerID;
+
 
 @end

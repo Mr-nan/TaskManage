@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D1E57F92178656E007F336E /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1E57F82178656E007F336E /* Photos.framework */; };
+		7D1E58392178824B007F336E /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1E58382178824B007F336E /* SetViewController.m */; };
+		7D1E583C21788266007F336E /* SetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1E583B21788266007F336E /* SetView.m */; };
+		7D1E583F21788CF6007F336E /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1E583E21788CF6007F336E /* WebViewController.m */; };
 		7D6710E02089D65C00753521 /* ZNCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710DF2089D65C00753521 /* ZNCalendarView.m */; };
 		7D6710E62089D6FB00753521 /* ZNCalendarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710E52089D6FB00753521 /* ZNCalendarItemView.m */; };
 		7D6710E92089E41900753521 /* TaskCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710E82089E41900753521 /* TaskCalendarViewController.m */; };
@@ -68,6 +72,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D1E57F82178656E007F336E /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		7D1E58372178824B007F336E /* SetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
+		7D1E58382178824B007F336E /* SetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
+		7D1E583A21788266007F336E /* SetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetView.h; sourceTree = "<group>"; };
+		7D1E583B21788266007F336E /* SetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetView.m; sourceTree = "<group>"; };
+		7D1E583D21788CF6007F336E /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		7D1E583E21788CF6007F336E /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		7D6710DE2089D65C00753521 /* ZNCalendarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNCalendarView.h; sourceTree = "<group>"; };
 		7D6710DF2089D65C00753521 /* ZNCalendarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNCalendarView.m; sourceTree = "<group>"; };
 		7D6710E42089D6FB00753521 /* ZNCalendarItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNCalendarItemView.h; sourceTree = "<group>"; };
@@ -126,8 +137,8 @@
 		7DF62DB220849C4000FAF432 /* ZNTaskProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNTaskProgressView.m; sourceTree = "<group>"; };
 		B82974B22086318500B2EB50 /* ZNWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZNWaveView.m; path = TaskManage/app/PublicView/ZNWaveView.m; sourceTree = SOURCE_ROOT; };
 		B82974B32086318600B2EB50 /* ZNWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZNWaveView.h; path = TaskManage/app/PublicView/ZNWaveView.h; sourceTree = SOURCE_ROOT; };
-		B863BC18217791FD0030CC06 /* TaskCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskCalendarView.m; path = TaskManage/app/Home/View/TaskCalendarView.m; sourceTree = SOURCE_ROOT; };
-		B863BC19217792040030CC06 /* TaskCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskCalendarView.h; path = TaskManage/app/Home/View/TaskCalendarView.h; sourceTree = SOURCE_ROOT; };
+		B863BC18217791FD0030CC06 /* TaskCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskCalendarView.m; path = TaskManage/App/TaskInfo/View/TaskCalendarView.m; sourceTree = SOURCE_ROOT; };
+		B863BC19217792040030CC06 /* TaskCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskCalendarView.h; path = TaskManage/App/TaskInfo/View/TaskCalendarView.h; sourceTree = SOURCE_ROOT; };
 		B8A3314B206681AD0054F72F /* TaskManage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A3314E206681AD0054F72F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8A3314F206681AD0054F72F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -166,6 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D1E57F92178656E007F336E /* Photos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +198,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D1E57F72178656E007F336E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D1E57F82178656E007F336E /* Photos.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7D1E583121787F2D007F336E /* AddTask */ = {
+			isa = PBXGroup;
+			children = (
+				7D1E583221787F42007F336E /* View */,
+				7DF62AC9206A406500FAF432 /* AddTaskViewController.h */,
+				7DF62ACA206A406500FAF432 /* AddTaskViewController.m */,
+			);
+			path = AddTask;
+			sourceTree = "<group>";
+		};
+		7D1E583221787F42007F336E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DF62ACC206A425300FAF432 /* AddTaskView.h */,
+				7DF62ACD206A425300FAF432 /* AddTaskView.m */,
+				B8E695F4206AA53100FF2120 /* AddTaskCell.h */,
+				B8E695F5206AA53100FF2120 /* AddTaskCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D1E583321787F9F007F336E /* TaskInfo */ = {
+			isa = PBXGroup;
+			children = (
+				7D1E583421787FA7007F336E /* View */,
+				7D6710E72089E41900753521 /* TaskCalendarViewController.h */,
+				7D6710E82089E41900753521 /* TaskCalendarViewController.m */,
+			);
+			path = TaskInfo;
+			sourceTree = "<group>";
+		};
+		7D1E583421787FA7007F336E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B863BC19217792040030CC06 /* TaskCalendarView.h */,
+				B863BC18217791FD0030CC06 /* TaskCalendarView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D1E58352178820F007F336E /* Set */ = {
+			isa = PBXGroup;
+			children = (
+				7D1E583621788230007F336E /* View */,
+				7D1E58372178824B007F336E /* SetViewController.h */,
+				7D1E58382178824B007F336E /* SetViewController.m */,
+			);
+			path = Set;
+			sourceTree = "<group>";
+		};
+		7D1E583621788230007F336E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D1E583A21788266007F336E /* SetView.h */,
+				7D1E583B21788266007F336E /* SetView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7D6710DD2089D61B00753521 /* ZNCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +347,7 @@
 				B8A33166206681AE0054F72F /* TaskManageTests */,
 				B8A33171206681AE0054F72F /* TaskManageUITests */,
 				B8A3314C206681AD0054F72F /* Products */,
+				7D1E57F72178656E007F336E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -321,10 +401,15 @@
 			children = (
 				7DF62ACF206B3D0700FAF432 /* PublicView */,
 				B8A331812066825F0054F72F /* Home */,
+				7D1E583321787F9F007F336E /* TaskInfo */,
+				7D1E583121787F2D007F336E /* AddTask */,
+				7D1E58352178820F007F336E /* Set */,
 				B8A33183206682D00054F72F /* BaseViewController.h */,
 				B8A33184206682D00054F72F /* BaseViewController.m */,
 				B8A3318A206683F60054F72F /* ZNNavigationController.h */,
 				B8A3318B206683F60054F72F /* ZNNavigationController.m */,
+				7D1E583D21788CF6007F336E /* WebViewController.h */,
+				7D1E583E21788CF6007F336E /* WebViewController.m */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -336,10 +421,6 @@
 				B8A33186206682EF0054F72F /* View */,
 				B8A331872066830F0054F72F /* HomeViewController.h */,
 				B8A331882066830F0054F72F /* HomeViewController.m */,
-				7DF62AC9206A406500FAF432 /* AddTaskViewController.h */,
-				7DF62ACA206A406500FAF432 /* AddTaskViewController.m */,
-				7D6710E72089E41900753521 /* TaskCalendarViewController.h */,
-				7D6710E82089E41900753521 /* TaskCalendarViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -353,12 +434,6 @@
 				B8A3319A206695F80054F72F /* TaskCell.m */,
 				B8A331962066958D0054F72F /* TaskHeadView.h */,
 				B8A331972066958D0054F72F /* TaskHeadView.m */,
-				7DF62ACC206A425300FAF432 /* AddTaskView.h */,
-				7DF62ACD206A425300FAF432 /* AddTaskView.m */,
-				B8E695F4206AA53100FF2120 /* AddTaskCell.h */,
-				B8E695F5206AA53100FF2120 /* AddTaskCell.m */,
-				B863BC19217792040030CC06 /* TaskCalendarView.h */,
-				B863BC18217791FD0030CC06 /* TaskCalendarView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -537,6 +612,7 @@
 				7DF62ABF206A2D2B00FAF432 /* ViewController+MASAdditions.m in Sources */,
 				B863BC1A217792050030CC06 /* TaskCalendarView.m in Sources */,
 				7DF62AC7206A2D2B00FAF432 /* MASViewAttribute.m in Sources */,
+				7D1E583C21788266007F336E /* SetView.m in Sources */,
 				7D6710E62089D6FB00753521 /* ZNCalendarItemView.m in Sources */,
 				7DF62B05206CE27F00FAF432 /* ZNSelectIconView.m in Sources */,
 				7DF62AD5206B7D3900FAF432 /* ZNDatePickerView.m in Sources */,
@@ -555,7 +631,9 @@
 				7DF62AC5206A2D2B00FAF432 /* MASConstraint.m in Sources */,
 				B8E695F6206AA53100FF2120 /* AddTaskCell.m in Sources */,
 				B8A3318C206683F60054F72F /* ZNNavigationController.m in Sources */,
+				7D1E583F21788CF6007F336E /* WebViewController.m in Sources */,
 				7DF62ADB206C7D2700FAF432 /* NSDate+DateTransform.m in Sources */,
+				7D1E58392178824B007F336E /* SetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,13 +785,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8RXU2MG5MH;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TaskManage/TaskHeader.pch";
 				INFOPLIST_FILE = TaskManage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zn.TaskManage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dycd.taskManage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -728,13 +806,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8RXU2MG5MH;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TaskManage/TaskHeader.pch";
 				INFOPLIST_FILE = TaskManage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zn.TaskManage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dycd.taskManage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

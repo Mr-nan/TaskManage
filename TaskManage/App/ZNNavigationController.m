@@ -34,6 +34,7 @@
         viewController.navigationItem.hidesBackButton = YES;
         UIBarButtonItem *btnItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStyleDone target:self action:@selector(navigationItemClick)];
         viewController.navigationItem.leftBarButtonItem = btnItem;
+        
     }
 }
 

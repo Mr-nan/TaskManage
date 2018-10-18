@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "HomeView.h"
+#import "SetViewController.h"
 @interface HomeViewController ()
 @property (nonatomic,strong) HomeView *homeView;
 
@@ -19,6 +20,18 @@
     [super viewDidLoad];
     self.title = @"Task";
     self.view = self.homeView;
+    [self addNavigationButton];
+}
+
+-(void)navigationBtnClick{
+    
+    SetViewController *setVC = [[SetViewController alloc]init];
+    [self.navigationController pushViewController:setVC animated:YES];
+}
+
+-(void)addNavigationButton{
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"设置"] style:UIBarButtonItemStyleDone target:self action:@selector(navigationBtnClick)];
+    self.navigationItem.rightBarButtonItem = item;
 }
 
 

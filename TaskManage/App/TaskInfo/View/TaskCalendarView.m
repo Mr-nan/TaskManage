@@ -48,7 +48,7 @@
     _taskItem = taskItem;
     self.znCalendarView.taskItem = taskItem;
     [self setTintColor:title_color_2];
-    self.taskBackView.image = [UIImage imageNamed:@"任务背景1"];
+    self.taskBackView.image = [UIImage imageNamed:@"taskHead1"];
     [self.finishButton setHidden:YES];
     self.title.text = taskItem.taskName;
     self.infoText.text = taskItem.taskRemark;
@@ -63,7 +63,7 @@
     
     if([taskItem.taskIsLose isEqualToString:@"1"]){
         
-        self.taskBackView.image = [UIImage imageNamed:@"任务背景2"];
+        self.taskBackView.image = [UIImage imageNamed:@"taskHead2"];
         [self setTitleColor:title_color_3];
         return;
     }

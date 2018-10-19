@@ -46,7 +46,7 @@
 #pragma mark -tableViewDelegate
 
 -(void)addTaskReloadAction{
-    
+    ZNLog(@"已经刷新");
     [self.taskTableView reloadData];
 }
 

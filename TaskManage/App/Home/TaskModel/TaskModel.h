@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "TaskItem.h"
+
 @interface TaskModel : NSObject
 
 +(NSMutableArray *)getTaskModelArray;
+
 +(void)addTaskItem:(TaskItem *)taskItem;
 +(void)setTaskItem:(TaskItem *)taskItem;
 +(void)moveTaskItem:(TaskItem *)taskItem;
 +(void)moveTaskLoseItem:(TaskItem *)taskItem;
 
++(void)showHintTask:(TaskItem *)taskItem;
 @end
 
 

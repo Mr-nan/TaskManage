@@ -100,6 +100,8 @@
         }
         
         [_cellItem.taskDateArray addObject:currentDate];
+        [TaskModel showHintTask:_cellItem];
+        
         self.finisTaskBlock(_cellItem);
     }
     
@@ -182,8 +184,9 @@
 
 -(UIButton *)taskCloseButton{
     if(!_taskCloseButton){
-        _taskCloseButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-55, to_bottom_gap, 15, 15)];
-        [_taskCloseButton setBackgroundImage:[UIImage imageNamed:@"关闭按钮"] forState:UIControlStateNormal];
+        UIImage *image = [UIImage imageNamed:@"删除按钮"];
+        _taskCloseButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-image.size.width-25, 0, image.size.width, image.size.height)];
+        [_taskCloseButton setBackgroundImage:image forState:UIControlStateNormal];
         [_taskCloseButton addTarget:self action:@selector(closeTaskBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _taskCloseButton;

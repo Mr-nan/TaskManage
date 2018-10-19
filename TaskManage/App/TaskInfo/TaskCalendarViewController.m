@@ -68,7 +68,7 @@
 
 -(UIImage *)screenImageWithSize:(CGSize)imageSize{
     UIGraphicsBeginImageContext(imageSize);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [[UIApplication sharedApplication].delegate.window.rootViewController.view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;

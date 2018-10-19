@@ -89,6 +89,7 @@
         [[NSNotificationCenter defaultCenter]postNotificationName:@"addTaskReloadAction" object:nil userInfo:nil];
         TaskItem *item = self.taskItem;
         [item.taskDateArray addObject:currentDate];
+        [TaskModel showHintTask:item];
         [TaskModel setTaskItem:item];
         self.taskItem = item;
     }

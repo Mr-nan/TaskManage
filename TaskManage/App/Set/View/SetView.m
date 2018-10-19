@@ -68,6 +68,8 @@
 {
     NSDictionary *dict = self.titleArray[indexPath.section];
     NSString *title = dict[@"title"];
+    
+    
     if([title isEqualToString:@"关于我们"]){
         WebViewController *webVC = [[WebViewController alloc]init];
         webVC.loadURL = @"http://www.qq.com";

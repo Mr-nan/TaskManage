@@ -90,7 +90,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"addTaskReloadAction" object:self];
     [self.viewControllerID.navigationController popViewControllerAnimated:YES];
-
+    [MBProgressHUDTool showToastTitle:@"添加成功！每天都要坚持完成哦！"];
 }
 
 

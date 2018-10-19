@@ -169,6 +169,32 @@
     
 }
 
++(void)showHintTask:(TaskItem *)taskItem{
+    
+    NSString *hintTitle = nil;
+    NSArray *hintTitleArray = @[
+                                @"哇，离目标更近了",
+                                @"加油哦，继续坚持！",
+                                @"希望明天还能坚持",
+                                @"干巴爹！",
+                                @"给你赞个👍",
+                                @"不错哦，不要放弃哦",
+                                @"你已经超越了从前",
+                                @"你每天都在改变哦",
+                                @"是不是感觉到自己的变化？"
+                                ];
+    if(taskItem.taskDateArray.count==1){
+        hintTitle = @"已经坚持了1天,好棒^_^";
+
+    }else{
+        hintTitle = hintTitleArray[arc4random()%hintTitleArray.count];
+    }
+    
+    if(hintTitle.length){
+        [MBProgressHUDTool showToastTitle:hintTitle];
+    }
+    
+}
 
 
 

@@ -26,6 +26,7 @@
 
 -(void)setTaskItem:(TaskItem *)taskItem{
     _taskItem = taskItem;
+    NSLog(@"%@",taskItem.taskDateArray);
     self.calendarModeArray = [NSMutableArray array];
     if([taskItem.taskStopDate isEqualToString:@"无限期"]){
         [self setCalendarModelStartDate:taskItem.taskStartDate stopDate:[NSDate getDateString:@"yyyy-MM-dd"]];
@@ -40,7 +41,7 @@
     
     NSInteger sumMonthNumber = [NSDate getNumberOfMonthWithDate:startDate toDate:stopDate];
     
-//    ZNLog(@"start:%@--stop:%@---------%ld",startDate,stopDate,(long)sumMonthNumber);
+    ZNLog(@"start:%@--stop:%@---------%ld",startDate,stopDate,(long)sumMonthNumber);
     
     for (NSInteger i=0; i<sumMonthNumber; i++) {
         
@@ -58,7 +59,7 @@
         for (NSInteger day=0;day<sumDayNumber; day++) {
             NSString *dayStr = [NSString string];
             if(day>=firstWeekday){
-                dayStr = [NSString stringWithFormat:@"%d",day+1-firstWeekday];
+                dayStr = [NSString stringWithFormat:@"%ld",(long)day+1-(long)firstWeekday];
             }
             [dayArray addObject:dayStr];
         }

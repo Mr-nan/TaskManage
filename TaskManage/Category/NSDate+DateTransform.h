@@ -16,6 +16,7 @@
 // 获取时间字符串
 +(NSString *)getStringDate:(NSDate *)date FormatterString:(NSString *)string;
 
+
 // 获取前一天时间
 +(NSDate *)getLastDayDate;
 

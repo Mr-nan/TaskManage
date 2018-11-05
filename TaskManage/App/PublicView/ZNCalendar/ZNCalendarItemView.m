@@ -21,11 +21,12 @@
 
 -(void)setTitle:(NSString *)title andMonth:(NSString *)month
 {
-    
-    NSString *dateSte = [NSString stringWithFormat:@"%@-%@",month,title];
+    NSString *dateSte = [NSString stringWithFormat:@"%@-%.2ld",month,(long)[title integerValue]];
     self.calendarLabel.text = title;
 
     for (NSString *taskDate in self.taskItem.taskDateArray) {
+        NSLog(@"%@--%@",taskDate,dateSte);
+
         if([taskDate isEqualToString:dateSte]){
             [self.calendarLabel setHidden:YES];
             [self.signView setHidden:NO];

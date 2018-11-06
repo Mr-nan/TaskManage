@@ -30,7 +30,7 @@
 }
 
 -(void)addNavigationButton{
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"设置"] style:UIBarButtonItemStyleDone target:self action:@selector(navigationBtnClick)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"更多"] style:UIBarButtonItemStyleDone target:self action:@selector(navigationBtnClick)];
     self.navigationItem.rightBarButtonItem = item;
 }
 

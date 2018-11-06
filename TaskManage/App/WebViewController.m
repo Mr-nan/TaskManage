@@ -11,6 +11,7 @@
 @interface WebViewController ()<UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *webView;
+@property(nonatomic,strong) MBProgressHUD *hud;
 
 @end
 
@@ -28,13 +29,17 @@
 
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    ZNLog(@"开始加载");
+    
+    _hud = [MBProgressHUDTool showLoadTitle:@"加载中..."];
+    
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     ZNLog(@"%@",error);
+    [MBProgressHUDTool showToastTitle:@"网络错误！"];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     ZNLog(@"加载完毕");
+    [_hud hideAnimated:YES];
 }
 
 -(UIWebView *)webView{

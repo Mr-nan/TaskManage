@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"设置";
+    self.title = @"更多";
     self.view.backgroundColor = view_backgroundColor;
     [self.view addSubview:self.setView];
 }

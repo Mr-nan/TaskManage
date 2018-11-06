@@ -13,6 +13,10 @@
 		7D1E583F21788CF6007F336E /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1E583E21788CF6007F336E /* WebViewController.m */; };
 		7D1E58432179B774007F336E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1E58422179B774007F336E /* MBProgressHUD.m */; };
 		7D1E58462179B7C0007F336E /* MBProgressHUDTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1E58452179B7C0007F336E /* MBProgressHUDTool.m */; };
+		7D569064218041AA00D2C257 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D569063218041AA00D2C257 /* NotificationCenter.framework */; };
+		7D569068218041AA00D2C257 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569067218041AA00D2C257 /* TodayViewController.m */; };
+		7D56906B218041AA00D2C257 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D569069218041AA00D2C257 /* MainInterface.storyboard */; };
+		7D56906F218041AA00D2C257 /* TaskWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7D569062218041AA00D2C257 /* TaskWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7D6710E02089D65C00753521 /* ZNCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710DF2089D65C00753521 /* ZNCalendarView.m */; };
 		7D6710E62089D6FB00753521 /* ZNCalendarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710E52089D6FB00753521 /* ZNCalendarItemView.m */; };
 		7D6710E92089E41900753521 /* TaskCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710E82089E41900753521 /* TaskCalendarViewController.m */; };
@@ -57,6 +61,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7D56906D218041AA00D2C257 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8A33143206681AD0054F72F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D569061218041AA00D2C257;
+			remoteInfo = TaskWidget;
+		};
 		B8A33164206681AE0054F72F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B8A33143206681AD0054F72F /* Project object */;
@@ -73,6 +84,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7D569073218041AA00D2C257 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7D56906F218041AA00D2C257 /* TaskWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7D1E57F82178656E007F336E /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		7D1E58372178824B007F336E /* SetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
@@ -85,6 +110,12 @@
 		7D1E58422179B774007F336E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		7D1E58442179B7C0007F336E /* MBProgressHUDTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUDTool.h; sourceTree = "<group>"; };
 		7D1E58452179B7C0007F336E /* MBProgressHUDTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUDTool.m; sourceTree = "<group>"; };
+		7D569062218041AA00D2C257 /* TaskWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TaskWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D569063218041AA00D2C257 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		7D569066218041AA00D2C257 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		7D569067218041AA00D2C257 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		7D56906A218041AA00D2C257 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		7D56906C218041AA00D2C257 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D6710DE2089D65C00753521 /* ZNCalendarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNCalendarView.h; sourceTree = "<group>"; };
 		7D6710DF2089D65C00753521 /* ZNCalendarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNCalendarView.m; sourceTree = "<group>"; };
 		7D6710E42089D6FB00753521 /* ZNCalendarItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNCalendarItemView.h; sourceTree = "<group>"; };
@@ -179,6 +210,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7D56905F218041AA00D2C257 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D569064218041AA00D2C257 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8A33148206681AD0054F72F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -208,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				7D1E57F82178656E007F336E /* Photos.framework */,
+				7D569063218041AA00D2C257 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -280,6 +320,17 @@
 				7D1E58452179B7C0007F336E /* MBProgressHUDTool.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		7D569065218041AA00D2C257 /* TaskWidget */ = {
+			isa = PBXGroup;
+			children = (
+				7D569066218041AA00D2C257 /* TodayViewController.h */,
+				7D569067218041AA00D2C257 /* TodayViewController.m */,
+				7D569069218041AA00D2C257 /* MainInterface.storyboard */,
+				7D56906C218041AA00D2C257 /* Info.plist */,
+			);
+			path = TaskWidget;
 			sourceTree = "<group>";
 		};
 		7D6710DD2089D61B00753521 /* ZNCalendar */ = {
@@ -364,6 +415,7 @@
 				B8A3314D206681AD0054F72F /* TaskManage */,
 				B8A33166206681AE0054F72F /* TaskManageTests */,
 				B8A33171206681AE0054F72F /* TaskManageUITests */,
+				7D569065218041AA00D2C257 /* TaskWidget */,
 				B8A3314C206681AD0054F72F /* Products */,
 				7D1E57F72178656E007F336E /* Frameworks */,
 			);
@@ -375,6 +427,7 @@
 				B8A3314B206681AD0054F72F /* TaskManage.app */,
 				B8A33163206681AE0054F72F /* TaskManageTests.xctest */,
 				B8A3316E206681AE0054F72F /* TaskManageUITests.xctest */,
+				7D569062218041AA00D2C257 /* TaskWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -483,6 +536,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7D569061218041AA00D2C257 /* TaskWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D569072218041AA00D2C257 /* Build configuration list for PBXNativeTarget "TaskWidget" */;
+			buildPhases = (
+				7D56905E218041AA00D2C257 /* Sources */,
+				7D56905F218041AA00D2C257 /* Frameworks */,
+				7D569060218041AA00D2C257 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TaskWidget;
+			productName = TaskWidget;
+			productReference = 7D569062218041AA00D2C257 /* TaskWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		B8A3314A206681AD0054F72F /* TaskManage */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8A33177206681AE0054F72F /* Build configuration list for PBXNativeTarget "TaskManage" */;
@@ -490,10 +560,12 @@
 				B8A33147206681AD0054F72F /* Sources */,
 				B8A33148206681AD0054F72F /* Frameworks */,
 				B8A33149206681AD0054F72F /* Resources */,
+				7D569073218041AA00D2C257 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7D56906E218041AA00D2C257 /* PBXTargetDependency */,
 			);
 			name = TaskManage;
 			productName = TaskManage;
@@ -545,6 +617,10 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = zn;
 				TargetAttributes = {
+					7D569061218041AA00D2C257 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
 					B8A3314A206681AD0054F72F = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -577,11 +653,20 @@
 				B8A3314A206681AD0054F72F /* TaskManage */,
 				B8A33162206681AE0054F72F /* TaskManageTests */,
 				B8A3316D206681AE0054F72F /* TaskManageUITests */,
+				7D569061218041AA00D2C257 /* TaskWidget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7D569060218041AA00D2C257 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D56906B218041AA00D2C257 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8A33149206681AD0054F72F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -607,6 +692,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7D56905E218041AA00D2C257 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D569068218041AA00D2C257 /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8A33147206681AD0054F72F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -676,6 +769,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7D56906E218041AA00D2C257 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D569061218041AA00D2C257 /* TaskWidget */;
+			targetProxy = 7D56906D218041AA00D2C257 /* PBXContainerItemProxy */;
+		};
 		B8A33165206681AE0054F72F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B8A3314A206681AD0054F72F /* TaskManage */;
@@ -688,7 +786,57 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		7D569069218041AA00D2C257 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D56906A218041AA00D2C257 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		7D569070218041AA00D2C257 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8RXU2MG5MH;
+				INFOPLIST_FILE = TaskWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dycd.taskManage.TaskWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7D569071218041AA00D2C257 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8RXU2MG5MH;
+				INFOPLIST_FILE = TaskWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dycd.taskManage.TaskWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		B8A33175206681AE0054F72F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -896,6 +1044,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7D569072218041AA00D2C257 /* Build configuration list for PBXNativeTarget "TaskWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D569070218041AA00D2C257 /* Debug */,
+				7D569071218041AA00D2C257 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B8A33146206681AD0054F72F /* Build configuration list for PBXProject "TaskManage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

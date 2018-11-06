@@ -95,7 +95,7 @@
     if(!_titleArray){
         
         _titleArray = @[
-                        @{@"title":@"提醒功能",@"view":self.cellSwitch},
+//                        @{@"title":@"提醒功能",@"view":self.cellSwitch},
                         @{@"title":@"关于我们",@"view":self.cellImage},
                         @{@"title":@"版本号",@"view":self.cellValue},
                         ];

@@ -28,10 +28,26 @@
     return date = [NSDate dateWithTimeInterval:-24 * 60 *60 sinceDate:date];
 }
 
++(NSDate *)getLastDayDate:(NSString *)dateStr{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [formatter dateFromString:dateStr];
+    return [NSDate dateWithTimeInterval:-24 * 60 *60 sinceDate:date];
+}
+
+
+
 // 获取后一天时间
 +(NSDate *)getNextDayDate{
     NSDate *date = [NSDate date];
     return date = [NSDate dateWithTimeInterval:24 * 60 *60 sinceDate:date];
+}
+
++(NSDate *)getNextDayDate:(NSString *)dateStr{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [formatter dateFromString:dateStr];
+    return [NSDate dateWithTimeInterval:24 * 60 *60 sinceDate:date];
 }
 
 // 获取上一个月

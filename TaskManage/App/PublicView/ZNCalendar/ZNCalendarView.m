@@ -41,7 +41,7 @@
     
     NSInteger sumMonthNumber = [NSDate getNumberOfMonthWithDate:startDate toDate:stopDate];
     
-    ZNLog(@"start:%@--stop:%@---------%ld",startDate,stopDate,(long)sumMonthNumber);
+//    ZNLog(@"start:%@--stop:%@---------%ld",startDate,stopDate,(long)sumMonthNumber);
     
     for (NSInteger i=0; i<sumMonthNumber; i++) {
         

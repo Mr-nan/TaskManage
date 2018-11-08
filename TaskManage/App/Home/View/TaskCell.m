@@ -48,7 +48,7 @@
     self.backImage.image = [UIImage imageNamed:@"任务背景1"];
 
     _cellItem = cellItem;
-    ZNLog(@"%@: %@---%lu",cellItem.taskName,cellItem.taskSumDayNumber,(unsigned long)cellItem.taskDateArray.count);
+//    ZNLog(@"%@: %@---%lu",cellItem.taskName,cellItem.taskSumDayNumber,(unsigned long)cellItem.taskDateArray.count);
     self.title.text = cellItem.taskName;
     self.infoText.text = cellItem.taskRemark;
     if([cellItem.taskSumDayNumber isEqualToString:@"无限期"]){
@@ -70,7 +70,6 @@
     if(cellItem.taskDateArray.count>0){
         
         NSString *taskFinallyDate = [cellItem.taskDateArray lastObject];
-        ZNLog(@"%@",taskFinallyDate);
         if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:taskFinallyDate]==-1){
             [self.finishButton setHidden:NO];
         }

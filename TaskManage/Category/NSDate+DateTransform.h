@@ -19,9 +19,11 @@
 
 // 获取前一天时间
 +(NSDate *)getLastDayDate;
++(NSDate *)getLastDayDate:(NSString *)dateStr;
 
 // 获取后一天时间
 +(NSDate *)getNextDayDate;
++(NSDate *)getNextDayDate:(NSString *)dateStr;
 
 // 获取上一个月
 +(NSDate *)getLastMonthDate:(NSDate *)date;

@@ -10,8 +10,6 @@
 
 @interface TodayViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UIButton *leftButton;
-@property (strong, nonatomic) IBOutlet UIButton *rightButton;
+
 
 @end

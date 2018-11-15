@@ -15,12 +15,13 @@
 		7D1E58462179B7C0007F336E /* MBProgressHUDTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1E58452179B7C0007F336E /* MBProgressHUDTool.m */; };
 		7D569064218041AA00D2C257 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D569063218041AA00D2C257 /* NotificationCenter.framework */; };
 		7D569068218041AA00D2C257 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569067218041AA00D2C257 /* TodayViewController.m */; };
-		7D56906B218041AA00D2C257 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D569069218041AA00D2C257 /* MainInterface.storyboard */; };
 		7D56906F218041AA00D2C257 /* TaskWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7D569062218041AA00D2C257 /* TaskWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7D6710E02089D65C00753521 /* ZNCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710DF2089D65C00753521 /* ZNCalendarView.m */; };
 		7D6710E62089D6FB00753521 /* ZNCalendarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710E52089D6FB00753521 /* ZNCalendarItemView.m */; };
 		7D6710E92089E41900753521 /* TaskCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710E82089E41900753521 /* TaskCalendarViewController.m */; };
 		7D6710EC208DB2B200753521 /* ZNCalenderHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710EB208DB2B200753521 /* ZNCalenderHeadView.m */; };
+		7DB7D4BE2199218E003250F6 /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DB7D4BD2199218E003250F6 /* image.xcassets */; };
+		7DB7D4C121994D69003250F6 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB7D4C021994D69003250F6 /* TaskCell.m */; };
 		7DF62ABE206A2D2B00FAF432 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62AA5206A2D2B00FAF432 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		7DF62ABF206A2D2B00FAF432 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62AAE206A2D2B00FAF432 /* ViewController+MASAdditions.m */; };
 		7DF62AC0206A2D2B00FAF432 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62AB2206A2D2B00FAF432 /* MASCompositeConstraint.m */; };
@@ -114,7 +115,6 @@
 		7D569063218041AA00D2C257 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		7D569066218041AA00D2C257 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
 		7D569067218041AA00D2C257 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
-		7D56906A218041AA00D2C257 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		7D56906C218041AA00D2C257 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D6710DE2089D65C00753521 /* ZNCalendarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNCalendarView.h; sourceTree = "<group>"; };
 		7D6710DF2089D65C00753521 /* ZNCalendarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNCalendarView.m; sourceTree = "<group>"; };
@@ -124,6 +124,9 @@
 		7D6710E82089E41900753521 /* TaskCalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskCalendarViewController.m; sourceTree = "<group>"; };
 		7D6710EA208DB2B200753521 /* ZNCalenderHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNCalenderHeadView.h; sourceTree = "<group>"; };
 		7D6710EB208DB2B200753521 /* ZNCalenderHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNCalenderHeadView.m; sourceTree = "<group>"; };
+		7DB7D4BD2199218E003250F6 /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
+		7DB7D4BF21994D69003250F6 /* TaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
+		7DB7D4C021994D69003250F6 /* TaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		7DF62A9C206A271700FAF432 /* AppStyleInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStyleInfo.h; sourceTree = "<group>"; };
 		7DF62AA4206A2D2B00FAF432 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		7DF62AA5206A2D2B00FAF432 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
@@ -325,9 +328,11 @@
 		7D569065218041AA00D2C257 /* TaskWidget */ = {
 			isa = PBXGroup;
 			children = (
+				7DB7D4BD2199218E003250F6 /* image.xcassets */,
 				7D569066218041AA00D2C257 /* TodayViewController.h */,
 				7D569067218041AA00D2C257 /* TodayViewController.m */,
-				7D569069218041AA00D2C257 /* MainInterface.storyboard */,
+				7DB7D4BF21994D69003250F6 /* TaskCell.h */,
+				7DB7D4C021994D69003250F6 /* TaskCell.m */,
 				7D56906C218041AA00D2C257 /* Info.plist */,
 			);
 			path = TaskWidget;
@@ -663,7 +668,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D56906B218041AA00D2C257 /* MainInterface.storyboard in Resources */,
+				7DB7D4BE2199218E003250F6 /* image.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +701,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DB7D4C121994D69003250F6 /* TaskCell.m in Sources */,
 				7D569068218041AA00D2C257 /* TodayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -785,17 +791,6 @@
 			targetProxy = B8A3316F206681AE0054F72F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		7D569069218041AA00D2C257 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7D56906A218041AA00D2C257 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		7D569070218041AA00D2C257 /* Debug */ = {

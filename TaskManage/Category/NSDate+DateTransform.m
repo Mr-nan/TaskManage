@@ -112,7 +112,7 @@
     date = [formatter dateFromString:dateStr];
     toDate = [formatter dateFromString:toDateStr];
     NSDateComponents *comp = [calender components:NSCalendarUnitDay fromDate:date toDate:toDate options:NSCalendarWrapComponents];
-    return comp.day;
+    return comp.day+1;
 }
 
 +(NSInteger)getNumberOfMonthWithDate:(NSString *)dateStr toDate:(NSString *)toDateStr{

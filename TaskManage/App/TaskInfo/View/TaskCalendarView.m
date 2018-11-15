@@ -68,6 +68,14 @@
         return;
     }
     
+    if([NSDate compareDateStr:taskItem.taskStartDate withNewDateStr:[NSDate getDateString:@"yyyy-MM-dd"]]==-1){
+        [self.finishButton setHidden:NO];
+        [self.finishButton setTitle:@"未开始" forState:UIControlStateNormal];
+        self.finishButton.userInteractionEnabled = NO;
+        return;
+    }
+
+    
     if(taskItem.taskDateArray.count>0){
         NSString *taskFinallyDate = [taskItem.taskDateArray lastObject];
         if([NSDate compareDateStr:[NSDate getDateString:@"yyyy-MM-dd"] withNewDateStr:taskFinallyDate]==-1){

@@ -30,12 +30,18 @@
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     
-    _hud = [MBProgressHUDTool showLoadTitle:@"加载中..."];
+    _hud = [MBProgressHUDTool showLoadTitle:@"加载中..." andToView:self.view];
     
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     ZNLog(@"%@",error);
-    [MBProgressHUDTool showToastTitle:@"网络错误！"];
+    if(error.code!=-1||error.code!=999){
+        [MBProgressHUDTool showToastTitle:@"网络错误！" andToView:self.view];
+    }
+    [_hud hideAnimated:YES];
+
+  
+
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     ZNLog(@"加载完毕");

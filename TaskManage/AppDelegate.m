@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import "ZNNavigationController.h"
+#import "AddTaskViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -63,7 +64,15 @@
 
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
     
-    NSLog(@"%@",[url absoluteString]);
+    NSLog(@"%@",[url host]);
+    NSString *host = [url host];
+    if([host isEqualToString:@"add"]){
+        ZNNavigationController  *nc = (ZNNavigationController *) app.keyWindow.rootViewController;
+        AddTaskViewController *add = [[AddTaskViewController alloc]init];
+        [nc pushViewController:add animated:YES];
+        
+        
+    }
     return YES;
     
 }

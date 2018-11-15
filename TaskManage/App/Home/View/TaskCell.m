@@ -44,6 +44,9 @@
 -(void)setCellItem:(TaskItem *)cellItem{
     
     [self.finishButton setHidden:YES];
+    self.finishButton.userInteractionEnabled = YES;
+    [self.finishButton setTitle:@"今日完成" forState: UIControlStateNormal];
+
     [self setTitleColor:[UIColor whiteColor]];
     self.backImage.image = [UIImage imageNamed:@"任务背景1"];
 
@@ -67,6 +70,13 @@
         return;
     }
     
+    if([NSDate compareDateStr:cellItem.taskStartDate withNewDateStr:[NSDate getDateString:@"yyyy-MM-dd"]]==-1){
+        [self.finishButton setHidden:NO];
+        [self.finishButton setTitle:@"未开始" forState:UIControlStateNormal];
+        self.finishButton.userInteractionEnabled = NO;
+        return;
+    }
+    
     if(cellItem.taskDateArray.count>0){
         
         NSString *taskFinallyDate = [cellItem.taskDateArray lastObject];
@@ -75,6 +85,7 @@
         }
         
     }else{
+        
         [self.finishButton setHidden:NO];
     }
     

@@ -8,8 +8,13 @@
 
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
+#import "TaskCell.h"
 
 @interface TodayViewController () <NCWidgetProviding>
+
+@property (nonatomic,strong) UILabel *titleLabel;
+@property (nonatomic,strong) UIButton *addButton;
+
 
 @end
 
@@ -17,53 +22,54 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
-    self.preferredContentSize = CGSizeMake(self.preferredContentSize.width, self.preferredContentSize.height);
+    self.preferredContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 300);
     [self setUI];
 }
 
 -(void)setUI{
-    self.titleLabel.textColor = [UIColor colorWithRed:90.0/255.0f green:90.0/255.0f blue:90.0/255.0f alpha:1.00f];
-    self.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.titleLabel sizeToFit];
-    
+  
+    self.titleLabel.text = @"给自己新增一个Task吧";
+    [self.view addSubview:self.titleLabel];
+    [self.view addSubview:self.addButton];
     
 }
 
-- (IBAction)buttonClick:(UIButton *)sender {
+- (void)buttonClick:(UIButton *)sender {
     
-    NSLog(@"button.tag=%ld",sender.tag);
     
     if(sender.tag ==0){
-        NSURL *url = [NSURL URLWithString:@"taskManage://left"];
+        NSURL *url = [NSURL URLWithString:@"taskManage://add"];
         [self.extensionContext openURL:url completionHandler:nil];
 
     }else{
         NSURL *url = [NSURL URLWithString:@"taskManage://right"];
         [self.extensionContext openURL:url completionHandler:nil];
 
-
     }
 }
 
 
--(void)widgetActiveDisplayModeDidChange:(NCWidgetDisplayMode)activeDisplayMode withMaximumSize:(CGSize)maxSize{
-    NSLog(@"maxWidth %f maxHeight %f",maxSize.width,maxSize.height);
-    if(activeDisplayMode == NCWidgetDisplayModeCompact){
-        self.preferredContentSize = CGSizeMake(maxSize.width, maxSize.height);
-    }else{
-        self.preferredContentSize = CGSizeMake(maxSize.width, maxSize.height);
+
+-(UILabel *)titleLabel{
+    if(!_titleLabel){
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 10, self.preferredContentSize.width - 30, 30)];
+//        _titleLabel.backgroundColor = [UIColor yellowColor];
+        _titleLabel.font = [UIFont systemFontOfSize:18];
+        
     }
+    return _titleLabel;
 }
 
-- (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
-    // Perform any setup necessary in order to update the view.
-    
-    // If an error is encountered, use NCUpdateResultFailed
-    // If there's no update required, use NCUpdateResultNoData
-    // If there's an update, use NCUpdateResultNewData
-
-    completionHandler(NCUpdateResultNewData);
+-(UIButton *)addButton{
+    if(!_addButton){
+        UIImage *addImage = [UIImage imageNamed:@"add"];
+        _addButton = [[UIButton alloc]initWithFrame:CGRectMake((self.preferredContentSize.width-addImage.size.width)/2, 50, addImage.size.width, addImage.size.height)];
+        _addButton.tag = 0;
+        [_addButton setBackgroundImage:addImage forState:UIControlStateNormal];
+        [_addButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _addButton;
 }
+
 
 @end

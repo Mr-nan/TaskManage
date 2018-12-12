@@ -20,6 +20,7 @@
 		7D6710E62089D6FB00753521 /* ZNCalendarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710E52089D6FB00753521 /* ZNCalendarItemView.m */; };
 		7D6710E92089E41900753521 /* TaskCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710E82089E41900753521 /* TaskCalendarViewController.m */; };
 		7D6710EC208DB2B200753521 /* ZNCalenderHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6710EB208DB2B200753521 /* ZNCalenderHeadView.m */; };
+		7DB1E71B21B5151400FA6354 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB1E71A21B5151400FA6354 /* libc++abi.tbd */; };
 		7DB7D4BE2199218E003250F6 /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DB7D4BD2199218E003250F6 /* image.xcassets */; };
 		7DB7D4C121994D69003250F6 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB7D4C021994D69003250F6 /* TaskCell.m */; };
 		7DF62ABE206A2D2B00FAF432 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF62AA5206A2D2B00FAF432 /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -124,6 +125,7 @@
 		7D6710E82089E41900753521 /* TaskCalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskCalendarViewController.m; sourceTree = "<group>"; };
 		7D6710EA208DB2B200753521 /* ZNCalenderHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNCalenderHeadView.h; sourceTree = "<group>"; };
 		7D6710EB208DB2B200753521 /* ZNCalenderHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNCalenderHeadView.m; sourceTree = "<group>"; };
+		7DB1E71A21B5151400FA6354 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		7DB7D4BD2199218E003250F6 /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
 		7DB7D4BF21994D69003250F6 /* TaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
 		7DB7D4C021994D69003250F6 /* TaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DB1E71B21B5151400FA6354 /* libc++abi.tbd in Frameworks */,
 				7D1E57F92178656E007F336E /* Photos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +252,7 @@
 		7D1E57F72178656E007F336E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DB1E71A21B5151400FA6354 /* libc++abi.tbd */,
 				7D1E57F82178656E007F336E /* Photos.framework */,
 				7D569063218041AA00D2C257 /* NotificationCenter.framework */,
 			);
@@ -949,6 +953,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8RXU2MG5MH;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TaskManage/TaskHeader.pch";
 				INFOPLIST_FILE = TaskManage/Info.plist;
@@ -970,6 +975,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8RXU2MG5MH;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TaskManage/TaskHeader.pch";
 				INFOPLIST_FILE = TaskManage/Info.plist;

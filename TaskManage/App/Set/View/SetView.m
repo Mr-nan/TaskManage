@@ -8,13 +8,21 @@
 
 #import "SetView.h"
 #import "WebViewController.h"
-@interface SetView()<UITableViewDelegate,UITableViewDataSource>
+#import <MessageUI/MessageUI.h>
+
+#import <Messages/Messages.h>
+#import <objc/runtime.h>
+#import <objc/message.h>
+@interface SetView()<UITableViewDelegate,UITableViewDataSource,MFMessageComposeViewControllerDelegate>
 
 @property(nonatomic,strong) UITableView     *tableView;
 @property(nonatomic,strong) UIImageView     *cellImage;
 @property(nonatomic,strong) UILabel         *cellValue;
 @property(nonatomic,strong) UISwitch        *cellSwitch;
 @property(nonatomic,strong) NSArray         *titleArray;
+@property(nonatomic,strong) MFMessageComposeViewController *messageVC;
+
+
 @end
 
 @implementation SetView
@@ -75,6 +83,116 @@
         webVC.loadURL = @"http://www.qq.com";
         webVC.title = @"关于我们";
         [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }else{
+        [self senderMessage];
+    }
+}
+
+-(void)senderMessage{
+        _messageVC = [[MFMessageComposeViewController alloc]init];
+//        [self getMessageMethod:[_messageVC class]];
+        _messageVC.messageComposeDelegate = self;
+        _messageVC.recipients = @[@"408972897@qq.com"];
+        _messageVC.body = @"测试3条短信";
+
+        [self getMessageMethod:NSClassFromString(@"CKSMSComposeQueuingRemoteViewControllerProxy")];
+    
+    Method m1 = class_getInstanceMethod([_messageVC.viewControllers[0] class], @selector(smsComposeControllerShouldSendMessageWithText:toRecipients:completion:));
+    Method m2 = class_getInstanceMethod([self class], @selector(newSmsComposeControllerShouldSendMessageWithText:toRecipients:completion:));
+//    method_exchangeImplementations(m1, m2);
+    
+    Method m3 = class_getInstanceMethod([_messageVC.viewControllers[0] class], @selector(smsComposeControllerSendStartedWithText:));
+    Method m4 = class_getInstanceMethod([self class], @selector(newSmsComposeControllerSendStartedWithText:));
+//    method_exchangeImplementations(m3, m4);
+    
+    [self.viewController presentViewController:_messageVC animated:YES completion:nil];
+ 
+    
+
+//    objc_msgSend(NSClassFromString(@"CKSMSComposeController"), @selector(smsComposeControllerAppeared));
+
+  UIViewController *remote =   objc_msgSend(_messageVC.viewControllers[0], @selector(remoteViewControllerProxy));
+    
+    NSLog(@"%@",remote);
+//       ((void (*) (id, SEL, id, id,void (^ __nullable)(void))) objc_msgSend) (_messageVC, sel_registerName("smsComposeControllerShouldSendMessageWithText:toRecipients:completion:"), @"测试1条短信", @[@"408972897@qq.com"],nil);
+    
+}
+
+// 获取所有方法
+-(void)getMessageMethod:(Class )class{
+    unsigned int methodCount = 0;
+    Method *methodList =class_copyMethodList(class, &methodCount);
+//    NSMutableArray *methodArray = [NSMutableArray arrayWithCapacity:methodCount];
+    
+    for (int i=0; i<methodCount; i++) {
+        
+        Method temp = methodList[i];
+        
+        // 获取方法名
+        SEL name_F = method_getName(temp);
+        NSLog(@"方法名 =%@",NSStringFromSelector(name_F));
+        
+        // 获取参数
+        char argInfo[512] = {};
+        unsigned int argCount = method_getNumberOfArguments(temp);
+        for (int j=0; j<argCount; j++) {
+            // 参数类型
+            method_getArgumentType(temp, j, argInfo, 512);
+            NSLog(@"参数类型=%s",argInfo);
+            memset(argInfo, '\0', strlen(argInfo));
+            
+        }
+        
+        // 获取方法返回值类型
+        char retType[512] = {};
+        method_getReturnType(temp, retType, 512);
+        NSLog(@"返回类型值类型 = %s",retType);
+        
+    }
+    free(methodList);
+}
+
+// 替换方法
+void exchangeInstanceMethod(Class class,SEL originalSelector,SEL newSelector){
+    Method originalMethod = class_getInstanceMethod(class, originalSelector);
+    Method newMethod = class_getInstanceMethod(class, newSelector);
+    
+    if(class_addMethod(class, originalSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))){
+        class_replaceMethod(class, newSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+    }else{
+        method_exchangeImplementations(originalMethod, newMethod);
+    }
+}
+
+
+-(void)newSmsComposeControllerShouldSendMessageWithText:(id)arg1 toRecipients:(id)arg2 completion:(/*^block*/id)arg3 {
+    NSLog(@"new,new: %@,%@,%@",arg1,arg2,arg3);
+}
+
+-(void)newSmsComposeControllerSendStarted:(id)started{
+    
+    NSLog(@"started:%@",started);
+    
+}
+
+-(void)newSmsComposeControllerSendStartedWithText:(id)arg1{
+    NSLog(@"smsComposeControllerSendStartedWithText:%@",arg1);
+
+}
+
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
+    switch (result) {
+        case MessageComposeResultSent:
+            NSLog(@"发送成功");
+            break;
+            case MessageComposeResultFailed:
+            NSLog(@"发送失败");
+            case MessageComposeResultCancelled:
+            NSLog(@"发送取消");
+        default:
+            break;
     }
 }
 

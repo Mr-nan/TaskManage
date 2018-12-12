@@ -22,8 +22,8 @@
     self.title = @"更多";
     self.view.backgroundColor = view_backgroundColor;
     [self.view addSubview:self.setView];
+    
 }
-
 -(SetView *)setView{
     if(!_setView){
         _setView = [[SetView alloc]initWithFrame:self.view.bounds];
